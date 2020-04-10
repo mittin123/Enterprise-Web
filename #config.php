@@ -2,7 +2,7 @@
 //Config file for database and other else
 class Database{
     private $host = 'localhost';
-    private $db_name = 'waiterless';
+    private $db_name = 'eLearning';
     private $user = 'root';
     private $pw = '';
     public $connect;
@@ -18,4 +18,4 @@ class Database{
         return $this->connect; 
     }
 }
-?>
+?>    
