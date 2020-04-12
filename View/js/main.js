@@ -1671,6 +1671,7 @@
 
 //VALIDATE FUNCTION HERE
 $(document).ready(function() {
+  //Folder and file 
   $("#addFolderStudent").click(function(){
     
     var tNameFolder = document.getElementById('tNameFolder').value;
@@ -1699,4 +1700,17 @@ $("#upCmtTutor").click(function(){
       alert("Please enter comment");
     } 
   })
+  //Login
+  $("#submit").click(function(){
+    
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+  
+    if(email.length == 0){
+      alert("Please input a email");
+    } else if(password.length == 0){
+      alert("Please input a password");
+    } 
+  })
+  
 });
