@@ -1668,3 +1668,35 @@
   }
 
 })(jQuery);
+
+//VALIDATE FUNCTION HERE
+$(document).ready(function() {
+  $("#addFolderStudent").click(function(){
+    
+    var tNameFolder = document.getElementById('tNameFolder').value;
+    if(tNameFolder.length == 0){
+      alert("Please enter folder name");
+    } 
+  })
+$("#addFolderTutor").click(function(){
+    
+    var tNameFolder = document.getElementById('tNameFolder').value;
+    if(tNameFolder.length == 0){
+      alert("Please enter folder name");
+    } 
+  })
+$("#upCmtStudent").click(function(){
+    
+    var comment = document.getElementById('comment').value;
+    if(comment.length == 0){
+      alert("Please enter comment");
+    } 
+  })
+$("#upCmtTutor").click(function(){
+    
+    var comment = document.getElementById('comment').value;
+    if(comment.length == 0){
+      alert("Please enter comment");
+    } 
+  })
+});
