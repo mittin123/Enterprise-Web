@@ -7,7 +7,7 @@ class Database{
     private $pw = '';
     public $connect;
 
-    public function connect(){
+    public function __construct(){
         $this->connect = null;
         try {
             $this->connect = new PDO("mysql:host=".$this->host.";dbname=".$this->db_name,$user,$pw);
