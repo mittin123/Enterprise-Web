@@ -17,5 +17,16 @@ class Database{
         }
         return $this->connect; 
     }
+
+    private function login($email, $password){
+        $db = Database::getInstance();
+        $query = $db->query("Select * from Account where Email = ? and Password = ?");
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$email);
+        $stmt->bindParam(2,$password);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 ?>    

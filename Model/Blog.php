@@ -1,4 +1,5 @@
 <?php
+include('../#config.php');
 class Blog
 {
   public $user;
@@ -24,11 +25,12 @@ class Blog
   static function view_blog()
   {
     $list = [];
-    $db = DB::getInstance();
-    $req = $db->query('SELECT * FROM blog');
+    //DB -> Database
+    $db = Database::getInstance();
+    $req = $db->query("SELECT * FROM blog");
 
     foreach ($req->fetchAll() as $item) {
-      $list[] = new Post($item['user'], $item['id'] $item['title'], $item['abstraction'], $item['content'], $item['url'], $item['create_time'], $item['status']);
+      $list[] = new Post($item['user'], $item['id'], $item['title'], $item['abstraction'], $item['content'], $item['url'], $item['create_time'], $item['status']);
     }
 
     return $list;
