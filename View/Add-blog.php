@@ -8,7 +8,7 @@ if(isset($_POST['add'])){
     $abstraction = $_POST['gDes'];
     $content = $_POST['description'];
     $t_url = preg_replace('~[^\pL\d]+~u', '-', strtolower($_POST['title']));
-    $url = 'https://eLearning.com/StudentBlog/' . $t_url;
+    $url = 'https://eLearning.com/Blog/' . $t_url;
     $create_time = time();
     $blog = new BlogController();
     $result = $blog->createBlog($user, $title, $abstraction, $content, $url, $create_time);
