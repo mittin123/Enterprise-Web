@@ -8,27 +8,27 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-   
+   ]
     <!-- Title Page-->
     <title>Homepage</title>
 
     <!-- Fontfaces CSS-->
     <link href="View/css/font-face.css" rel="stylesheet" media="all">
-    <link href="View/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="View/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="View/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="View/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="View/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="View/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="View/Vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="View/css/theme.css" rel="stylesheet" media="all">
@@ -70,7 +70,7 @@
                                 <i class="as fa-archive"></i>Option</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="login.php">Login</a>
+                                    <a href="login.html">Login</a>
                                 </li>
                                 <li>
                                     <a href="register.html">Register</a>
@@ -261,7 +261,7 @@
                                 </div>
                                 <!-- Redirect đến trang login hộ t phát-->
                                 <div align="right" style="margin-top: -5px;">
-                                      <a href ="login.php"><button type="button" class="btn btn-primary">Log In</button></a>
+                                      <button type="button" class="btn btn-primary" href="AddStudent(Sp2).html">Log In</button>
                                 <!-- </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">

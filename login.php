@@ -8,9 +8,10 @@ if(!isset($_SESSION)){
 if(isset($_POST['login'])){
     $email = addslashes($_POST['email']);
     $password = addslashes($_POST['password']);
-    $db = new Database();
+    
+    $db = Database::getInstance();
     $function = new func();
-    $result = $db->login($id, $password);
+    $result = $db->login($email, $password);
     if($result['status'] == 1){
         
         $_SESSION['email'] = $id;
@@ -34,25 +35,25 @@ if(isset($_POST['login'])){
     <title>Login</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="View/css/font-face.css" rel="stylesheet" media="all">
+    <link href="View/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="View/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="View/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="View/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="View/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="View/css/theme.css" rel="stylesheet" media="all">
 
 </head>
 
@@ -64,7 +65,7 @@ if(isset($_POST['login'])){
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                <img src="View/images/icon/logo.png" alt="CoolAdmin">
                             </a>
                         </div>
                         <div class="login-form">
@@ -77,7 +78,7 @@ if(isset($_POST['login'])){
                                     <label>Password</label>
                                     <input class="au-input au-input--full"  name="password" id="password" placeholder="Password" type="password">
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" id="login">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" name="login" id="login">sign in</button>
                             </form>
                         </div>
                     </div>
@@ -88,28 +89,28 @@ if(isset($_POST['login'])){
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="View/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="View/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="View/vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="View/vendor/slick/slick.min.js">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="View/vendor/wow/wow.min.js"></script>
+    <script src="View/vendor/animsition/animsition.min.js"></script>
+    <script src="View/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="View/vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="View/vendor/counter-up/jquery.counterup.min.js">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
+    <script src="View/vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="View/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="View/vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="View/vendor/select2/select2.min.js">
     </script>
 
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="View/js/main.js"></script>
 
 </body>
 
