@@ -1,9 +1,8 @@
 <?php
-require("Controller/BlogController.php");
+include_once("Controller/BlogController.php");
 
 if(isset($_POST['add'])){
     $user = $_SESSION['id'];
-
     $title = $_POST['title'];
     $abstraction = $_POST['gDes'];
     $content = $_POST['description'];
