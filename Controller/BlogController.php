@@ -14,7 +14,7 @@ class BlogController extends LayoutController{
     
     public function createBlog($user, $title, $abstraction, $content, $url, $create_time){
         $addB = new BlogController();
-        $result = $addB->createBlog($user, $title, $abstraction, $content, $url, $create_time)
+        $result = $addB->create_blog($user, $title, $abstraction, $content, $url, $create_time)
         if($result){
             echo 'Add Successful!';
         } else{
@@ -23,7 +23,13 @@ class BlogController extends LayoutController{
     }
 
     public function updateBlog($user, $id, $title, $abstraction, $content, $url, $create_time){
-
+        $updB = new BlogController();
+        $result = $updB->update_blog($user, $id, $title, $abstraction, $content, $url, $create_time)
+        if($result){
+            echo 'Update Successful!';
+        } else{
+            echo 'Update Fail!';
+        }
     }
 
     public function deleteBlog($user, $id){
