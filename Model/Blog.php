@@ -21,23 +21,32 @@ class Blog
     $this->create_time = $create_time;
   }
 
-  static function view_blog($user)
+  public function view_all_blog($user)
   {
-    $list = [];
     //DB -> Database
     $db = Database::getInstance();
     $req = $db->query("SELECT * FROM blog WHERE user = ?");
     $stmt = $db->prepare($req);
     $stmt->bindParam(1,$user);
     $stmt->execute();
-    foreach ($stmt->fetchAll() as $item) {
-      $list[] = new Blog($item['user'], $item['id'], $item['title'], $item['abstraction'], $item['content'], $item['url'], $item['create_time']);
-    }
-
-    return $list;
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
   }
 
-  static function create_blog($user, $title, $abstraction, $content, $url, $create_time)
+  public function view_blog_detail($user, $id)
+  {
+    //DB -> Database
+    $db = Database::getInstance();
+    $req = $db->query("SELECT * FROM blog WHERE user = ? and id = ?");
+    $stmt = $db->prepare($req);
+    $stmt->bindParam(1,$user);
+    $stmt->bindParam(2,$id);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+  }
+
+  public function create_blog($user, $title, $abstraction, $content, $url, $create_time)
   {
     $db = Database::getInstance();
       $query = $db->query("INSERT into blog(user, title, abstraction, content, url, create_time) VALUES (?, ?, ?, ?, ?, ?)");
@@ -49,10 +58,10 @@ class Blog
       $stmt->bindParam(5,$url);
       $stmt->bindParam(6,$create_time);
       $stmt->execute();
-
+      return $stmt->execute();
   }
 
-  static function update_blog($user, $id, $title, $abstraction, $content, $url, $create_time)
+  public function update_blog($user, $id, $title, $abstraction, $content, $url, $create_time)
   {
     $db = Database::getInstance();
       $query = $db->query("UPDATE blog set title = ?, abstraction = ?, content = ?, url = ?, create_time = ? WHERE id = ? and user = ?" );
@@ -65,9 +74,10 @@ class Blog
       $stmt->bindParam(6,$id);
       $stmt->bindParam(7,$user);
       $stmt->execute();
+      return $stmt->execute();
   }
 
-  static function delete_blog($user, $id)
+  public function delete_blog($user, $id)
   {
     $db = Database::getInstance();
       $query = $db->query("DELETE from blog WHERE id = ? and user = ?");
@@ -75,5 +85,6 @@ class Blog
       $stmt->bindParam(1,$id);
       $stmt->bindParam(2,$user);
       $stmt->execute();
+      return $stmt->execute();
   }
 }
