@@ -1,5 +1,5 @@
 <?php
-require("Controller/BlogController.php");
+include_once("Controller/BlogController.php");
 
 if(isset($_POST['editSubmit'])){
     $user = $_SESSION['id'];
