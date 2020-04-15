@@ -21,15 +21,17 @@ class Blog
     $this->create_time = $create_time;
   }
 
-  static function view_blog()
+  static function view_blog($user)
   {
     $list = [];
     //DB -> Database
     $db = Database::getInstance();
-    $req = $db->query("SELECT * FROM blog");
-
-    foreach ($req->fetchAll() as $item) {
-      $list[] = new Post($item['user'], $item['id'], $item['title'], $item['abstraction'], $item['content'], $item['url'], $item['create_time']);
+    $req = $db->query("SELECT * FROM blog WHERE user = ?");
+    $stmt = $db->prepare($req);
+    $stmt->bindParam(1,$user);
+    $stmt->execute();
+    foreach ($stmt->fetchAll() as $item) {
+      $list[] = new Blog($item['user'], $item['id'], $item['title'], $item['abstraction'], $item['content'], $item['url'], $item['create_time']);
     }
 
     return $list;
