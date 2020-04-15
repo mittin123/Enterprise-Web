@@ -12,6 +12,7 @@ if(isset($_POST['login'])){
     $function = new func();
     $result = $db->login($id, $password);
     if($result['status'] == 1){
+        
         $_SESSION['email'] = $id;
         $_SESSION['type'] = $result['Type'];
         $function->redir("index.php");
