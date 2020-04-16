@@ -22,7 +22,7 @@ else{
             
             $_SESSION['email'] = $email;
             $_SESSION['type'] = $result['type'];
-            $_SESSION['name'] = $result['username'];
+            $_SESSION['id'] = $result['username'];
            
             $function->redir("index.php");
         }
