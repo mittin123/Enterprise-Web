@@ -25,4 +25,25 @@ class Student{
     public function upload($student, $file){
         
     }
+
+    public function arranging_meeting_tutor($name, $create_date, $arrange_date, $note){
+        $db = Database::getInstance();
+        $req = $db->prepare("Select * from student_tutor where student_code = ?");
+    
+        $req->bindParam(1,$_SESSION['id']);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        $st_id = $result['id'];
+
+        $query = $db->query("INSERT into student_arrange(std_tutor_id, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$st_id);
+        $stmt->bindParam(2,$name);
+        $stmt->bindParam(3,$create_date);
+        $stmt->bindParam(4,$arrange_date);
+        $stmt->bindParam(5,$note);
+        $stmt->execute();
+        return $stmt->execute();
+    }
 }

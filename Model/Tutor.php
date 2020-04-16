@@ -35,11 +35,11 @@ class Tutor{
         return $result;
     }
 
-    public function arranging_meeting_tutor($std_tutor_id, $name, $create_date, $arrange_date, $note){
+    public function arranging_meeting_tutor($std_code, $name, $create_date, $arrange_date, $note){
         $db = Database::getInstance();
-        $req = $db->prepare("Select * from student_tutor where student_code = ?");
-    
-        $req->bindParam(1,$_SESSION['id']);
+        $req = $db->prepare("Select * from student_tutor where student_code = ? and tutor_code = ?");
+        $req->bindParam(1,$std_code);
+        $req->bindParam(2,$_SESSION['id']);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
