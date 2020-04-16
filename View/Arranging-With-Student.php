@@ -15,14 +15,14 @@ $b_detail = $blog->viewAllBlog();
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-   <script src="https://kit.fontawesome.com/yourcode.js"></script>
+
     <!-- Title Page-->
-    <title>Student Blog</title>
+    <title>Arranging meeting for student</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -39,7 +39,7 @@ $b_detail = $blog->viewAllBlog();
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
-
+    <link href="css/datetimepicker.css" rel="stylesheet">
 
 </head>
 
@@ -64,26 +64,47 @@ $b_detail = $blog->viewAllBlog();
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li>
-                            <li>
-                            <a href="#">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="index.html">Dashboard 1</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">Dashboard 2</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">Dashboard 3</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">Dashboard 4</a>
+                                </li>
+                            </ul>
                         </li>
-                         <li>
+                        <li>
                             <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
+                                <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
+                                <i class="fas fa-table"></i>Tables</a>
                         </li>
                         <li>
                             <a href="form.html">
-                                <i class="fas fa-rss-square"></i>Blog</a>
+                                <i class="far fa-check-square"></i>Forms</a>
+                        </li>
+                        <li>
+                            <a href="calendar.html">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
+                        <li>
+                            <a href="map.html">
+                                <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="as fa-archive"></i>Option</a>
+                                <i class="fas fa-copy"></i>Pages</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="login.html">Login</a>
@@ -93,6 +114,45 @@ $b_detail = $blog->viewAllBlog();
                                 </li>
                                 <li>
                                     <a href="forget-pass.html">Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements</a>
+                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                                <li>
+                                    <a href="button.html">Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">Fontawesome Icon</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">Typography</a>
                                 </li>
                             </ul>
                         </li>
@@ -112,25 +172,47 @@ $b_detail = $blog->viewAllBlog();
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="#">
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="index.html">Dashboard 1</a>
+                                </li>
+                                <li>
+                                    <a href="index2.html">Dashboard 2</a>
+                                </li>
+                                <li>
+                                    <a href="index3.html">Dashboard 3</a>
+                                </li>
+                                <li>
+                                    <a href="index4.html">Dashboard 4</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
+                                <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
+                                <i class="fas fa-table"></i>Tables</a>
+                        </li>
+                        <li class="active">
+                            <a href="form.html">
+                                <i class="far fa-check-square"></i>Forms</a>
                         </li>
                         <li>
-                            <a href="form.html">
-                                <i class="fas fa-rss-square"></i>Blog</a>
+                            <a href="calendar.html">
+                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                        </li>
+                        <li>
+                            <a href="map.html">
+                                <i class="fas fa-map-marker-alt"></i>Maps</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="as fa-archive"></i>Option</a>
+                                <i class="fas fa-copy"></i>Pages</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="login.html">Login</a>
@@ -140,6 +222,45 @@ $b_detail = $blog->viewAllBlog();
                                 </li>
                                 <li>
                                     <a href="forget-pass.html">Forget Password</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>UI Elements</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="button.html">Button</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badges</a>
+                                </li>
+                                <li>
+                                    <a href="tab.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="card.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="alert.html">Alerts</a>
+                                </li>
+                                <li>
+                                    <a href="progress-bar.html">Progress Bars</a>
+                                </li>
+                                <li>
+                                    <a href="modal.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="switch.html">Switchs</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grids</a>
+                                </li>
+                                <li>
+                                    <a href="fontawesome.html">Fontawesome Icon</a>
+                                </li>
+                                <li>
+                                    <a href="typo.html">Typography</a>
                                 </li>
                             </ul>
                         </li>
@@ -326,49 +447,59 @@ $b_detail = $blog->viewAllBlog();
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-             <div class="main-content">
+            <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <h3 class="title-5 m-b-35">Blogs</h3>
-                        <div class="card-header">
-                    <strong class="card-title">Your Blogs</strong>
-                    <div align="right" style="margin-top: -30px;">
-                      <button type="button" class="btn btn-primary" href="Add-blog.php">Add</button>
-                    </div>
-                  </div>
                         <div class="row">
-                        <?php
-                            while($b_detail){
-
-                            echo "<div class=\"col-md-4\">"
-                            echo    "<div class=\"card\">"
-                            echo        "<div class=\"card-header\">"
-                            echo            "<strong class=\"card-title mb-3\">".$b_detail['title']."</strong>"
-                            echo        "</div>"
-                            echo        "<div class=\"card-body\">"
-                            echo            "<div class=\"mx-auto d-block\">"
-                            echo                 "<p class=\"card-text\">"$b_detail['abstraction'] 
-                            echo                "</p> "               
-                            echo                "<h6><i>Last update: ".date("m/d/y", $b_detail['create_date'])."</i></h6>"
-                            echo            "</div>"
-                            echo            "<hr>"
-                            echo            "<div class=\"card-text text-sm-center\">"
-                            echo                "<a href=\"Blog-Detail-Student.php?b_id=" .$b_detail['id']. "\"><input class=\"btn btn-info\" type=\"button\" value=\"Details\"></a>"
-                            echo            "</div>"
-                            echo        "</div>"
-                            echo    "</div>"
-                            echo "</div>"
-                            }
-                        ?>
-                        </div>
+                            <div class="col-lg-12">
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                    <h1>Arranging meetings</h1>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Arranging meetings for student</strong> 
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class="form-control-label">Meeting Name<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="mtName" name="mtName" placeholder="Enter Meeting Name" class="form-control">
+                                                    <small class="form-text text-muted">Meeting Names</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Date Arrange<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="dateArrange" name="dateArrange" class="form-control" value="">
+                                                    <small class="form-text text-muted">Date and Time</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Note<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="sNote" name="sNote" placeholder="Enter Note" class="form-control">
+                                                    <small class="form-text text-muted">Note</small>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="arrangingStundent" name="arrangingStundent">
+                                            <i class="fa fa-dot-circle-o"></i> Create
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
         </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
-        </div>
-
     </div>
 
     <!-- Jquery JS-->
@@ -390,12 +521,14 @@ $b_detail = $blog->viewAllBlog();
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
+
     </script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
 </body>
-
 </html>
 <!-- end document-->
