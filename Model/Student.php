@@ -36,7 +36,7 @@ class Student{
 
         $st_id = $result['id'];
 
-        $query = $db->query("INSERT into student_arrange(std_tutor_id, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)");
+        $query = "INSERT into student_arrange(std_tutor_id, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$st_id);
         $stmt->bindParam(2,$name);
