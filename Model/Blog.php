@@ -1,5 +1,5 @@
 <?php
-include('../#config.php');
+require_once('../#config.php');
 class Blog
 {
   public $user;
@@ -25,8 +25,7 @@ class Blog
   {
     //DB -> Database
     $db = Database::getInstance();
-    $req = $db->query("SELECT * FROM blog WHERE user = ?");
-    $stmt = $db->prepare($req);
+    $stmt = $db->prepare("SELECT * FROM blog WHERE user = ?");
     $stmt->bindParam(1,$user);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -1,13 +1,13 @@
 <?php
-include("../#config.php");
-include("student.php");
+require_once("./#config.php");
+require_once("Student.php");
 class Tutor{
 
     public function __construct(){
 
     }
     public function getAllStudent(){
-        $model_student = Student::getInstance();
+        $model_student = new Student();
         return $model_student->getAllStudent();
     }
     
@@ -24,8 +24,7 @@ class Tutor{
         $result = true;
         $db = Database::getInstance();
         try{
-            $query = $db->query("Insert into Student_Tutor (tutor_code, student_code) VALUES (?, ?)");
-            $stmt = $db->prepare($query);
+            $stmt = $db->prepare("Insert into Student_Tutor (tutor_code, student_code) VALUES (?, ?)");
             $stmt->bindParam(1,$tutor_id);
             $stmt->bindParam(2,$student_id);
         }

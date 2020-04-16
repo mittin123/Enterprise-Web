@@ -27,13 +27,18 @@ class Database{
     }
 
     public function login($email, $password){
-        $db = self::getInstance();
-        $query = $db->query("Select * from Account where Email = ? and Password = ?");
-        $stmt = $db->prepare($query);
+        $db = $this->connect;
+        $stmt = $db->prepare("Select * from account where Email = ? and Password = ?");
+    
         $stmt->bindParam(1,$email);
         $stmt->bindParam(2,$password);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($result){
+            $result['status'] = 1;
+        }
+
         return $result;
     }
 }

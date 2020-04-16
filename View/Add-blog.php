@@ -1,5 +1,5 @@
 <?php
-include_once("Controller/BlogController.php");
+include("../Controller/BlogController.php");
 
 if(isset($_POST['add'])){
     $user = $_SESSION['id'];

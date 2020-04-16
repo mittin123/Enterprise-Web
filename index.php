@@ -6,6 +6,12 @@ if(!isset($_SESSION)){
     session_start();
 }
 $home = new IndexController();
-$home->index();
+if(!isset($_SESSION['email'])){
+    $home->index(0);
+}
+else{
+    $home->index($_SESSION['type']);
+}
+
 ?>
 

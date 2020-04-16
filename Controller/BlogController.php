@@ -1,8 +1,8 @@
 <?php
-include("#config.php");
-include("Model/Blog.php");
-include("Model/Layout.php");
-include("login.php")
+include("../#config.php");
+include("../Model/Blog.php");
+include("Layout.php");
+//include("../login.php");
 
 class BlogController extends LayoutController{
     public function index(){
@@ -22,7 +22,7 @@ class BlogController extends LayoutController{
 
     public function createBlog($user, $title, $abstraction, $content, $url, $create_time){
         $addB = new Blog();
-        $result = $addB->create_blog($user, $title, $abstraction, $content, $url, $create_time)
+        $result = $addB->create_blog($user, $title, $abstraction, $content, $url, $create_time);
         if($result){
             echo 'Add Successful!';
         } else{
@@ -32,7 +32,7 @@ class BlogController extends LayoutController{
 
     public function updateBlog($user, $id, $title, $abstraction, $content, $url, $create_time){
         $updB = new Blog();
-        $result = $updB->update_blog($user, $id, $title, $abstraction, $content, $url, $create_time)
+        $result = $updB->update_blog($user, $id, $title, $abstraction, $content, $url, $create_time);
         if($result){
             echo 'Update Successful!';
         } else{

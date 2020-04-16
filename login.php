@@ -1,24 +1,37 @@
 <?php
-include("#config.php");
+require_once("#config.php");
 include("function.php");
+$function = new func();
 if(!isset($_SESSION)){
     session_start();
 }
 
-if(isset($_POST['login'])){
-    $email = addslashes($_POST['email']);
-    $password = addslashes($_POST['password']);
-    
-    $db = Database::getInstance();
-    $function = new func();
-    $result = $db->login($email, $password);
-    if($result['status'] == 1){
+if(isset($_SESSION['email'])){
+    $function->redir("index.php");
+}
+else{
+    if(isset($_POST['login'])){
+        $email = addslashes($_POST['email']);
+        $password = addslashes($_POST['password']);
         
-        $_SESSION['email'] = $id;
-        $_SESSION['type'] = $result['Type'];
-        $function->redir("index.php");
+        $db = Database::getInstance();
+        
+        $result = $db->login($email, $password);
+        
+        if($result && $result['status'] == 1){
+            
+            $_SESSION['email'] = $email;
+            $_SESSION['type'] = $result['type'];
+            $_SESSION['name'] = $result['username'];
+           
+            $function->redir("index.php");
+        }
+        else{
+            $function->alert("Wrong username/password");
+        }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
