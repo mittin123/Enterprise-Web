@@ -62,7 +62,7 @@
                             <a href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                            <a href="form.html">
+                            <a href="Personal-Blog-Student.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                         <li class="has-sub">

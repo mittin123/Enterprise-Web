@@ -16,7 +16,7 @@ class BlogController extends LayoutController{
     
     public function viewBlogDetail($id){
         $vieB = new Blog();
-        $detail = $vieB->view_blog_detail($_SESSION['id'], $id);
+        $detail = $vieB->view_blog_detail($id);
         return $detail;
     }
 
@@ -30,9 +30,9 @@ class BlogController extends LayoutController{
         }
     }
 
-    public function updateBlog($user, $id, $title, $abstraction, $content, $url, $create_time){
+    public function updateBlog($id, $title, $abstraction, $content, $url, $create_time){
         $updB = new Blog();
-        $result = $updB->update_blog($user, $id, $title, $abstraction, $content, $url, $create_time);
+        $result = $updB->update_blog($id, $title, $abstraction, $content, $url, $create_time);
         if($result){
             echo 'Update Successful!';
         } else{
@@ -40,8 +40,12 @@ class BlogController extends LayoutController{
         }
     }
 
-    public function deleteBlog($user, $id){
-
+    public function deleteBlog($id){
+        $delBlog = new Blog();
+        $result = $delBlog->delete_blog($id);
+        if($result){
+            echo 'Delete Successful!';
+        }
     }
 }
 

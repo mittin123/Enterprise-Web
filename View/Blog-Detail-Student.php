@@ -1,8 +1,9 @@
 <?php
 include_once("Controller/BlogController.php");
-$id = $_GET['b_id'];
-$blog = new BlogController();
-$b_detail = $blog->viewBlogDetail($id);
+
+    $id = $_GET['b_id'];
+    $blog = new BlogController();
+    $b_detail = $blog->viewBlogDetail($id);
 ?>
 
 <!DOCTYPE html>
