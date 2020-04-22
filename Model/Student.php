@@ -22,6 +22,26 @@ class Student{
         return $student_list;
     }
 
+    public function getUnallocatedStudent(){
+        $student_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "Select * from student where code not in (Select student_code from student_tutor)";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $student_list[] = $item;
+        }
+        return $student_list;
+    }
+
+    public function findStudent($student_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from student where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$student_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function upload($student, $file){
         
     }

@@ -22,7 +22,7 @@
                             </a>
                         </li>
                          <li>
-                            <a href="chart.html">
+                            <a href="view_student.php">
                                 <i class="fas fa-address-card"></i>Unallocate Student List</a>
                         </li>
                        <li>

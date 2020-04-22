@@ -6,7 +6,7 @@ class TutorController{
     }
 
     public function assignStudent($student_id, $tutor_id){
-        $model_tutor = Tutor::getInstance();
+        $model_tutor = new Tutor();
         $result = $model_tutor->assignStudent($student_id, $tutor_id);
         if($result){
             return true;

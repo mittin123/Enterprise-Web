@@ -13,16 +13,42 @@ class Tutor{
     
     public function getAllTutor(){
         $tutor_list = [];
-        $db = Database::getInstance();
-        $query = $db->query("Select * from Tutor");
-        foreach($db->fetchAll($query) as $item){
-            $tutor_list [] = new Tutor();
+        $db = Database::getInstance()->connect;
+        $query = "Select * from tutor";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $tutor_list[] = $item;
         }
+        return $tutor_list;
+    }
+    
+    public function getTutor($id){
+        $db = Database::getInstance()->connect;
+        $query = "Select A.*, COUNT(B.student_code) as student_count from tutor as A join student_tutor as B on A.code = B.tutor_code where A.id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $tutor_detail = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $tutor_detail;
+    }
+
+    public function getListOfStudent($tutor_id){
+        $db = Database::getInstance()->connect;
+        $student_list = [];
+        $tutor = self::getTutor($tutor_id);
+        $tutor_code = $tutor['code'];
+        $query = "Select * from student_tutor as A join student as B on A.student_code = B.code where tutor_code = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$tutor_code);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $student_list[] = $item;
+        }
+        return $student_list;
     }
 
     public function assignStudent($student_id, $tutor_id){
         $result = true;
-        $db = Database::getInstance();
+        $db = Database::getInstance()->connect;
         try{
             $stmt = $db->prepare("Insert into Student_Tutor (tutor_code, student_code) VALUES (?, ?)");
             $stmt->bindParam(1,$tutor_id);
