@@ -1,0 +1,12 @@
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (1, 'STD01', 'Student 1', 'no1@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (2, 'STD02', 'Student 2', 'no2@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (3, 'STD03', 'Student 3', 'no2@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (4, 'STD04', 'Student 4', 'no2@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (5, 'STD05', 'Studnet 5', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (6, 'STD06', 'Studnet 6', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (7, 'STD07', 'Studnet 7', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (8, 'STD08', 'Studnet 8', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (9, 'STD09', 'Studnet 9', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (10, 'STD10', 'Studnet 10', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (11, 'STD11', 'Studnet 11', 'no5@gmail.com');
+INSERT INTO `student`(`id`, `code`, `name`, `email`) VALUES (12, 'STD12', 'Studnet 12', 'no5@gmail.com');

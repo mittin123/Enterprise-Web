@@ -1,0 +1,12 @@
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (1, 'test', 'test@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (2, 'student_1', 'no1@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (3, 'student_2', 'no2@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (4, 'student_3', 'no3@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (5, 'student_4', 'no4@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (6, 'student_5', 'no5@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (7, 'student_6', 'no6@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (8, 'student_7', 'no7@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (9, 'student_8', 'no8@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (10, 'student_9', 'no9@gmail.com', '123', 1);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (11, 'tutor', 'tutor@gmail.com', '123', 2);
+INSERT INTO `account`(`id`, `username`, `email`, `password`, `type`) VALUES (12, 'staff_no1', 'staff@gmail.com', '123', 3);
