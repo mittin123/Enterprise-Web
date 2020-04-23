@@ -26,11 +26,11 @@
                                 <i class="fas fa-address-card"></i>Unallocate Student List</a>
                         </li>
                        <li>
-                            <a href="chart.html">
+                            <a href="view_tutor.php">
                                 <i class="fas fa-address-card"></i>Tutor List</a>
                         </li>
                        <li>
-                            <a href="form.html">
+                            <a href="View/Personal-Blog-Student.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                     </ul>

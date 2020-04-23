@@ -10,7 +10,11 @@ class Blog
   public $url;
   public $create_time;
 
-  function __construct($user, $id, $title, $abstraction, $content, $url, $create_time)
+  function __construct(){
+
+  }
+
+  function create($user, $id, $title, $abstraction, $content, $url, $create_time)
   {
     $this->user = $user;
     $this->id = $id;
@@ -24,7 +28,7 @@ class Blog
   public function view_all_blog($user)
   {
     //DB -> Database
-    $db = Database::getInstance();
+    $db = Database::getInstance()->connect;
     $stmt = $db->prepare("SELECT * FROM blog WHERE user = ?");
     $stmt->bindParam(1,$user);
     $stmt->execute();
@@ -35,8 +39,8 @@ class Blog
   public function view_blog_detail( $id)
   {
     //DB -> Database
-    $db = Database::getInstance();
-    $req = $db->query("SELECT * FROM blog WHERE id = ?");
+    $db = Database::getInstance()->connect;
+    $req = "SELECT * FROM blog WHERE id = ?";
     $stmt = $db->prepare($req);
     $stmt->bindParam(1,$id);
     $stmt->execute();

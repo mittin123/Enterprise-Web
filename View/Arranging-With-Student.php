@@ -1,5 +1,5 @@
 <?php
-include_once("Controller/BlogController.php");
+include_once("../Controller/BlogController.php");
 
 $blog = new BlogController();
 $b_detail = $blog->viewAllBlog();

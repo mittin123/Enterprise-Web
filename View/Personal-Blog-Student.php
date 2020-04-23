@@ -1,8 +1,10 @@
 <?php
-include_once("Controller/BlogController.php");
 
-$blog = new BlogController();
-$b_detail = $blog->viewAllBlog();
+if(!isset($_SESSION)){
+    session_start();
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -333,27 +335,27 @@ $b_detail = $blog->viewAllBlog();
                         <div class="card-header">
                     <strong class="card-title">Your Blogs</strong>
                     <div align="right" style="margin-top: -30px;">
-                      <button type="button" class="btn btn-primary" href="Add-blog.php">Add</button>
+                      <a type="button" class="btn btn-primary" href="Add-blog.php">Add</a>
                     </div>
                   </div>
                         <div class="row">
                         <?php
-                            while($b_detail){
+                            foreach($data as $item){
 
                             echo "<div class=\"col-md-4\">" ;
                             echo    "<div class=\"card\">" ;
                             echo        "<div class=\"card-header\">";
-                            echo            "<strong class=\"card-title mb-3\">".$b_detail['title']."</strong>";
+                            echo            "<strong class=\"card-title mb-3\">".$item['title']."</strong>";
                             echo        "</div>";
                             echo        "<div class=\"card-body\">";
                             echo            "<div class=\"mx-auto d-block\">";
-                            echo                 "<p class=\"card-text\">".$b_detail['abstraction'];
+                            echo                 "<p class=\"card-text\">".$item['abstraction'];
                             echo                "</p> ";
-                            echo                "<h6><i>Last update: ".date("m/d/y", $b_detail['create_date'])."</i></h6>";
+                            echo                "<h6><i>Last update: ".date("m/d/y", $item['create_date'])."</i></h6>";
                             echo            "</div>";
                             echo            "<hr>";
                             echo            "<div class=\"card-text text-sm-center\">";
-                            echo                "<a href=\"Blog-Detail-Student.php?b_id=" .$b_detail['id']. "\"><input class=\"btn btn-info\" type=\"button\" value=\"Details\"></a>";
+                            echo                "<a href=\"Blog-Detail-Student.php?b_id=" .$item['id']. "\"><input class=\"btn btn-info\" type=\"button\" value=\"Details\"></a>";
                             echo            "</div>";
                             echo        "</div>";
                             echo    "</div>";

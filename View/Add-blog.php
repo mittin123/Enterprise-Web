@@ -1,6 +1,6 @@
 <?php
 include("../Controller/BlogController.php");
-include("function.php");
+include("../function.php");
 $function = new func();
 
 if(isset($_POST['add'])){
@@ -13,7 +13,7 @@ if(isset($_POST['add'])){
     $create_time = time();
     $blog = new BlogController();
     $result = $blog->createBlog($user, $title, $abstraction, $content, $url, $create_time);
-    $function->redir("Blog-Detail-Student.php?b_id=" . $id);
+    $function->redir("Personal-Blog-Student.php");
 }
 ?>
 <!DOCTYPE html>
@@ -136,7 +136,7 @@ if(isset($_POST['add'])){
                                 <i class="fas fa-align-justify"></i>All class</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="Personal-Blog-Student.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                         <li class="has-sub">
@@ -287,8 +287,9 @@ if(isset($_POST['add'])){
                                     </div>
                                 </div>
 
+            </header>
             <!-- MAIN CONTENT-->
-                 <div class="main-content">
+            <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
@@ -298,7 +299,7 @@ if(isset($_POST['add'])){
                                         <strong>Add</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="Add-Blog.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="Add-blog.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Title</label>
@@ -343,6 +344,7 @@ if(isset($_POST['add'])){
         </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
+            
         </div>
 
     </div>

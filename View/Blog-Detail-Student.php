@@ -1,5 +1,5 @@
 <?php
-include_once("Controller/BlogController.php");
+include_once("../Controller/BlogController.php");
 
     $id = $_GET['b_id'];
     $blog = new BlogController();

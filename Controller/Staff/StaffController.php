@@ -4,7 +4,7 @@ include_once("./Controller/Layout.php");
 class StaffController extends LayoutController{
     public function getStudentList(){
         $model_staff = new Staff();
-        $data = $model_staff->getAllStudent();
+        $data = $model_staff->getUnallocatedStudent();
         $this->loadView("student_list",$data);
     }
 
