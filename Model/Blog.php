@@ -32,14 +32,13 @@ class Blog
         return $result;
   }
 
-  public function view_blog_detail($user, $id)
+  public function view_blog_detail( $id)
   {
     //DB -> Database
     $db = Database::getInstance();
-    $req = $db->query("SELECT * FROM blog WHERE user = ? and id = ?");
+    $req = $db->query("SELECT * FROM blog WHERE id = ?");
     $stmt = $db->prepare($req);
-    $stmt->bindParam(1,$user);
-    $stmt->bindParam(2,$id);
+    $stmt->bindParam(1,$id);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
@@ -60,10 +59,10 @@ class Blog
       return $stmt->execute();
   }
 
-  public function update_blog($user, $id, $title, $abstraction, $content, $url, $create_time)
+  public function update_blog( $id, $title, $abstraction, $content, $url, $create_time)
   {
     $db = Database::getInstance();
-      $query = $db->query("UPDATE blog set title = ?, abstraction = ?, content = ?, url = ?, create_time = ? WHERE id = ? and user = ?" );
+      $query = $db->query("UPDATE blog set title = ?, abstraction = ?, content = ?, url = ?, create_time = ? WHERE id = ?" );
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$title);
       $stmt->bindParam(2,$abstraction);
@@ -71,18 +70,16 @@ class Blog
       $stmt->bindParam(4,$url);
       $stmt->bindParam(5,$create_time);
       $stmt->bindParam(6,$id);
-      $stmt->bindParam(7,$user);
       $stmt->execute();
       return $stmt->execute();
   }
 
-  public function delete_blog($user, $id)
+  public function delete_blog($id)
   {
     $db = Database::getInstance();
-      $query = $db->query("DELETE from blog WHERE id = ? and user = ?");
+      $query = $db->query("DELETE from blog WHERE id = ?");
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$id);
-      $stmt->bindParam(2,$user);
       $stmt->execute();
       return $stmt->execute();
   }

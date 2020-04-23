@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="animsition modal-open" style="animation-duration: 900ms; opacity: 1;">
+<body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -62,7 +62,7 @@
                             <a href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                            <a href="form.html">
+                            <a href="Personal-Blog-Student.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                         <li class="has-sub">

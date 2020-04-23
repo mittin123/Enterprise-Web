@@ -1,5 +1,7 @@
 <?php
 include_once("Controller/BlogController.php");
+include("function.php");
+$function = new func();
 
 if(isset($_POST['editSubmit'])){
     $user = $_SESSION['id'];
@@ -12,6 +14,14 @@ if(isset($_POST['editSubmit'])){
     $create_time = time();
     $blog = new BlogController();
     $result = $blog->updateBlog($user, $id, $title, $abstraction, $content, $url, $create_time);
+    $function->redir("Blog-Detail-Student.php?b_id=" . $id);
+}
+
+if(isset($_POST['delete'])){
+    $id = $_GET['blog_id'];
+    $blog = new BlogController();
+    $result = $blog->deleteBlog($id);
+    $function->redir("Blog-Detail-Student.php?b_id=" . $id);
 }
 ?>
 <!DOCTYPE html>
@@ -337,7 +347,7 @@ if(isset($_POST['editSubmit'])){
                                         <h6>Last update: dd/mm/yyyy</h6> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="Edit-Blog.php.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Title</label>
@@ -370,8 +380,8 @@ if(isset($_POST['editSubmit'])){
                                         <button type="submit" class="btn btn-primary btn-sm" id="editSubmit" name="editSubmit">
                                             <i class="fa fa-dot-circle-o"></i> Edit
                                         </button>
-                                        <button type="reset" class="btn btn-danger btn-sm" id="reset">
-                                            <i class="fa fa-ban"></i> Reset
+                                        <button type="delete" class="btn btn-danger btn-sm" id="delete">
+                                            <i class="fa fa-ban"></i> Delete
                                         </button>
                                     </div>
                             </div>

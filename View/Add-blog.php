@@ -1,5 +1,7 @@
 <?php
 include("../Controller/BlogController.php");
+include("function.php");
+$function = new func();
 
 if(isset($_POST['add'])){
     $user = $_SESSION['id'];
@@ -11,6 +13,7 @@ if(isset($_POST['add'])){
     $create_time = time();
     $blog = new BlogController();
     $result = $blog->createBlog($user, $title, $abstraction, $content, $url, $create_time);
+    $function->redir("Blog-Detail-Student.php?b_id=" . $id);
 }
 ?>
 <!DOCTYPE html>
@@ -295,7 +298,7 @@ if(isset($_POST['add'])){
                                         <strong>Add</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="Add-Blog.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Title</label>
