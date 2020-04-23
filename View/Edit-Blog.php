@@ -1,3 +1,19 @@
+<?php
+include_once("Controller/BlogController.php");
+
+if(isset($_POST['editSubmit'])){
+    $user = $_SESSION['id'];
+    $id = $_GET['blog_id'];
+    $title = $_POST['title'];
+    $abstraction = $_POST['gDes'];
+    $content = $_POST['description'];
+    $t_url = preg_replace('~[^\pL\d]+~u', '-', strtolower($_POST['title']));
+    $url = 'https://eLearning.com/Blog/' . $t_url;
+    $create_time = time();
+    $blog = new BlogController();
+    $result = $blog->updateBlog($user, $id, $title, $abstraction, $content, $url, $create_time);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,15 +78,6 @@
                             <a href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
-                        </li>
-                        <li>
                             <a href="form.html">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
@@ -111,11 +118,11 @@
                         </li>
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
+                                <i class="fas fa-address-card"></i>Calendar</a>
                         </li>
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
+                                <i class="fas fa-align-justify"></i>Arrange meeting</a>
                         </li>
                         <li>
                             <a href="form.html">
@@ -268,10 +275,6 @@
                                         </div>
                                     </div>
                                 </div>
-                       <!-- Redirect đến trang login hộ t phát-->
-                                <div align="right" style="margin-top: -5px;">
-                                      <button type="button" class="btn btn-primary" href="AddStudent(Sp2).html">Log In</button>
-                                <!-- </div>
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
@@ -314,7 +317,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -323,14 +326,15 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-                 <div class="main-content">
+              <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>Add</strong> 
+                                        <strong>Edit (Blog Name)</strong>
+                                        <h6>Last update: dd/mm/yyyy</h6> 
                                     </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -364,7 +368,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary btn-sm" id="editSubmit" name="editSubmit">
-                                            <i class="fa fa-dot-circle-o"></i> Add
+                                            <i class="fa fa-dot-circle-o"></i> Edit
                                         </button>
                                         <button type="reset" class="btn btn-danger btn-sm" id="reset">
                                             <i class="fa fa-ban"></i> Reset

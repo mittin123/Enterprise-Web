@@ -1671,6 +1671,7 @@
 
 //VALIDATE FUNCTION HERE
 $(document).ready(function() {
+  //Folder and file 
   $("#addFolderStudent").click(function(){
     
     var tNameFolder = document.getElementById('tNameFolder').value;
@@ -1699,4 +1700,53 @@ $("#upCmtTutor").click(function(){
       alert("Please enter comment");
     } 
   })
+  //Login
+  $("#submit").click(function(){
+    
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+  
+    if(email.length == 0){
+      alert("Please input a email");
+    } else if(password.length == 0){
+      alert("Please input a password");
+    } 
+  })
+  //Arrange student and tutor
+  $('#dateArrange').datetimepicker({
+    daysOfWeekDisabled: [0, 6]
+  })
+
+  $("#arrangingTutor").click(function(){
+    
+    var meetName = document.getElementById('meetName').value;
+    var dateArrange = document.getElementById('dateArrange').value;
+    var tNote = document.getElementById('tNote').value;
+    
+    if(meetName.length == 0){
+      alert("Please input a Meeting Name");
+    } else if(dateArrange.length == 0){
+      alert("Please input a Date and Time");
+    } else if(tNote.length == 0){
+      alert("Please input a Note");
+    }
+  })
+
+  $("#arrangingStundent").click(function(){
+    
+    var mtName = document.getElementById('mtName').value;
+    var dateArrange = document.getElementById('dateArrange').value;
+    var sNote = document.getElementById('sNote').value;
+    
+    if(mtName.length == 0){
+      alert("Please input a Meeting Name");
+    } else if(dateArrange.length == 0){
+      alert("Please input a Date and Time");
+    } else if(sNote.length == 0){
+      alert("Please input a Note");
+    }
+  })
+
+  $("#dateArrange").val("");
+  
 });
