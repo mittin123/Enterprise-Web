@@ -1,5 +1,5 @@
 <?php
-require_once('../#config.php');
+require_once('./#config.php');
 class Blog
 {
   public $user;
@@ -29,18 +29,19 @@ class Blog
   {
     //DB -> Database
     $db = Database::getInstance()->connect;
-    $stmt = $db->prepare("SELECT * FROM blog WHERE user = ?");
+    $query = "select * from blog WHERE user = ?";
+    $stmt = $db->prepare($query);
     $stmt->bindParam(1,$user);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
   }
 
-  public function view_blog_detail( $id)
+  public function view_blog_detail($id)
   {
     //DB -> Database
     $db = Database::getInstance()->connect;
-    $req = "SELECT * FROM blog WHERE id = ?";
+    $req = "select * FROM blog WHERE id = ?";
     $stmt = $db->prepare($req);
     $stmt->bindParam(1,$id);
     $stmt->execute();
@@ -51,7 +52,7 @@ class Blog
   public function create_blog($user, $title, $abstraction, $content, $url, $create_time)
   {
     $db = Database::getInstance();
-      $query = $db->query("INSERT into blog(user, title, abstraction, content, url, create_time) VALUES (?, ?, ?, ?, ?, ?)");
+      $query = $db->query("insert into blog(user, title, abstraction, content, url, create_time) VALUES (?, ?, ?, ?, ?, ?)");
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$user);
       $stmt->bindParam(2,$title);

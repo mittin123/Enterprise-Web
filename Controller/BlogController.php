@@ -1,16 +1,13 @@
 <?php
-include_once("../Model/Blog.php");
-include("Layout.php");
-if(!isset($_SESSION)){
-    session_start();
-}
+include_once("./Model/Blog.php");
+include_once("Layout.php");
 
 class BlogController extends LayoutController{
 
     public function viewAllBlog(){
         $vieB = new Blog();
-        $data = $vieB->view_all_blog($_SESSION['id']);
-        $this->loadView('Personal-Blog-Student', $data);
+        $data[] = $vieB->view_all_blog('staff_no1');
+        $this->loadView("Personal-Blog-Student", $data);
     }
     
     public function viewBlogDetail($id){

@@ -1,4 +1,5 @@
 <?php
+// ajax để allocate student
 include_once('Controller/Staff/StaffController.php');
 $staff = new StaffController();
 $tutor_id = $_POST['tutor_id'];

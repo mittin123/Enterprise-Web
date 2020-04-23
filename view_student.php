@@ -1,5 +1,5 @@
 <?php
-//Index file
+//view unallocate student for staff
 include("Controller/Staff/StaffController.php");
 include("function.php");
 if(!isset($_SESSION)){

@@ -1,11 +1,11 @@
 <?php
-// view tutor list for staff
-include("Controller/Staff/StaffController.php");
+// view blog list for staff
+include("Controller/BlogController.php");
 include("function.php");
 if(!isset($_SESSION)){
     session_start();
 }
-$page = new StaffController();
+$page = new BlogController();
 $func = new Func();
 if(!isset($_SESSION['email'])){
     $func->redir("login.php");
@@ -13,10 +13,10 @@ if(!isset($_SESSION['email'])){
 else if ($_SESSION['type'] == 3){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $page->getTutorDetail($id);
+        $page->viewBlogDetail($id);
     }
     else{
-        $page->getTutorList();
+        $page->viewAllBlog();
     }
     
 }

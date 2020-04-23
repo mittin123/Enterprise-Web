@@ -1,4 +1,5 @@
 <?php
+// file ajax để load ra list student
 include_once('Controller/Staff/StaffController.php');
 $page = new StaffController();
 $data = $page->loadUnallocatedStudent();
