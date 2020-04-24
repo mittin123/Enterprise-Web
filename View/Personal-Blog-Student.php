@@ -236,14 +236,15 @@ if(!isset($_SESSION)){
                         <div class="card-header">
                     <strong class="card-title">Your Blogs</strong>
                     <div align="right" style="margin-top: -30px;">
-                      <a type="button" class="btn btn-primary" href="Add-blog.php">Add</a>
+                      <a type="button" class="btn btn-primary" href="view_blog.php?add_id=0">Add</a>
                     </div>
                   </div>
-                        <div class="row">
+                  <div class="row">
                         <?php
                             foreach($data as $item){
-                                $time = date("m/d/y h:i:s a", $item['create_time']);
+                                $time = date("m/d/y h:i:s a", $item['create_time']);    
                         ?>
+                        
                              <div class="col-md-4"> 
                                 <div class="card"> 
                                     <div class="card-header">
@@ -257,11 +258,12 @@ if(!isset($_SESSION)){
                                         </div>
                                         <hr>
                                         <div class="card-text text-sm-center">
-                                            <a href="Blog-Detail-Student.php?b_id=<?=$item['id']?>"><input class="btn btn-info" type="button" value="Details"></a>
+                                            <a href="view_blog.php?id=<?=$item['id']?>"><input class="btn btn-info" type="button" value="Details"></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        
                              <?php
                             }
                             ?>

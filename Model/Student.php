@@ -47,7 +47,7 @@ class Student{
     }
 
     public function arranging_meeting_tutor($name, $create_date, $arrange_date, $note){
-        $db = Database::getInstance();
+        $db = Database::getInstance()->connect;
         $req = $db->prepare("Select * from student_tutor where student_code = ?");
     
         $req->bindParam(1,$_SESSION['id']);

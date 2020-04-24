@@ -33,8 +33,11 @@ class Blog
     $stmt = $db->prepare($query);
     $stmt->bindParam(1,$user);
     $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+  
+    foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+      $blog_list[] = $item;
+    }
+    return $blog_list;
   }
 
   public function view_blog_detail($id)
@@ -51,8 +54,8 @@ class Blog
 
   public function create_blog($user, $title, $abstraction, $content, $url, $create_time)
   {
-    $db = Database::getInstance();
-      $query = $db->query("insert into blog(user, title, abstraction, content, url, create_time) VALUES (?, ?, ?, ?, ?, ?)");
+    $db = Database::getInstance()->connect;
+      $query ="insert into blog(user, title, abstraction, content, url, create_time) VALUES (?, ?, ?, ?, ?, ?)";
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$user);
       $stmt->bindParam(2,$title);
@@ -64,10 +67,10 @@ class Blog
       return $stmt->execute();
   }
 
-  public function update_blog( $id, $title, $abstraction, $content, $url, $create_time)
+  public function update_blog($id, $title, $abstraction, $content, $url, $create_time)
   {
-    $db = Database::getInstance();
-      $query = $db->query("UPDATE blog set title = ?, abstraction = ?, content = ?, url = ?, create_time = ? WHERE id = ?" );
+    $db = Database::getInstance()->connect;
+      $query = "update blog SET title = ?, abstraction = ?, content = ?, url = ?, create_time = ? WHERE id = ?" ;
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$title);
       $stmt->bindParam(2,$abstraction);
@@ -81,8 +84,8 @@ class Blog
 
   public function delete_blog($id)
   {
-    $db = Database::getInstance();
-      $query = $db->query("DELETE from blog WHERE id = ?");
+    $db = Database::getInstance()->connect;
+      $query ="delete from blog WHERE id = ?";
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$id);
       $stmt->execute();
