@@ -1,5 +1,5 @@
 <?php
-include_once '../#config.php';
+include_once('../#config.php');
 $db = new Connect();
 $result = $db->query('SELECT * from (Select name, message, time from messages order by time desc limit by 20) tmp order by time asc');
 ?>

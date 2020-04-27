@@ -26,7 +26,7 @@ class Tutor{
         $student_list = self::getListOfStudent($tutor_info['id']);
         return $student_list;
     }
-    
+
     public function getTutorInfo($email){
         $db = Database::getInstance()->connect;
         $query = "Select * from tutor where email = ?";
@@ -78,7 +78,7 @@ class Tutor{
     }
 
     public function arranging_meeting_tutor($std_code, $name, $create_date, $arrange_date, $note){
-        $db = Database::getInstance();
+        $db = Database::getInstance()->connect;
         $req = $db->prepare("Select * from student_tutor where student_code = ? and tutor_code = ?");
         $req->bindParam(1,$std_code);
         $req->bindParam(2,$_SESSION['id']);
@@ -96,5 +96,40 @@ class Tutor{
         $stmt->bindParam(5,$note);
         $stmt->execute();
         return $stmt->execute();
+    }
+    /*
+        code for upload file @ view
+        $func = new Func();
+        if(isset($_POST['submit]) && isset($_FILES['uploadFile'])){
+            if($_FILES['uploadFile']['error'] == 0){
+                
+                $tutor_controller = new TutorController();
+                $result = $tutor_controller->uploadFile($_SESSION['email'],$_FILES['uploadFile'],$upload_folder);
+                $func->alert($result);
+            }
+            else{
+                $func->alert("Error. Error code: ".$_FILES['uploadFile']['error']);
+            }
+        }
+    */
+    public function uploadFile($tutor_email, $file, $folder_id){
+        move_uploaded_file($file['tmp_name'],'../upload/'.substr($tutor_email,0,strlen($tutor_email)-9).'/'.$folder_id.'/'.$file['name']);
+        try{
+            $db = Database::getInstance()->connect;
+            $query = "Insert into file_detail (uploader, file_name, folder_id, comment, create_time, update_time, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(1, $tutor_email);
+            $stmt->bindParam(2, $file['name']);
+            $stmt->bindParam(3, $folder_id);
+            $stmt->bindParam(4, '');
+            $stmt->bindParam(5, 'getdate()');
+            $stmt->bindParam(6, 'getdate()');
+            $stmt->bindParam(7, 1);
+            $stmt->execute();
+            return "Upload file success";
+        }
+        catch (Exception $ex){
+            return $ex->getMessage();
+        }
     }
 }

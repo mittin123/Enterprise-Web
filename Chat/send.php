@@ -1,8 +1,8 @@
 <?php
 include_once '../#config.php';
 
-$name = trim(htmlspecialchars($_POST['name'] ?? ''));
-$message = trim(htmlspecialchars($_POST['message'] ?? ''));
+$name = trim(htmlspecialchars($_POST['name']));
+$message = trim(htmlspecialchars($_POST['message']));
 
 if(!$name || !$message){
     die;

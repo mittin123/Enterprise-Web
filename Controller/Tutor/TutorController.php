@@ -3,9 +3,17 @@ include("../model/tutor.php");
 include_once("./Controller/Layout.php");
 class TutorController extends LayoutController{
     public function uploadFile($tutor, $file, $folder_id){
-
+        $model_tutor = new Tutor();
+        $result = $model_tutor->uploadFile($tutor_email, $file, $folder_id);
+        return $result;
     }
 
+    public function createFolder($tutor, $folder_name){
+        $model_tutor = new Tutor();
+        $result = $model_tutor->createFolder($tutor, $folder_name);
+        return $result;
+    }
+    
     public function assignStudent($student_id, $tutor_id){
         $model_tutor = new Tutor();
         $result = $model_tutor->assignStudent($student_id, $tutor_id);
