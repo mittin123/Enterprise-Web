@@ -20,7 +20,23 @@ class Tutor{
         }
         return $tutor_list;
     }
+
+    public function getStudentList($email){
+        $tutor_info = self::getTutorInfo($email);
+        $student_list = self::getListOfStudent($tutor_info['id']);
+        return $student_list;
+    }
     
+    public function getTutorInfo($email){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from tutor where email = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$email);
+        $stmt->execute();
+        $tutor = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $tutor;
+    }
+
     public function getTutor($id){
         $db = Database::getInstance()->connect;
         $query = "Select A.*, COUNT(B.student_code) as student_count from tutor as A join student_tutor as B on A.code = B.tutor_code where A.id = ?";
