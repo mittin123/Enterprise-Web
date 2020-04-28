@@ -1,7 +1,8 @@
 <?php
 include_once('../#config.php');
-$db = new Connect();
-$result = $db->query('SELECT * from (Select name, message, time from messages order by time desc limit by 20) tmp order by time asc');
+$db = Database::getInstance()->connect;
+$result = $db->query("SELECT * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
+
 ?>
 
 <!DOCTYPE html>
@@ -40,16 +41,16 @@ $result = $db->query('SELECT * from (Select name, message, time from messages or
 <body>
 <div id="content">
 	<div id="message-box">
-		<?php foreach ($result as $row) : ?>
+		<?php foreach ($result as $row) { ?>
 			<div>
 				<span class="author"><?= $row['name'] ?>:</span>
-				<span class="messsage-text"><?= $row['message'] ?></span>
+				<span class="messsage"><?= $row['message'] ?></span>
 			</div>	
-		<?php endforeach; ?>	
+		<?php } ?>	
 	</div>
 	<div id="connecting">Connecting to web sockets server...</div>
-	<input type="text" class="text-box" id="name-input" placeholder="Your Name">
-	<input type="text" class="text-box" id="message-input" placeholder="Your Message" onkeyup="handleKeyUp(event)">
+	<input type="text" class="text-box" id="sender" placeholder="Your Name">
+	<input type="text" class="text-box" id="message" placeholder="Your Message" onkeyup="handleKeyUp(event)">
 	<p>Press enter to send message</p>
 </div>
 <script type="text/javascript" src="index.js"></script>
