@@ -24,18 +24,19 @@ var server = http.createServer(function(request,response){
     }
 
     if(request.method === "POST"){
-        getPostParam(request,function(post){
-            messageClients(post.data);
+        getPostParam(request,function(POST){
+            messageClients(POST.data);
+            console.log(POST.data);
             response.writeHead(200);
             response.end();
         });
         return;
     }
-})
+});
 server.listen(8888);
 
 var websocketServer = new WebsocketServer({
-    httpServer:server
+    httpServer: server
 });
 
 websocketServer.on("request",websocketRequest);

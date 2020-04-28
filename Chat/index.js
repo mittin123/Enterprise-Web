@@ -1,5 +1,5 @@
 var sender = document.getElementById("sender"),
-    sendMessage = document.getElementById("message");
+    send_message = document.getElementById("message");
 
 function handleKeyUp(e){
     if(e.keyCode === 13){
@@ -9,7 +9,7 @@ function handleKeyUp(e){
 
 function sendMessage() {
     var name = sender.value.trim(),
-        message = sendMessage.value.trim();
+        message = send_message.value.trim();
     
         if(!name){
             return alert("Please fill in the name");
@@ -24,16 +24,16 @@ function sendMessage() {
         ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         ajax.send("name="+name+"&message="+message);
 
-        sendMessage.value = "";
-
-  }
+        send_message.value = "";
+}
 
   window.WebSocket = window.WebSocket || window.MozWebSocket;
 
   var connection = new WebSocket('ws://localhost:8888');
   var connectionSpan = document.getElementById("connecting");
   connection.onopen = function(){
-      connectionSpan.style.display = "none";
+      //connectionSpan.style.display = "none";
+      connectionSpan.innerHTML = "Connect success";
   };
 
   connection.onerror = function(error){
@@ -54,5 +54,5 @@ function sendMessage() {
       div.appendChild(author);
       div.appendChild(message);
 
-      document.getElementById("message").appendChild(div);
+      document.getElementById("message-box").appendChild(div);
   }
