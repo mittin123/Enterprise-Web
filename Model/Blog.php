@@ -64,7 +64,7 @@ class Blog
       $stmt->bindParam(5,$url);
       $stmt->bindParam(6,$create_time);
       $stmt->execute();
-      return $stmt->execute();
+      
   }
 
   public function update_blog($id, $title, $abstraction, $content, $url, $create_time)
@@ -79,7 +79,7 @@ class Blog
       $stmt->bindParam(5,$create_time);
       $stmt->bindParam(6,$id);
       $stmt->execute();
-      return $stmt->execute();
+      
   }
 
   public function delete_blog($id)
@@ -89,6 +89,6 @@ class Blog
       $stmt = $db->prepare($query);
       $stmt->bindParam(1,$id);
       $stmt->execute();
-      return $stmt->execute();
+      
   }
 }

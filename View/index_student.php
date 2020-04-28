@@ -1,6 +1,39 @@
 <?php
-
+if(!isset($_SESSION)){
+    session_start();
+}
 ?>
+<aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+        <a href="#">
+            <img src="View/images/icon/logo.png" alt="Cool Admin" />
+        </a>
+    </div>
+    <div class="menu-sidebar__content js-scrollbar1">
+        <nav class="navbar-sidebar2">
+            <ul class="list-unstyled navbar__list">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="view_student.php">
+                        <i class="fas fa-address-card"></i>Unallocate Student List</a>
+                </li>
+                <li>
+                    <a href="view_tutor.php">
+                        <i class="fas fa-address-card"></i>Tutor List</a>
+                </li>
+                <li>
+                    <a href="view_blog.php">
+                        <i class="fas fa-rss-square"></i>Blog</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<!-- END MENU SIDEBAR-->
 
         <div class="page-container">
             <!-- HEADER DESKTOP-->
@@ -145,7 +178,7 @@
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#"><?=$_SESSION['name'];?></a>
+                                                        <a href="#"><?=$_SESSION['id'];?></a>
                                                     </h5>
                                                     <span class="email"><?=$_SESSION['email'];?></span>
                                                 </div>
@@ -179,8 +212,66 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-              <div class="main-content">
-        <div class="section__content section__content--p30">
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Student Dashboard</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar"></i>
+                                            </div>
+                                             <div class="text">
+                                                <h2><?=$data['message_num']['count_message']?></h2>
+                                                <span>New messages</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-archive"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?=$data['document_num']['count_document']?></h2>
+                                                <span>Your Document</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?=$data['meeting_num']['count_meeting']?></h2>
+                                                <span> Arrange new Meeting</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 </body>
 

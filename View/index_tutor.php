@@ -217,7 +217,7 @@
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </div>
                                              <div class="text">
-                                                <h2>99+</h2>
+                                                <h2></h2>
                                                 <span>New messages</span>
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@
                                                 <i class="zmdi zmdi-archive"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>2</h2>
+                                                <h2></h2>
                                                 <span>Tutee Document</span>
                                             </div>
                                         </div>
@@ -247,7 +247,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>0</h2>
+                                                <h2></h2>
                                                 <span> Arrange new Meeting</span>
                                             </div>
                                         </div>

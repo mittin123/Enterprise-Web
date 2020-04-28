@@ -10,7 +10,7 @@ $func = new Func();
 if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
-else if ($_SESSION['type'] == 3){
+else if ($_SESSION['type']){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $page->viewBlogDetail($id);

@@ -46,9 +46,10 @@ class Student{
         
     }
 
-    public function arranging_meeting_tutor($name, $create_date, $arrange_date, $note){
+    public function arranging_meeting_student($name, $create_date, $arrange_date, $note){
         $db = Database::getInstance()->connect;
-        $req = $db->prepare("Select * from student_tutor where student_code = ?");
+        $query = "Select * from student_tutor where student_code = ?";
+        $req = $db->prepare($query);
     
         $req->bindParam(1,$_SESSION['id']);
         $req->execute();
@@ -65,5 +66,46 @@ class Student{
         $stmt->bindParam(5,$note);
         $stmt->execute();
         return $stmt->execute();
+    }
+
+    public function get_message_number($id){
+        $db = Database::getInstance()->connect;
+        $query = "Select COUNT(*) as count_message from message where name = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                     
+    }
+    public function get_document_number($id){
+        $db = Database::getInstance()->connect;
+        $query = "Select COUNT(*) as count_document from file_detail where uploader = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
+    }
+    public function get_meeting_number($id){
+        $today = time();
+        $nextWeek = time() + (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select COUNT(*) as count_meeting FROM `student_arrange` 
+        where std_tutor_id = 
+        ( select id FROM student_tutor 
+         where student_code = ( 
+             select student.code from student 
+             INNER join account 
+             on student.email = account.email 
+             WHERE account.email = ? ) 
+        )
+        and arrange_date BETWEEN ? and ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$today);
+        $stmt->bindParam(3,$nextWeek);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
     }
 }
