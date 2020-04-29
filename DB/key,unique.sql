@@ -52,3 +52,6 @@ ADD UNIQUE (code);
 ALTER TABLE blog
 ADD UNIQUE (user);
 
+ALTER TABLE student_tutor
+ADD UNIQUE (student_code);
+
