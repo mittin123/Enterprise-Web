@@ -36,12 +36,6 @@ class StudentController extends LayoutController{
         $this->loadView("Student_Arrange_Detail",$data);
     }
 
-    public function loadAddArrange(){
-        $viewD = new Student();
-        $data = '';
-        $this->loadView("Arranging-With-Student",$data);
-    }
-
     public function createArrange($name, $create_time, $arrange_date, $note){
         $viewD = new Student();
         $result = $viewD->arranging_meeting_student($name, $create_time, $arrange_date, $note);

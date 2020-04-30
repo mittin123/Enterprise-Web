@@ -232,7 +232,7 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                                     <label for="text-input" class=" form-control-label">Name Arrangement</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <p><?=$coach->intro?></p>
+                                                    <p><?=$data['detail']['title']?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">

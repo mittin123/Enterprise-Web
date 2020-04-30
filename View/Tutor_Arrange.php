@@ -18,8 +18,8 @@ if(!isset($_SESSION)){
                     </a>
                 </li>
                 <li>
-                    <a href="arrange_meeting.php">
-                        <i class="fas fa-address-card"></i>Arrange Meeting</a>
+                    <a href="view_student.php">
+                        <i class="fas fa-address-card"></i>Student List</a>
                 </li>
                 <li>
                     <a href="view_blog.php">
@@ -227,7 +227,7 @@ if(!isset($_SESSION)){
                                         <tbody>
                                             <?php 
                                             foreach($data as $item){
-                                                $date = date("m/d/y", $item['arrange_date'])
+                                                $date = date("m/d/y", $item['arrange_date']);
                                             ?>
                                             <tr>
                                             	<td><?=$item['name']?></td>

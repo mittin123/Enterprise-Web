@@ -1,4 +1,13 @@
-<aside class="menu-sidebar d-none d-lg-block">
+<?php
+if(!isset($_SESSION)){
+    session_start();
+}
+
+$id = $data['student_code'];
+
+?>
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
             <img src="View/images/icon/logo.png" alt="Cool Admin" />
@@ -26,6 +35,7 @@
 </aside>
 <!-- END MENU SIDEBAR-->
 
+        <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
@@ -201,82 +211,65 @@
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
-<!-- MAIN CONTENT-->
-<div class="main-content">
+
+        <!-- PAGE CONTAINER-->
+        <div class="main-content">
                 <div class="section__content section__content--p30">
-                    <div class="container-fluid">                     
-                       
-<!--   Coppy doan nay, -->
-
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>Tutor's Student List</h1>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
+                                    <h1>Arranging meetings</h1>
                                     </div>
                                 </div>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-
-                                            <!--   Dat lenh foreach o day, -->
-                                            <tr>
-                                                <th>Student name</th>
-                                                <th>Last Interaction</th>
-                                                <th>New Arrangement</th>
-                                                <th>New Folder</th>
-                                                <th>Chat</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            
-                                                <?php
-                                                    foreach($data as $item){
-                                                        
-                                                    
-                                                ?>
-                                                <tr>
-                                                <td><?=$item['name']?></td>
-                                                <td>20/04/2020</td>
-                                                <td>
-                                                    <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Arrangement</button>
-                                                     </a>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Folder</button>
-                                                     </a>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Chat</button>
-                                                     </a>
-                                                </td>
-                                                </tr>
-                                                <?php
-                                                    }
-                                                ?>
-                                            
-                                        
-                                        </tbody>
-                                    </table>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Arranging meetings for tutor</strong> 
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="arrange_meeting.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <p for="text-input" class="form-control-label">Tutee's Code</p>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <p for="text-input" class="form-control-label"><?=$id?></p>
+                                                    <input type="text" id="id" name="id" value="<?=$id?>" class="form-control" hidden>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class="form-control-label">Meeting Name<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="mtName" name="mtName" placeholder="Enter Meeting Name" class="form-control">
+                                                    <small class="form-text text-muted">Meeting Names</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Date Arrange<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="dateArrange" name="dateArrange" class="form-control" value="">
+                                                    <small class="form-text text-muted">Date and Time</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Note<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="tNote" name="tNote" placeholder="Enter Note" class="form-control">
+                                                    <small class="form-text text-muted">Note</small>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                    <button type="submit" class="btn btn-primary btn-sm" id="arrangingTutor" name="arrangingTutor">
+                                                        <i class="fa fa-dot-circle-o"></i> Create
+                                                    </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
-        </div>
-    </div>
+

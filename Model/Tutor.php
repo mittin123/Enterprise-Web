@@ -77,20 +77,24 @@ class Tutor{
         return $result;
     }
 
-    //change mechanic
-    public function arranging_meeting_tutor($std_code, $stu_name, $title, $create_date, $arrange_date, $note){
+    public function arranging_meeting_tutor($std_code, $title, $create_date, $arrange_date, $note){
         $db = Database::getInstance()->connect;
-        $tutor = self::getTutor($tutor_id);
-        $tutor_code = $tutor['code'];
-        $req = $db->prepare("Select * from student_tutor where student_code = ? and tutor_code = ?");
+        $req = $db->prepare("Select * from student_tutor where student_code = ? and tutor_code = (select code from tutor where email = ?)");
         $req->bindParam(1,$std_code);
-        $req->bindParam(2,$tutor_code);
+        $req->bindParam(2,$_SESSION['email']);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
         $st_id = $result['id'];
 
-        $query = "insert into student_arrange(std_tutor_id, title, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)";
+        $req = $db->prepare("Select * from student where code = ?");
+        $req->bindParam(1,$std_code);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        $stu_name = $result['name'];
+
+        $query = "insert into student_arrange(std_tutor_id, title, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$st_id);
         $stmt->bindParam(2,$title);
@@ -99,7 +103,6 @@ class Tutor{
         $stmt->bindParam(5,$arrange_date);
         $stmt->bindParam(6,$note);
         $stmt->execute();
-        return $stmt->execute();
     }
     public function view_arrange_list(){
         $db = Database::getInstance()->connect;
