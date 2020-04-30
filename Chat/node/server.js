@@ -25,8 +25,9 @@ var server = http.createServer(function(request,response){
 
     if(request.method === "POST"){
         getPostParam(request,function(POST){
-            messageClients(POST.data);
-            console.log(POST.data);
+            var data = JSON.parse(POST.data);
+            messageClients(POST.data,data.client_id);
+            
             response.writeHead(200);
             response.end();
         });
@@ -38,20 +39,36 @@ server.listen(8888);
 var websocketServer = new WebsocketServer({
     httpServer: server
 });
-
-websocketServer.on("request",websocketRequest);
-
 global.clients = {};
+//websocketServer.on("request",websocketRequest);
+
+websocketServer.on("request",function(webSocket){
+    var client_id  = parseInt(webSocket.resource.substr(1));
+    clients[client_id] = webSocket;
+    var connection = webSocket.accept(null, webSocket.origin);
+    clients[client_id] = connection;
+    clients[client_id].client_id = client_id;
+    console.log("connected "+client_id+ " in "+Object.getOwnPropertyNames(clients));
+})
+/*
 var connection_id = 0;
 function websocketRequest(request){
+    var random_client_id = Math.floor(Math.random() * 1000) + 1;
     var connection = request.accept(null, request.origin);
     connection_id++;
-
     clients[connection_id] = connection;
-}
+    clients[connection_id].client_id = random_client_id;
+    console.log("connected " + request.origin);
+    console.log(clients[1].client_id);
+    
+}*/
 
-function messageClients(message){
+function messageClients(message,client_id){
     for(var i in clients){
-        clients[i].sendUTF(message);
+        if(clients[i].client_id = client_id){
+            console.log(i + "-- element i");
+            console.log(client_id + "-- send client id");
+            clients[i].sendUTF(message);
+        }
     }
 }
