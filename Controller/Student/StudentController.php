@@ -1,7 +1,7 @@
 <?php
 include_once("./Model/Student.php");
 include_once("./Controller/Layout.php");
-class StudentController{
+class StudentController extends LayoutController{
     public function uploadFile($student, $file, $folder_id){
 
     }
@@ -18,16 +18,23 @@ class StudentController{
         $this->loadView("Student_Arrange_Detail",$data);
     }
 
-    public function addArrange(){
+    public function loadAddArrange(){
         $viewD = new Student();
         $data = '';
-        $this->loadView("ArrangingStudent",$data);
+        $this->loadView("Arranging-With-Student",$data);
+    }
+
+    public function createArrange($name, $create_date, $arrange_date, $note){
+        $viewD = new Student();
+        $result = $viewD->arranging_meeting_student($name, $create_date, $arrange_date, $note);
+        $data = $viewD->view_arrange_list();
+        $this->loadView("Student_Arrange",$data);
     }
 
     public function checkAllocate(){
         $viewD = new Student();
-        $check = $viewD->check_allocate()
-        if($check['check_allocate'] > 0){
+        $check = $viewD->check_allocate();
+        if($check){
             $data = $viewD->view_arrange_list();
             $this->loadView("Student_Arrange",$data);
         }else{

@@ -217,7 +217,7 @@ if(!isset($_SESSION)){
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">List of Arrangement of Student</h2>
                                 <div align="right">
-                                    <button type="button" class="btn btn-primary" style="margin-top: -100px;">Create new Arrangement</button>
+                                    <a type="button" href="arrange_meeting.php?add_id=0" class="btn btn-primary" style="margin-top: -100px;">Create new Arrangement</a>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
@@ -225,22 +225,27 @@ if(!isset($_SESSION)){
                                             <tr>
                                                 <th>Name Arrangement</th>
                                                 <th>Meeting Date</th>
-                                                <th>Number of documents</th>
+                                                <th>Note</th>
                                                 <th>Access</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php foreach($data as $item){
+                                                $date = date("m/d/y h:i:s a", $item['arrange_date']);
+                                                ?>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?=$item['title']?></td>
+                                                <td><?=$date?></td>
+                                                <td><?=$item['note']?></td>
                                                 <td>
-                                                    <a href="arrange_meeting.php?id=<?=?>">
+                                                    <a href="arrange_meeting.php?id=<?=$item['id']?>">
                                                       <button type="button" class="btn btn-info">Access</button>
                                                     </a>
                                                 </td>
                                             </tr>
-                                        
+                                        <?php
+                                            }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>

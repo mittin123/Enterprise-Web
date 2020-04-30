@@ -58,13 +58,26 @@ class Student{
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$_SESSION['email']);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $result = $stmt->rowCount();
+        if($result > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function arranging_meeting_student($name, $create_date, $arrange_date, $note){
         $db = Database::getInstance()->connect;
 
+        $query = "select * from student
+        where email = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$_SESSION['email']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $s_name = $result['name'];
+
         $query = "Select * from student_tutor 
         where student_code = 
         (select student.code from student 
@@ -78,34 +91,29 @@ class Student{
 
         $st_id = $result['id'];
 
-        $query = "insert into student_arrange(std_tutor_id, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)";
+        $query = "insert into student_arrange(std_tutor_id, title, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$st_id);
         $stmt->bindParam(2,$name);
-        $stmt->bindParam(3,$create_date);
-        $stmt->bindParam(4,$arrange_date);
-        $stmt->bindParam(5,$note);
+        $stmt->bindParam(3,$s_name);
+        $stmt->bindParam(4,$create_date);
+        $stmt->bindParam(5,$arrange_date);
+        $stmt->bindParam(6,$note);
         $stmt->execute();
     }
 
     public function view_arrange_list(){
         $db = Database::getInstance()->connect;
-        $query = "Select * from student_tutor 
+        $arrange_list = [];
+        $query="select * from student_arrange where std_tutor_id = (
+            Select id from student_tutor 
         where student_code = 
         (select student.code from student 
         inner join account 
         on student.email = account.email 
-        where student.email = ?)";
+        where student.email = ?))";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$_SESSION['email']);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        $st_id = $result['id'];
-
-        $query="select * from student_arrange where std_tutor_id = ?";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(1,$st_id);
         $stmt->execute();
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $arrange_list[] = $item;

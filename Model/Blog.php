@@ -27,6 +27,7 @@ class Blog
 
   public function view_all_blog($user)
   {
+    $blog_list = [];
     //DB -> Database
     $db = Database::getInstance()->connect;
     $query = "select * from blog WHERE user = ?";

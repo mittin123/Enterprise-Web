@@ -1,6 +1,6 @@
 <?php
-require_once("./#config.php");
-require_once("Student.php");
+include_once("./#config.php");
+include_once("Student.php");
 class Tutor{
 
     public function __construct(){
