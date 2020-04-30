@@ -26,7 +26,7 @@ else if ($_SESSION['type'] == 1){
             $arrange_date = strtotime($_POST['dateArrange']);
             $create_time = time();
             $note = $_POST['sNote'];
-            $page->createArrange($name, $create_date, $arrange_date, $note);
+            $page->createArrange($name, $create_time, $arrange_date, $note);
         }
         else{
             $page->viewArrangeList();
