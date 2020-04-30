@@ -60,11 +60,28 @@ if(isset($_GET)){
         break;
         case 'create_folder':
             if($_SESSION['type'] == 1){
-                $student_page->create_folder();
+                $student_page->view_create_folder();
+                if(isset($_POST['submit'])){
+                    $name = $_POST['folder_name'];
+                    $student_info = $student_page->getStudentInfo($_SESSION['email']);
+                    $std_tutor_id = $student_info['std_tutor_id'];
+                    $student_page->create_folder($name,$std_tutor_id);
+                    $func->alert("Create folder ".$name." success");
+                    $func->redir("view_folder.php");
+                }
             }
             else if($_SESSION['type'] == 2){
-                $tutor_page->create_folder();
+                $tutor_page->view_create_folder();
+                if(isset($_POST['submit'])){
+                    $name = $_POST['folder_name'];
+                    $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
+                    $std_tutor_id = $tutor_info['std_tutor_id'];
+                    $tutor_page->create_folder($name,$std_tutor_id);
+                    $func->alert("Create folder ".$name." success");
+                    $func->redir("view_folder.php");
+                }
             }
+            
         break;
     }
 }

@@ -9,6 +9,16 @@ class StudentController extends LayoutController{
     public function view_folder(){
         $this->loadView("");
     }
+
+    public function view_create_folder(){
+        $this->loadView("create_folder");
+    }
+    
+    public function create_folder($name,$std_tutor_id){
+        mkdir('../'.$std_tutor_id.'/'.$name, 0755, true);
+        return true;
+    }
+
     public function uploadFile($student_email, $file, $folder_id){
         $model_student = new Student();
         return $model_student->uploadFile($student_email, $file, $folder_id);

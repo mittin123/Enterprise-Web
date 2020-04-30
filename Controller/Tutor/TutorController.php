@@ -12,6 +12,10 @@ class TutorController extends LayoutController{
         return $result;
     }
 
+    public function create_folder(){
+        $this->loadView("create_folder");
+    }
+    
     public function createFolder($tutor, $folder_name){
         $model_tutor = new Tutor();
         $result = $model_tutor->createFolder($tutor, $folder_name);
