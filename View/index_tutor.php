@@ -217,7 +217,7 @@
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </div>
                                              <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['message_num']['count_message']?></h2>
                                                 <span>New messages</span>
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@
                                                 <i class="zmdi zmdi-archive"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['document_num']['count_document']?></h2>
                                                 <span>Tutee Document</span>
                                             </div>
                                         </div>
@@ -247,7 +247,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['meeting_num']['count_meeting']?></h2>
                                                 <span> Arrange new Meeting</span>
                                             </div>
                                         </div>

@@ -15,12 +15,22 @@ class IndexController extends LayoutController{
                 $this->loadView("index_student", $data);
             break;
             case 2:
-
+                $tuD = new Tutor();
+                $data['meeting_num'] = $tuD->get_meeting_number($_SESSION['email']);
+                $data['message_num'] = $tuD->get_message_number($_SESSION['email']);
+                $data['document_num'] = $tuD->get_document_number($_SESSION['email']);
                 $this->loadView("index_tutor", $data);
             break;
             case 3:
-
+                $staD = new Staff();
+                $data['tu_message_num'] = $staD->get_message_number_tutor();
+                $data['stu_message_num'] = $staD->get_message_number_stu();
+                $data['tutor_num'] = $staD->get_available_tutor_num();
+                $data['stu_num'] = $staD->get_unallocate_student_num();
                 $this->loadView("index_staff", $data);
+            break;
+            case 4:
+
             break;
             default:
                 $this->loadView("index_default");

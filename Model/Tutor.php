@@ -132,4 +132,92 @@ class Tutor{
             return $ex->getMessage();
         }
     }
+    public function get_message_number($id){
+        $today = time();
+        $lastWeek = time() - (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select COUNT(*) as count_message from message
+        where name in (
+        select username from account
+            where email in (
+            select email from student
+                where code in (
+                select student_tutor.student_code from student_tutor
+                    LEFT join tutor
+                    on student_tutor.tutor_code = tutor.code
+                    where tutor.email = ?
+                )
+            )
+        )
+        and stu_tu_id in (
+                select student_tutor.id from student_tutor
+                    LEFT join tutor
+                    on student_tutor.tutor_code = tutor.code
+                    where tutor.email = ?
+                )
+        and time between ? and ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$id);
+        $stmt->bindParam(3,$lastWeek);
+        $stmt->bindParam(4,$today);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                     
+    }
+    public function get_document_number($id){
+        $db = Database::getInstance()->connect;
+        $query = "select count(*) as count_document FROM `file_detail` 
+        WHERE uploader = (
+        select email from student
+            where code in (
+            select student_code from student_tutor
+                where id in (
+                select id from student_tutor
+                where tutor_code = (
+                select code from tutor
+                    where email = 'tutor@gmail.com'
+                )
+                )
+            )
+        )
+        and folder_id in (
+        select id from folder
+            where std_tutor_id in (
+            select id from student_tutor
+                where tutor_code = (
+                select code from tutor
+                    where email = 'tutor@gmail.com'
+                )
+            )
+        )";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$id);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
+    }
+    public function get_meeting_number($id){
+        $today = time();
+        $nextWeek = time() + (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select COUNT(*) as count_meeting FROM `student_arrange` 
+        where std_tutor_id in  
+        ( select id FROM student_tutor 
+         where tutor_code = ( 
+             select tutor.code from tutor 
+             LEFT join account 
+             on tutor.email = account.email 
+             WHERE account.email = ? ) 
+        )
+        and arrange_date BETWEEN ? and ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$today);
+        $stmt->bindParam(3,$nextWeek);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
+    }
 }

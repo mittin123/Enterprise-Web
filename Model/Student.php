@@ -43,17 +43,38 @@ class Student{
     }
 
     public function upload($student, $file){
-        
+
+    }
+
+    public function check_allocate(){
+        $db = Database::getInstance()->connect;
+        $query = "select count(*) as check_allocate FROM `student_tutor` 
+        WHERE student_code = (
+        SELECT student.code from student
+            INNER JOIN account
+            ON student.email = account.email
+            WHERE student.email = ?
+        )";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$_SESSION['email']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function arranging_meeting_student($name, $create_date, $arrange_date, $note){
         $db = Database::getInstance()->connect;
-        $query = "Select * from student_tutor where student_code = ?";
-        $req = $db->prepare($query);
-    
-        $req->bindParam(1,$_SESSION['id']);
-        $req->execute();
-        $result = $req->fetch(PDO::FETCH_ASSOC);
+
+        $query = "Select * from student_tutor 
+        where student_code = 
+        (select student.code from student 
+        inner join account 
+        on student.email = account.email 
+        where student.email = ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$_SESSION['email']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $st_id = $result['id'];
 
@@ -65,23 +86,105 @@ class Student{
         $stmt->bindParam(4,$arrange_date);
         $stmt->bindParam(5,$note);
         $stmt->execute();
-        return $stmt->execute();
+    }
+
+    public function view_arrange_list(){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from student_tutor 
+        where student_code = 
+        (select student.code from student 
+        inner join account 
+        on student.email = account.email 
+        where student.email = ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$_SESSION['email']);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $st_id = $result['id'];
+
+        $query="select * from student_arrange where std_tutor_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$st_id);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $arrange_list[] = $item;
+          }
+          return $arrange_list;
+    }
+
+    public function view_arrange_detail($id){
+        $db = Database::getInstance()->connect;
+        $query="select * from student_arrange where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function get_message_number($id){
+        $today = time();
+        $lastWeek = time() - (7 * 24 * 60 * 60);
         $db = Database::getInstance()->connect;
-        $query = "Select COUNT(*) as count_message from message where name = ?";
+        $query = "select COUNT(*) as count_message from message
+        where name = (
+        select username from account
+            where email = (
+            select email from tutor
+                where code = (
+                select student_tutor.tutor_code from student_tutor
+                    LEFT join student
+                    on student_tutor.student_code = student.code
+                    where student.email = ?
+                )
+            )
+        )
+        and stu_tu_id = (
+                select student_tutor.id from student_tutor
+                    LEFT join student
+                    on student_tutor.student_code = student.code
+                    where student.email = ?
+                )
+        and time between ? and ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$id);
+        $stmt->bindParam(3,$lastWeek);
+        $stmt->bindParam(4,$today);
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                     
     }
     public function get_document_number($id){
         $db = Database::getInstance()->connect;
-        $query = "Select COUNT(*) as count_document from file_detail where uploader = ?";
+        $query = "select count(*) as count_document FROM `file_detail` 
+        WHERE uploader = (
+        select email from tutor
+            where code = (
+            select tutor_code from student_tutor
+                where id = (
+                select id from student_tutor
+                where student_code = (
+                select code from student
+                    where email = ?
+                )
+                )
+            )
+        )
+        and folder_id in (
+        select id from folder
+            where std_tutor_id = (
+            select id from student_tutor
+                where student_code = (
+                select code from student
+                    where email = ?
+                )
+            )
+        )";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
+        $stmt->bindParam(2,$id);
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                       
@@ -95,7 +198,7 @@ class Student{
         ( select id FROM student_tutor 
          where student_code = ( 
              select student.code from student 
-             INNER join account 
+             LEFT join account 
              on student.email = account.email 
              WHERE account.email = ? ) 
         )
