@@ -2,8 +2,16 @@
 include_once("./Model/Student.php");
 include_once("./Controller/Layout.php");
 class StudentController extends LayoutController{
-    public function uploadFile($student, $file, $folder_id){
-
+    public function getStudentInfo($email){
+        $model_student = new Student();
+        return $model_student->getStudentInfo($email);
+    }
+    public function view_folder(){
+        $this->loadView("");
+    }
+    public function uploadFile($student_email, $file, $folder_id){
+        $model_student = new Student();
+        return $model_student->uploadFile($student_email, $file, $folder_id);
     }
 
     public function viewArrangeList(){
@@ -14,7 +22,7 @@ class StudentController extends LayoutController{
 
     public function viewArrangeDetail($id){
         $viewD = new Student();
-        $data = $viewD->view_arrange_detail($id);
+        $data['detail'] = $viewD->view_arrange_detail($id);
         $this->loadView("Student_Arrange_Detail",$data);
     }
 
@@ -24,9 +32,9 @@ class StudentController extends LayoutController{
         $this->loadView("Arranging-With-Student",$data);
     }
 
-    public function createArrange($name, $create_date, $arrange_date, $note){
+    public function createArrange($name, $create_time, $arrange_date, $note){
         $viewD = new Student();
-        $result = $viewD->arranging_meeting_student($name, $create_date, $arrange_date, $note);
+        $result = $viewD->arranging_meeting_student($name, $create_time, $arrange_date, $note);
         $data = $viewD->view_arrange_list();
         $this->loadView("Student_Arrange",$data);
     }

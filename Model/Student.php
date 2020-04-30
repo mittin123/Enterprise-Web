@@ -41,6 +41,16 @@ class Student{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    
+    public function getStudentInfo($email){
+        $db = Database::getInstance()->connect;
+        $query = "Select A.email,B.code,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     public function upload($student, $file){
 
@@ -66,7 +76,7 @@ class Student{
         }
     }
 
-    public function arranging_meeting_student($name, $create_date, $arrange_date, $note){
+    public function arranging_meeting_student($name, $create_time, $arrange_date, $note){
         $db = Database::getInstance()->connect;
 
         $query = "select * from student
@@ -96,7 +106,7 @@ class Student{
         $stmt->bindParam(1,$st_id);
         $stmt->bindParam(2,$name);
         $stmt->bindParam(3,$s_name);
-        $stmt->bindParam(4,$create_date);
+        $stmt->bindParam(4,$create_time);
         $stmt->bindParam(5,$arrange_date);
         $stmt->bindParam(6,$note);
         $stmt->execute();

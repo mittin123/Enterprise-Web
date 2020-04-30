@@ -29,7 +29,7 @@ class Tutor{
 
     public function getTutorInfo($email){
         $db = Database::getInstance()->connect;
-        $query = "Select * from tutor where email = ?";
+        $query = "Select A.*,C.id as std_tutor_id from tutor as A join account as B on A.email = B.email join student_tutor as C on C.tutor_code = A.code where A.email = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$email);
         $stmt->execute();
