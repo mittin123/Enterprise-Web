@@ -2,8 +2,26 @@
 include_once("./Model/Student.php");
 include_once("./Controller/Layout.php");
 class StudentController extends LayoutController{
-    public function uploadFile($student, $file, $folder_id){
+    public function getStudentInfo($email){
+        $model_student = new Student();
+        return $model_student->getStudentInfo($email);
+    }
+    public function view_folder(){
+        $this->loadView("");
+    }
 
+    public function view_create_folder(){
+        $this->loadView("create_folder");
+    }
+    
+    public function create_folder($name,$std_tutor_id){
+        mkdir('../'.$std_tutor_id.'/'.$name, 0755, true);
+        return true;
+    }
+
+    public function uploadFile($student_email, $file, $folder_id){
+        $model_student = new Student();
+        return $model_student->uploadFile($student_email, $file, $folder_id);
     }
 
     public function viewArrangeList(){
@@ -15,7 +33,6 @@ class StudentController extends LayoutController{
     public function viewArrangeDetail($id){
         $viewD = new Student();
         $data['detail'] = $viewD->view_arrange_detail($id);
-        //$data['file'] = $viewD->view_file_list($id);
         $this->loadView("Student_Arrange_Detail",$data);
     }
 

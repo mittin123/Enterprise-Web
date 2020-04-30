@@ -41,6 +41,16 @@ class Student{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    
+    public function getStudentInfo($email){
+        $db = Database::getInstance()->connect;
+        $query = "Select A.email,B.code,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     public function upload($student, $file){
 
