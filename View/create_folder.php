@@ -292,90 +292,31 @@
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>File Detail</h1>
+                                    <h1>Create Folder</h1>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>File Detail</strong> 
+                                        <strong>Create New Folder</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="view_folder.php?action=create_folder" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Name file</label>
+                                                    <label for="text-input" class=" form-control-label">Name Folder</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <p>Don xin nghi hoc</p>
+                                                    <input type="text" id="tNameFolder" name="tNameFolder" placeholder="Enter Name" class="form-control">
+                                                    <small class="form-text text-muted">Folder name</small>
                                                 </div>
                                             </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Created Time</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                   <p>12/04/2020</p>
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Download File</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-
-                                                <!-- Download file here-->
-
-                                                   <a href="">Don xin nghi hoc</a>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Add Comment</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                     <textarea name="comment" id="comment" rows="2" placeholder="Your Comment" class="form-control"></textarea>
-                                                </div>
-                                                
-                                                
-                                            </div>
-                                            
+                                        
                                         </form>
                                     </div>
-                                    <div  class="col-12 col-md-9" style="margin-top: -30px;margin-bottom: 10px;"><button type="submit" class="btn btn-primary btn-sm" id="upCmtStudent" name="upCmtStudent">
-                                            <i class="fa fa-dot-circle-o"></i> Comment
-                                             </button></div>
                                     <div class="card-footer">
-                                        <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ALL Comments</label>
-                                                </div>
-                                                <div id="comments-wrapper">
-                                                    <div class="comment clearfix">
-                                                            <img src="profile.png" alt="" class="profile_pic">
-                                                            <div class="comment-details">
-                                                                <span class="comment-name">Melvine</span>
-                                                                <span class="comment-date">Apr 24, 2018</span>
-                                                                <p>Ke me em</p>
-                                                                    <hr>
-                                                            </div>
-                                                            <div>
-                                                                <!-- reply -->
-                                                                <div class="comment reply clearfix">
-                                                                    <img src="profile.png" alt="" class="profile_pic">
-                                                                    <div class="comment-details">
-                                                                        <span class="comment-name">Awa</span>
-                                                                        <span class="comment-date">Apr 24, 2018</span>
-                                                                        <p>File này đúng không chị ơi</p>
-                                                                        <hr>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                                
-                                            </div>
+                                        <button type="submit" class="btn btn-primary btn-sm" id="submit" name="submit">
+                                            <i class="fa fa-dot-circle-o"></i> Create
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -386,4 +327,3 @@
         </div>
     </div>
 
-    

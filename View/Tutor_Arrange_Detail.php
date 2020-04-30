@@ -1,114 +1,38 @@
+<?php
+if(!isset($_SESSION)){
+    session_start();   
+}
+$create_date = date("m/d/y h:i:s a", $data['detail']['create_date']);
+$arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
+?>
+<aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+        <a href="#">
+            <img src="View/images/icon/logo.png" alt="Cool Admin" />
+        </a>
+    </div>
+    <div class="menu-sidebar__content js-scrollbar1">
+        <nav class="navbar-sidebar2">
+            <ul class="list-unstyled navbar__list">
+                <li>
+                    <a href="index.php">
+                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="arrange_meeting.php">
+                        <i class="fas fa-address-card"></i>Arrange Meeting</a>
+                </li>
+                <li>
+                    <a href="view_blog.php">
+                        <i class="fas fa-rss-square"></i>Blog</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<!-- END MENU SIDEBAR-->
 
-
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li class="active">
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
-
-        <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
@@ -132,7 +56,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="View/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -142,7 +66,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="View/images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -164,7 +88,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="View/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -173,7 +97,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="View/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -182,7 +106,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="View/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -234,26 +158,27 @@
                                         </div>
                                     </div>
                                 </div>
+                           
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="View/images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="#"><?=$_SESSION['email'];?></a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="View/images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#"><?=$_SESSION['id'];?></a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email"><?=$_SESSION['email'];?></span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -271,12 +196,12 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -292,21 +217,30 @@
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>File Detail</h1>
+                                    <h1>Arrangement Detail</h1>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong>File Detail</strong> 
+                                         <!-- Name of folder-->
+                                        <strong>Arrangement Detail</strong> 
                                     </div>
                                     <div class="card-body card-block">
                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Name file</label>
+                                                    <label for="text-input" class=" form-control-label">Name Arrangement</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <p>Don xin nghi hoc</p>
+                                                    <p><?=$data['detail']['title']?></p>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Student name</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <p><?=$data['detail']['name']?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -314,68 +248,67 @@
                                                     <label for="text-input" class=" form-control-label">Created Time</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                   <p>12/04/2020</p>
+                                                   <p><?=$create_date?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Download File</label>
+                                                    <label for="text-input" class=" form-control-label">Meeting time</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-
-                                                <!-- Download file here-->
-
-                                                   <a href="">Don xin nghi hoc</a>
-
+                                                   <p><?=$arrange_date?></p>
                                                 </div>
                                             </div>
-
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Add Comment</label>
+                                                    <label for="text-input" class=" form-control-label">File</label>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                                <div class="table-responsive table--no-card m-b-40">
+                                                    <table class="table table-borderless table-striped table-earning">
+                                                        <thead>
+
+                                                            <!--   Dat lenh foreach o day, -->
+                                                            <tr>
+                                                                <th>File Name</th>
+                                                                <th>Create time</th>
+                                                                <th>Access</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><?=$coach->intro?></td>
+                                                                <td><?=$coach->intro?></td>
+                                                                <td>
+                                                                    <a href="">
+                                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access</button>
+                                                                     </a>
+                                                                </td>
+                                                            </tr>
+                                                        
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Upload new file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                     <textarea name="comment" id="comment" rows="2" placeholder="Your Comment" class="form-control"></textarea>
+                                                    <input type="file" name="fileUpload" value="">                                              
+                                                    <input class="btn btn-success" type="submit" name="upload" value="upload">
                                                 </div>
-                                                
-                                                
                                             </div>
-                                            
+                                        
                                         </form>
                                     </div>
-                                    <div  class="col-12 col-md-9" style="margin-top: -30px;margin-bottom: 10px;"><button type="submit" class="btn btn-primary btn-sm" id="upCmtStudent" name="upCmtStudent">
-                                            <i class="fa fa-dot-circle-o"></i> Comment
-                                             </button></div>
                                     <div class="card-footer">
-                                        <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">ALL Comments</label>
-                                                </div>
-                                                <div id="comments-wrapper">
-                                                    <div class="comment clearfix">
-                                                            <img src="profile.png" alt="" class="profile_pic">
-                                                            <div class="comment-details">
-                                                                <span class="comment-name">Melvine</span>
-                                                                <span class="comment-date">Apr 24, 2018</span>
-                                                                <p>Ke me em</p>
-                                                                    <hr>
-                                                            </div>
-                                                            <div>
-                                                                <!-- reply -->
-                                                                <div class="comment reply clearfix">
-                                                                    <img src="profile.png" alt="" class="profile_pic">
-                                                                    <div class="comment-details">
-                                                                        <span class="comment-name">Awa</span>
-                                                                        <span class="comment-date">Apr 24, 2018</span>
-                                                                        <p>File này đúng không chị ơi</p>
-                                                                        <hr>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                            </div>
-                                                
-                                            </div>
+                                        <button type="submit" class="btn btn-primary btn-sm" id="upfile" name="upfile">
+                                            <i class="fa fa-dot-circle-o"></i> Upload
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +316,10 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+                            
 
-    
+
+
+<!--   END -->
+<!--   END -->
+<!--   END -->

@@ -10,6 +10,7 @@ function handleKeyUp(e){
 function sendMessage() {
     var name = sender.value.trim(),
         message = send_message.value.trim();
+        
     
         if(!name){
             return alert("Please fill in the name");
@@ -22,14 +23,14 @@ function sendMessage() {
         var ajax = new XMLHttpRequest();
         ajax.open("POST","send.php",true);
         ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        ajax.send("name="+name+"&message="+message);
+        ajax.send("name="+name+"&message="+message+"&sender_id="+sender_id+"&receiver_id="+receiver_id);
 
         send_message.value = "";
 }
 
   window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-  var connection = new WebSocket('ws://localhost:8888');
+  var connection = new WebSocket('ws://localhost:8888/'+receiver_id);
   var connectionSpan = document.getElementById("connecting");
   connection.onopen = function(){
       //connectionSpan.style.display = "none";

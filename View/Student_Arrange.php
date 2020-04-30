@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION)){
+    session_start();
+}
+?>
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
@@ -201,82 +206,79 @@
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
-<!-- MAIN CONTENT-->
-<div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">                     
-                       
-<!--   Coppy doan nay, -->
 
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                    <h1>Tutor's Student List</h1>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
-                                    </div>
+                                <h2 class="title-1 m-b-25">List of Arrangement of Student</h2>
+                                <div align="right">
+                                    <a type="button" href="arrange_meeting.php?add_id=0" class="btn btn-primary" style="margin-top: -100px;">Create new Arrangement</a>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
-
-                                            <!--   Dat lenh foreach o day, -->
                                             <tr>
-                                                <th>Student name</th>
-                                                <th>Last Interaction</th>
-                                                <th>New Arrangement</th>
-                                                <th>New Folder</th>
-                                                <th>Chat</th>
+                                                <th>Name Arrangement</th>
+                                                <th>Meeting Date</th>
+                                                <th>Note</th>
+                                                <th>Access</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                                <?php
-                                                    foreach($data as $item){
-                                                        
-                                                    
+                                            <?php foreach($data as $item){
+                                                $date = date("m/d/y h:i:s a", $item['arrange_date']);
                                                 ?>
-                                                <tr>
-                                                <td><?=$item['name']?></td>
-                                                <td>20/04/2020</td>
+                                            <tr>
+                                                <td><?=$item['title']?></td>
+                                                <td><?=$date?></td>
+                                                <td><?=$item['note']?></td>
                                                 <td>
-                                                    <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Arrangement</button>
-                                                     </a>
+                                                    <a href="arrange_meeting.php?id=<?=$item['id']?>">
+                                                      <button type="button" class="btn btn-info">Access</button>
+                                                    </a>
                                                 </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Folder</button>
-                                                     </a>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Chat</button>
-                                                     </a>
-                                                </td>
-                                                </tr>
-                                                <?php
-                                                    }
-                                                ?>
-                                            
-                                        
+                                            </tr>
+                                        <?php
+                                            }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+
+
+
+<!--   END -->
+<!--   END -->
+<!--   END -->
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
-        </div>
-    </div>
+
+</body>
+
+</html>
+<!-- end document-->

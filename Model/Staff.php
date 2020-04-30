@@ -48,9 +48,64 @@ class Staff{
         }
         catch (Exception $ex){
             return $ex->getMessage();
-        }
-        
-        
+        } 
+    }
+    public function get_message_number_tutor(){
+        $today = time();
+        $lastWeek = time() - (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select count(*) as tu_mess_num FROM message
+        WHERE name in
+        (SELECT account.username FROM `tutor` 
+        INNER JOIN account
+        on tutor.email = account.email) 
+        and time between ? and ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$lastWeek);
+        $stmt->bindParam(2,$today);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                     
+    }
+    public function get_message_number_stu(){
+        $today = time();
+        $lastWeek = time() - (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select count(*) as std_mess_num FROM message
+        WHERE name in
+        (SELECT account.username FROM `student` 
+        INNER JOIN account
+        on student.email = account.email) 
+        and time between ? and ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$lastWeek);
+        $stmt->bindParam(2,$today);
+        $stmt->execute();
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                     
+    }
+    public function get_available_tutor_num(){
+        $db = Database::getInstance()->connect;
+        $query = "select count(A.tutor_code) as avai_tutor from (
+            SELECT tutor_code, COUNT(student_code) FROM `student_tutor` 
+            GROUP BY tutor_code 
+            HAVING COUNT(student_code) < 10
+        ) as A";
+        $stmt = $db->query($query);
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
+    }
+    public function get_unallocate_student_num(){
+        $today = time();
+        $nextWeek = time() + (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "select count(student.id) as unall_stu FROM `student_tutor` 
+        RIGHT JOIN student 
+        on student.code = student_tutor.student_code 
+        WHERE student.code not in (select student_tutor.student_code from student_tutor)";
+        $stmt = $db->query($query);
+        $count = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $count;                                                                                       
     }
 }
 ?>

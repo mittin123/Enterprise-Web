@@ -62,7 +62,7 @@
                             <a href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                            <a href="Personal-Blog-Student.php">
+                            <a href="view_blog.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                         <li class="has-sub">
@@ -99,6 +99,8 @@
     <!-- Vendor JS       -->
     <script src="View/vendor/slick/slick.min.js">
     </script>
+    <script src="View/js/moment.js"></script>
+    <script src="View/js/bootstrap-datetimepicker.js"></script>
     <script src="View/vendor/wow/wow.min.js"></script>
     <script src="View/vendor/animsition/animsition.min.js"></script>
     <script src="View/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">

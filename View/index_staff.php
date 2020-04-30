@@ -214,7 +214,7 @@
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </div>
                                              <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['tutor_num']['avai_tutor']?></h2>
                                                 <span>Available Tutors</span>
                                             </div>
                                         </div>
@@ -229,7 +229,7 @@
                                                 <i class="zmdi zmdi-archive"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['stu_num']['unall_stu']?></h2>
                                                 <span>Unallocated Tutees</span>
                                             </div>
                                         </div>
@@ -244,7 +244,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['stu_message_num']['std_mess_num']?></h2>
                                                 <span>Tutees message amount (7 Days)</span>
                                             </div>
                                         </div>
@@ -259,7 +259,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['tu_message_num']['tu_mess_num']?></h2>
                                                 <span>Tutors message amount (7 Days)</span>
                                             </div>
                                         </div>

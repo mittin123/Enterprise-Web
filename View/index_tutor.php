@@ -17,20 +17,20 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
                          <li>
-                            <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Calendar</a>
+                            <a href="view_student.php">
+                                <i class="fas fa-address-card"></i>Student List</a>
                         </li>
                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Arrange Meeting</a>
+                            <a href="arrange_meeting.php">
+                                <i class="fas fa-address-card"></i>Meeting List</a>
                         </li>
                        <li>
-                            <a href="form.html">
+                            <a href="view_blog.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
                     </ul>
@@ -217,7 +217,7 @@
                                                 <i class="zmdi zmdi-calendar"></i>
                                             </div>
                                              <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['message_num']['count_message']?></h2>
                                                 <span>New messages</span>
                                             </div>
                                         </div>
@@ -232,7 +232,7 @@
                                                 <i class="zmdi zmdi-archive"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['document_num']['count_document']?></h2>
                                                 <span>Tutee Document</span>
                                             </div>
                                         </div>
@@ -247,7 +247,7 @@
                                                 <i class="zmdi zmdi-calendar-note"></i>
                                             </div>
                                             <div class="text">
-                                                <h2></h2>
+                                                <h2><?=$data['meeting_num']['count_meeting']?></h2>
                                                 <span> Arrange new Meeting</span>
                                             </div>
                                         </div>

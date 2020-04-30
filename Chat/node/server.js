@@ -3,7 +3,7 @@ var http = require('http');
 var url = require('url');
 
 var WebsocketServer = require('websocket').server;
-
+var sender_id = 0;
 var server = http.createServer(function(request,response){
     function getPostParam(request, callback){
         var qs = require('querystring');
@@ -25,8 +25,10 @@ var server = http.createServer(function(request,response){
 
     if(request.method === "POST"){
         getPostParam(request,function(POST){
-            messageClients(POST.data);
-            console.log(POST.data);
+            var data = JSON.parse(POST.data);
+            sender_id = data.sender_id;
+            messageClients(POST.data, data.receiver_id, data.sender_id);
+            
             response.writeHead(200);
             response.end();
         });
@@ -38,20 +40,41 @@ server.listen(8888);
 var websocketServer = new WebsocketServer({
     httpServer: server
 });
-
-websocketServer.on("request",websocketRequest);
-
 global.clients = {};
+//websocketServer.on("request",websocketRequest);
+var connection_id = 0;
+websocketServer.on("request",function(webSocket){
+    var receiver_id  = parseInt(webSocket.resource.substr(1));
+    clients[connection_id] = webSocket;
+    var connection = webSocket.accept(null, webSocket.origin);
+    clients[connection_id] = connection;
+    clients[connection_id].receiver_id = receiver_id;
+    clients[connection_id].sender_id = sender_id;
+    console.log("connected "+receiver_id+ " in "+Object.getOwnPropertyNames(clients));
+    connection_id++;
+})
+/*
 var connection_id = 0;
 function websocketRequest(request){
+    var random_client_id = Math.floor(Math.random() * 1000) + 1;
     var connection = request.accept(null, request.origin);
     connection_id++;
-
     clients[connection_id] = connection;
-}
+    clients[connection_id].client_id = random_client_id;
+    console.log("connected " + request.origin);
+    console.log(clients[1].client_id);
+    
+}*/
 
-function messageClients(message){
+function messageClients(message,receiver_id,sender_id){
     for(var i in clients){
-        clients[i].sendUTF(message);
+        if(clients[i].receiver_id == receiver_id || clients[i].sender_id == sender_id){
+            console.log("--start--");
+            console.log(i + "-- element i");
+            console.log(receiver_id + "-- receive client id");
+            console.log(sender_id + "-- sender id");
+            console.log("--end--");
+            clients[i].sendUTF(message);
+        }
     }
 }

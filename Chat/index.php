@@ -19,6 +19,16 @@ $stmt = $db->prepare("SELECT * from (Select name, message, time from message ord
 $stmt->bindParam(1, $id);
 $stmt->execute();
 $result = $stmt->fetchAll();
+if(!isset($_SESSION)){
+	session_start();
+}
+//$sender_id = $_SESSION['id'];
+//fake sender id;
+$sender_id = 2;
+//include_once('../#config.php');
+//$db = Database::getInstance()->connect;
+//$result = $db->query("SELECT * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
+
 ?>
 
 <!DOCTYPE html>
@@ -69,6 +79,10 @@ $result = $stmt->fetchAll();
 	<input type="text" class="text-box" id="message" placeholder="Your Message" onkeyup="handleKeyUp(event)">
 	<p>Press enter to send message</p>
 </div>
+<script type="text/javascript">
+	var receiver_id = <?php echo $_GET['id'];?>;
+	var sender_id = <?php echo $sender_id;?>;
+</script>
 <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

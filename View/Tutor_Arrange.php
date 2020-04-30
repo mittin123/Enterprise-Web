@@ -1,3 +1,8 @@
+<?php
+if(!isset($_SESSION)){
+    session_start();
+}
+?>
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="#">
@@ -13,8 +18,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="arrange_meeting.php">
-                        <i class="fas fa-address-card"></i>Arrange Meeting</a>
+                    <a href="view_student.php">
+                        <i class="fas fa-address-card"></i>Student List</a>
                 </li>
                 <li>
                     <a href="view_blog.php">
@@ -201,72 +206,43 @@
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
-<!-- MAIN CONTENT-->
-<div class="main-content">
+
+            <div class="main-content">
                 <div class="section__content section__content--p30">
-                    <div class="container-fluid">                     
-                       
-<!--   Coppy doan nay, -->
-
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                    <h1>Tutor's Student List</h1>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
-                                    </div>
-                                </div>
+                                <h2 class="title-1 m-b-25">List of Arrangement of Tutor</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
-
-                                            <!--   Dat lenh foreach o day, -->
                                             <tr>
-                                                <th>Student name</th>
-                                                <th>Last Interaction</th>
-                                                <th>New Arrangement</th>
-                                                <th>New Folder</th>
-                                                <th>Chat</th>
+                                            	<th>Student Name</th>
+                                                <th>Name Arrangement</th>
+                                                <th>Meeting Date</th>
+                                                <th>Note</th>
+                                                <th>Access</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                                <?php
-                                                    foreach($data as $item){
-                                                        
-                                                    
-                                                ?>
-                                                <tr>
-                                                <td><?=$item['name']?></td>
-                                                <td>20/04/2020</td>
+                                            <?php 
+                                            foreach($data as $item){
+                                                $date = date("m/d/y", $item['arrange_date']);
+                                            ?>
+                                            <tr>
+                                            	<td><?=$item['name']?></td>
+                                                <td><?=$item['title']?></td>
+                                                <td><?=$date?></td>
+                                                <td><?=$item['note']?></td>
                                                 <td>
-                                                    <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Arrangement</button>
-                                                     </a>
+                                                    <a href="arrange_meeting.php?id=<?=$item['id']?>">
+                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access</button>
+                                                    </a>
                                                 </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Folder</button>
-                                                     </a>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Chat</button>
-                                                     </a>
-                                                </td>
-                                                </tr>
-                                                <?php
-                                                    }
-                                                ?>
-                                            
-                                        
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -276,7 +252,3 @@
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
-        </div>
-    </div>
