@@ -1,9 +1,13 @@
 <?php
 //include_once('../#config.php');
-
+if(!isset($_SESSION)){
+    session_start();
+}
+//fake sender id; session 'id' = sender id
+$sender_id = 2;
 $name = trim(htmlspecialchars($_POST['name']));
 $message = trim(htmlspecialchars($_POST['message']));
-$id = trim(htmlspecialchars($_POST['client_id']));
+$receiver_id = trim(htmlspecialchars($_POST['receiver_id']));
 if(!$name || !$message){
     die;
 }
@@ -33,7 +37,8 @@ curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15
 $json_data = json_encode([
     'name' => $name,
     'message' => $message,
-    'client_id' => $id
+    'sender_id' => $sender_id,
+    'receiver_id' => $receiver_id
 ]);
 
 $query = http_build_query(['data' => $json_data]);
