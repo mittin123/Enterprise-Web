@@ -23,14 +23,14 @@ function sendMessage() {
         var ajax = new XMLHttpRequest();
         ajax.open("POST","send.php",true);
         ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        ajax.send("name="+name+"&message="+message+"&client_id="+client_id);
+        ajax.send("name="+name+"&message="+message+"&sender_id="+sender_id+"&receiver_id="+receiver_id);
 
         send_message.value = "";
 }
 
   window.WebSocket = window.WebSocket || window.MozWebSocket;
-  console.log(client_id);
-  var connection = new WebSocket('ws://localhost:8888/'+client_id);
+
+  var connection = new WebSocket('ws://localhost:8888/'+receiver_id);
   var connectionSpan = document.getElementById("connecting");
   connection.onopen = function(){
       //connectionSpan.style.display = "none";
