@@ -354,7 +354,7 @@
                                                                 <td><?=$item['file_name']?></td>
                                                                 <td><?=strtodate($item['create_time'])?></td>
                                                                 <td>
-                                                                    <a href="<?php echo "https://localhost:8080/Enterprise-Web/upload/".$folder_id."/".$item['file_name'];?>"
+                                                                    <a href="<?php echo "?file_id=".$item['id']?>"
                                                                       <button type="button" class="btn btn-info" value="Access">Access</button>
                                                                      </a>
                                                                 </td>
