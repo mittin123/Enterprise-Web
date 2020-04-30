@@ -77,25 +77,57 @@ class Tutor{
         return $result;
     }
 
-    public function arranging_meeting_tutor($std_code, $name, $create_date, $arrange_date, $note){
+    //change mechanic
+    public function arranging_meeting_tutor($std_code, $stu_name, $title, $create_date, $arrange_date, $note){
         $db = Database::getInstance()->connect;
+        $tutor = self::getTutor($tutor_id);
+        $tutor_code = $tutor['code'];
         $req = $db->prepare("Select * from student_tutor where student_code = ? and tutor_code = ?");
         $req->bindParam(1,$std_code);
-        $req->bindParam(2,$_SESSION['id']);
+        $req->bindParam(2,$tutor_code);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
 
         $st_id = $result['id'];
 
-        $query = "INSERT into student_arrange(std_tutor_id, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)";
+        $query = "insert into student_arrange(std_tutor_id, title, name, create_date, arrange_date, note) VALUES (?, ?, ?, ?, ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$st_id);
-        $stmt->bindParam(2,$name);
-        $stmt->bindParam(3,$create_date);
-        $stmt->bindParam(4,$arrange_date);
-        $stmt->bindParam(5,$note);
+        $stmt->bindParam(2,$title);
+        $stmt->bindParam(3,$stu_name);
+        $stmt->bindParam(4,$create_date);
+        $stmt->bindParam(5,$arrange_date);
+        $stmt->bindParam(6,$note);
         $stmt->execute();
         return $stmt->execute();
+    }
+    public function view_arrange_list(){
+        $db = Database::getInstance()->connect;
+        $arrange_list = [];
+        $query="select * from student_arrange where std_tutor_id in (
+            Select id from student_tutor 
+        where tutor_code = 
+        (select tutor.code from tutor 
+        inner join account 
+        on tutor.email = account.email 
+        where tutor.email = ?))";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$_SESSION['email']);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $arrange_list[] = $item;
+          }
+          return $arrange_list;
+    }
+
+    public function view_arrange_detail($id){
+        $db = Database::getInstance()->connect;
+        $query="select * from student_arrange where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
     /*
         code for upload file @ view

@@ -10,12 +10,12 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Student folder list</title>
+    <title>Arranging meetings for tutor</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -32,6 +32,7 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="css/datetimepicker.css" rel="stylesheet">
 
 </head>
 
@@ -164,7 +165,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -190,7 +191,7 @@
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
@@ -442,86 +443,63 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        
-                        
-                       
-<!--   Coppy doan nay, -->
-
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>Student folder list</h1>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">NEW FOLDER</button>
-                        
+                                    <h1>Arranging meetings</h1>
                                     </div>
                                 </div>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-
-                                            <!--   Dat lenh foreach o day, -->
-                                            <tr>
-                                                <th>Folder name</th>
-                                                <th>Number of files</th>
-                                                <th>Created date</th>
-                                                <th>Access</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><?=$coach->intro?></td>
-                                                <td><?=$coach->intro?></td>
-                                                <td><?=$coach->intro?></td>
-                                                <td>
-                                                    <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access</button>
-                                                     </a>
-                                                </td>
-                                            </tr>
-                                        
-                                        </tbody>
-                                    </table>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Arranging meetings for tutor</strong> 
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <p for="text-input" class="form-control-label">Tutee's Name</p>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <p for="text-input" class="form-control-label">Tutee's Name</p>
+                                                    <small class="form-text text-muted">Tutee's Name</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class="form-control-label">Meeting Name<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="meetName" name="meetName" placeholder="Enter Meeting Name" class="form-control">
+                                                    <small class="form-text text-muted">Meeting Names</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Date Arrange<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="dateArrange" name="dateArrange" class="form-control" value="">
+                                                    <small class="form-text text-muted">Date and Time</small>
+                                                </div>
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">Note<span style="color: red">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="tNote" name="tNote" placeholder="Enter Note" class="form-control">
+                                                    <small class="form-text text-muted">Note</small>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm" id="arrangingTutor" name="arrangingTutor">
+                                            <i class="fa fa-dot-circle-o"></i> Create
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-
-
-
-<!--   END -->
-<!--   END -->
-<!--   END -->
-
-
-
-
-
-
-
-
-
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
         </div>
-
     </div>
 
     <!-- Jquery JS-->
@@ -543,12 +521,13 @@
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
+
     </script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-
 </body>
-
 </html>
 <!-- end document-->
