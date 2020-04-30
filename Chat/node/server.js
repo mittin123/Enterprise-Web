@@ -68,7 +68,7 @@ function websocketRequest(request){
 
 function messageClients(message,receiver_id,sender_id){
     for(var i in clients){
-        if(clients[i].receiver_id == receiver_id){
+        if(clients[i].receiver_id == receiver_id || clients[i].sender_id == sender_id){
             console.log("--start--");
             console.log(i + "-- element i");
             console.log(receiver_id + "-- receive client id");
