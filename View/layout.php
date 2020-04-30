@@ -99,6 +99,7 @@
     <!-- Vendor JS       -->
     <script src="View/vendor/slick/slick.min.js">
     </script>
+    <script src="View/js/moment.js">
     <script src="View/vendor/wow/wow.min.js"></script>
     <script src="View/vendor/animsition/animsition.min.js"></script>
     <script src="View/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">

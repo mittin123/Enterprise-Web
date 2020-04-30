@@ -1,13 +1,13 @@
 <?php
-include_once('../#config.php');
+//include_once('../#config.php');
 
-$name = trim(htmlspecialchars($_POST['name'] ?? ''));
-$message = trim(htmlspecialchars($_POST['message'] ?? ''));
-
+$name = trim(htmlspecialchars($_POST['name']));
+$message = trim(htmlspecialchars($_POST['message']));
+$id = trim(htmlspecialchars($_POST['client_id']));
 if(!$name || !$message){
     die;
 }
-
+/*
 $db = Database::getInstance()->connect;
 try{
     $stmt = $db->prepare("INSERT INTO message (name, message, time) values (?, ?, ?)");
@@ -19,9 +19,10 @@ try{
 }
 catch(Exception $ex){
     die($ex->getMessage());
-}
+}*/
 
 
+$ch = curl_init('http://localhost:8888');
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "http://localhost:8888");
 curl_setopt($ch, CURLOPT_LOCALPORT, 8887);
@@ -31,7 +32,8 @@ curl_setopt($ch, CURLOPT_USERAGENT,'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15
 
 $json_data = json_encode([
     'name' => $name,
-    'message' => $message
+    'message' => $message,
+    'client_id' => $id
 ]);
 
 $query = http_build_query(['data' => $json_data]);
