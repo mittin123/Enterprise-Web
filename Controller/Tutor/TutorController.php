@@ -38,5 +38,25 @@ class TutorController extends LayoutController{
         $result = $model_tutor->getStudentList($tutor_email);
         $this->loadView("student_list_for_tutor",$result);
     }
+
+    public function viewArrangeList(){
+        $view = new Tutor();
+        $data = $view->view_arrange_list();
+        $this->loadView("Tutor_Arrange",$data);
+    }
+
+    public function viewArrangeDetail($id){
+        $viewD = new Tutor();
+        $data['detail'] = $viewD->view_arrange_detail($id);
+        //$data['file'] = $viewD->view_file_list($id);
+        $this->loadView("Tutor_Arrange_Detail",$data);
+    }
+
+    public function createArrange($std_code, $stu_name, $title, $create_date, $arrange_date, $note){
+        $viewD = new Tutor();
+        $result = $viewD->arranging_meeting_student($std_code, $stu_name, $title, $create_date, $arrange_date, $note);
+        $data = $viewD->view_arrange_list();
+        $this->loadView("Tutor_Arrange",$data);
+    }
 }
 ?>

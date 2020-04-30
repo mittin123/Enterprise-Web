@@ -35,7 +35,23 @@ else if ($_SESSION['type'] == 1){
     
 }
 else if ($_SESSION['type'] == 2){
-    
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $page->viewArrangeDetail($id);
+    }
+    else if(isset($_GET['add_id'])){
+        $page->loadAddArrange();
+    }
+    else if(isset($_POST['arrangingStundent'])){
+        $name = $_POST['mtName'];
+        $arrange_date = strtotime($_POST['dateArrange']);
+        $create_time = time();
+        $note = $_POST['sNote'];
+        $page->createArrange($std_code, $stu_name, $title, $create_date, $arrange_date, $note);
+    }
+    else{
+        $page->viewArrangeList();
+    }
 }
 
 ?>
