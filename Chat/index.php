@@ -1,8 +1,24 @@
 <?php
+include_once('../function.php');
 include_once('../#config.php');
+$func = new Func();
+if(!isset($_SESSION)){
+	session_start();
+}
+if(!isset($_SESSION['email'])){
+	$func->redir("login.php");
+}
+if(isset($_GET['id'])){
+	$id = $_GET['id'];
+}
+else{
+	$id = 0;
+}
 $db = Database::getInstance()->connect;
-$result = $db->query("SELECT * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
-
+$stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ?) tmp order by time asc");
+$stmt->bindParam(1, $id);
+$stmt->execute();
+$result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
