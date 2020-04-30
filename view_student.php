@@ -13,7 +13,7 @@ if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
 else if ($_SESSION['type'] == 2){
-    $tutor_page->getStudentList();
+    $tutor_page->getStudentList($_SESSION['email']);
 }
 else if ($_SESSION['type'] == 3){
     $page->getStudentList();

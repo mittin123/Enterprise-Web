@@ -1,5 +1,5 @@
 <?php
-include("./Model/Tutor.php");
+include_once("./Model/Tutor.php");
 include_once("./Controller/Layout.php");
 class TutorController extends LayoutController{
     public function uploadFile($tutor, $file, $folder_id){
