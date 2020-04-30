@@ -66,7 +66,7 @@ class Student{
         }
     }
 
-    public function arranging_meeting_student($name, $create_date, $arrange_date, $note){
+    public function arranging_meeting_student($name, $create_time, $arrange_date, $note){
         $db = Database::getInstance()->connect;
 
         $query = "select * from student
@@ -96,7 +96,7 @@ class Student{
         $stmt->bindParam(1,$st_id);
         $stmt->bindParam(2,$name);
         $stmt->bindParam(3,$s_name);
-        $stmt->bindParam(4,$create_date);
+        $stmt->bindParam(4,$create_time);
         $stmt->bindParam(5,$arrange_date);
         $stmt->bindParam(6,$note);
         $stmt->execute();
