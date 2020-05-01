@@ -17,6 +17,36 @@ class Tutor{
         $stmt->execute();
     }
 
+    public function get_file_list($std_tutor_id){
+        $file_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "Select A.* from file_detail as A join folder as B on A.folder_id = B.id where B.id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $file_list[] = $item;
+        }
+        return $file_list;
+    }
+    public function get_file_detail($file_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from file_detail where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $file_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function get_folder_info($std_tutor_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from folder where std_tutor_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function create_folder($tutor_email, $std_tutor_id, $folder_name){
         $root = $_SERVER["DOCUMENT_ROOT"];
         $time = time();

@@ -1,22 +1,4 @@
-<?php
-include_once("./Controller/Tutor/TutorController.php");
-if(!isset($_SESSION)){
-    session_start();
-}
-if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
-    
-    $tutor_controller = new TutorController();
-    $file = $_FILES['file_upload'];
-    $folder_id = $_SESSION['std_tutor_id'];
-    $uploader = $_SESSION['email'];
-    
-    $tutor_controller->uploadFile($uploader, $file['name'], $folder_id);
 
-    move_uploaded_file($file['tmp_name'],'../upload/'.substr($uploader,0,strlen($uploader)-10).'/'.$folder_id.'/'.$file['name']);
-        
-    echo "Folder ID - ".$folder_id;
-}
-?>
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
@@ -310,22 +292,21 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>Folder Detail</h1>
+                                    <h1>File Detail</h1>
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
-                                         <!-- Name of folder-->
-                                        <strong>Folder Detail</strong> 
+                                        <strong>File Detail</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Name Folder</label>
+                                                    <label for="text-input" class=" form-control-label">Name file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <p><?=$data['folder_info']['name']?></p>
+                                                    <p><?=$data['file_name']?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -333,73 +314,68 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                     <label for="text-input" class=" form-control-label">Created Time</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                   <p><?=date('d/m/yy',$data['folder_info']['create_time'])?></p>
+                                                   <p><?=date('d/m/yy',$data['create_time'])?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Update timer</label>
+                                                    <label for="text-input" class=" form-control-label">Download File</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                   <p><?=date('d/m/yy',$data['folder_info']['create_time'])?></p>
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">File</label>
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                                <div class="table-responsive table--no-card m-b-40">
-                                                    <table class="table table-borderless table-striped table-earning">
-                                                        <thead>
 
-                                                            <!--   Dat lenh foreach o day, -->
-                                                            <tr>
-                                                                <th>File Name</th>
-                                                                <th>Create time</th>
-                                                                <th>Access</th>
-                                                                
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php
-                                                                foreach($data['file_list'] as $item){
-                                                            ?>
-                                                            <tr>
-                                                                <td><?=$item['file_name']?></td>
-                                                                <td><?=date('d/m/yy',$item['create_time'])?></td>
-                                                                <td>
-                                                                    <a href="<?php echo "?action=view_file&file_id=".$item['id']?>"
-                                                                      <button type="button" class="btn btn-info" value="Access">Access</button>
-                                                                     </a>
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                                }
-                                                            ?>
-                                                        </tbody>
-                                                    </table>
+                                                <!-- Download file here-->
+
+                                                   <a href="upload/<?=$data['folder_id']?>/<?=$data['file_name']?>"><?=$data['file_name']?></a>
+
                                                 </div>
                                             </div>
+
                                             <div class="row form-group">
-                                                
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Upload new file</label>
+                                                    <label for="text-input" class=" form-control-label">Add Comment</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                    
-                                                    <input type="file" name="file_upload" id="file_upload" value="">                                              
-                                                    <input class="btn btn-success" type="submit" name="upload" value="upload">
+                                                     <textarea name="comment" id="comment" rows="2" placeholder="Your Comment" class="form-control"></textarea>
                                                 </div>
+                                               
+                                                
                                             </div>
-                                        
+                                            
                                         </form>
                                     </div>
+                                     <div class="col-12 col-md-9" style="margin-top: -30px;margin-bottom: 10px;"><button type="submit" class="btn btn-primary btn-sm" id="upCmtTutor" name="upCmtTutor">
+                                            <i class="fa fa-dot-circle-o"></i> Comment
+                                             </button></div>
                                     <div class="card-footer">
-                                        <!--<button-- type="submit" class="btn btn-primary btn-sm" id="upfile" name="upfile">
-                                            <i class="fa fa-dot-circle-o"></i> Upload
-                                        </button-->
+                                        <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">ALL Comments</label>
+                                                </div>
+                                                <div id="comments-wrapper">
+                                                    <div class="comment clearfix">
+                                                            <img src="profile.png" alt="" class="profile_pic">
+                                                            <div class="comment-details">
+                                                                <span class="comment-name">Melvine</span>
+                                                                <span class="comment-date">Apr 24, 2018</span>
+                                                                <p>ke me em</p>
+                                                                    <hr>
+                                                            </div>
+                                                            <div>
+                                                                <!-- reply -->
+                                                                <div class="comment reply clearfix">
+                                                                    <img src="profile.png" alt="" class="profile_pic">
+                                                                    <div class="comment-details">
+                                                                        <span class="comment-name">Awa</span>
+                                                                        <span class="comment-date">Apr 24, 2018</span>
+                                                                        <p>alo alo</p>
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                            </div>
+                                                
+                                            </div>
                                     </div>
                                 </div>
                             </div>

@@ -17,10 +17,19 @@ class TutorController extends LayoutController{
         $this->loadView("folder_list",$data);
     }
 
-    public function view_folder(){
-        $this->loadView("folder_detail");
+    public function view_folder($std_tutor_id){
+        $model_tutor = new Tutor();
+        $file_list = $model_tutor->get_file_list($std_tutor_id);
+        $folder_info = $model_tutor->get_folder_info($std_tutor_id);
+        $data['file_list'] = $file_list;
+        $data['folder_info'] = $folder_info;
+        $this->loadView("folder_detail",$data);
     }
-    
+    public function view_file_detail($file_id){
+        $model_tutor = new Tutor();
+        $file_detail = $model_tutor->get_file_detail($file_id);
+        $this->loadView("file_detail",$file_detail);
+    }
     public function view_create_folder(){
         $this->loadView("create_folder");
     }
