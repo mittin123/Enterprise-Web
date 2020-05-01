@@ -3,6 +3,7 @@ include("Layout.php");
 include_once("./Model/Staff.php");
 include_once("./Model/Student.php");
 include_once("./Model/Tutor.php");
+include_once("./Model/AuthStaff.php");
 
 class IndexController extends LayoutController{
     public function index($type){
@@ -31,13 +32,14 @@ class IndexController extends LayoutController{
             break;
             case 4:
                 $astaD = new AuthStaff();
-                $data['tu_message_num'] = $astaD->get_message_number_tutor();
-                $data['stu_message_num'] = $astaD->get_message_number_stu();
-                $data['tutor_num'] = $astaD->get_available_tutor_num();
-                $data['stu_num'] = $astaD->get_unallocate_student_num();
+                $data['inactive_stu'] = $astaD->getInactiveStudentNumber();
+                $data['inactive_tutor'] = $astaD->getInactiveTutorNumber();
+                $data['unallocate_stu'] = $astaD->getUnallocatedStudentNumber();
+                $data['mess_number'] = $astaD->getMessageNumber();
                 $this->loadView("index_authstaff", $data);
             break;
             default:
+                
                 $this->loadView("index_default");
             break;
         }
