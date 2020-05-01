@@ -2,12 +2,11 @@
 if(!isset($_SESSION)){
 	session_start();
 }
-//$sender_id = $_SESSION['id'];
+$sender_id = $_SESSION['user_id'];
 //fake sender id;
-$sender_id = 2;
-//include_once('../#config.php');
-//$db = Database::getInstance()->connect;
-//$result = $db->query("SELECT * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
+include_once('../#config.php');
+$db = Database::getInstance()->connect;
+$result = $db->query("select * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
 
 ?>
 

@@ -21,6 +21,7 @@ else{
         if($result && $result['status'] == 1){
             
             $_SESSION['email'] = $email;
+            $_SESSION['user_id'] = $result['id'];
             $_SESSION['type'] = $result['type'];
             $_SESSION['id'] = $result['username'];
            

@@ -30,7 +30,12 @@ class IndexController extends LayoutController{
                 $this->loadView("index_staff", $data);
             break;
             case 4:
-
+                $astaD = new AuthStaff();
+                $data['tu_message_num'] = $astaD->get_message_number_tutor();
+                $data['stu_message_num'] = $astaD->get_message_number_stu();
+                $data['tutor_num'] = $astaD->get_available_tutor_num();
+                $data['stu_num'] = $astaD->get_unallocate_student_num();
+                $this->loadView("index_authstaff", $data);
             break;
             default:
                 $this->loadView("index_default");
