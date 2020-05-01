@@ -7,7 +7,7 @@ class StudentController extends LayoutController{
         return $model_student->getStudentInfo($email);
     }
     public function view_folder(){
-        $this->loadView("");
+        $this->loadView("folder_detail");
     }
 
     public function view_create_folder(){

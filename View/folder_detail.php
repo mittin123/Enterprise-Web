@@ -1,4 +1,22 @@
+<?php
+include_once("./Controller/Tutor/TutorController.php");
+if(!isset($_SESSION)){
+    session_start();
+}
+if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
+    
+    $tutor_controller = new TutorController();
+    $file = $_FILES['file_upload'];
+    $folder_id = $_SESSION['std_tutor_id'];
+    $uploader = $_SESSION['email'];
+    
+    $tutor_controller->uploadFile($uploader, $file['name'], $folder_id);
 
+    move_uploaded_file($file['tmp_name'],'../upload/'.substr($uploader,0,strlen($uploader)-10).'/'.$folder_id.'/'.$file['name']);
+        
+    echo "Folder ID - ".$folder_id;
+}
+?>
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
@@ -301,7 +319,7 @@
                                         <strong>Folder Detail</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="view_folder.php?action=upload" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Name Folder</label>
@@ -347,8 +365,6 @@
                                                         <tbody>
                                                             <?php
                                                                 foreach($data as $item){
-
-                                                                
                                                             ?>
                                                             <tr>
                                                                 <td><?=$item['file_name']?></td>
@@ -372,7 +388,8 @@
                                                     <label for="text-input" class=" form-control-label">Upload new file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="file" name="fileUpload" value="">                                              
+                                    
+                                                    <input type="file" name="file_upload" id="file_upload" value="">                                              
                                                     <input class="btn btn-success" type="submit" name="upload" value="upload">
                                                 </div>
                                             </div>

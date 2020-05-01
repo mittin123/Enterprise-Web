@@ -10,7 +10,7 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -36,7 +36,7 @@
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
@@ -288,43 +288,88 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        
+                        
+                       
+<!--   Coppy doan nay, -->
+
+<!--   Coppy doan nay, -->
+<!--   Coppy doan nay, -->
+<!--   Coppy doan nay, -->
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
-                                    <h1>Create Folder</h1>
+                                    <h1>Tutor folder list</h1>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong>Create New Folder</strong> 
-                                    </div>
-                                    <div class="card-body card-block">
-                                        <form action="view_folder.php?action=create_folder" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Name Folder</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" id="folder_name" name="folder_name" placeholder="Enter Name" class="form-control">
-                                                    <small class="form-text text-muted">Folder name</small>
-                                                </div>
-                                            </div>
-                                        
-                                        
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary btn-sm" id="submit" name="submit">
-                                            <i class="fa fa-dot-circle-o"></i> Create
-                                        </button>
-                                    </div>
-                                    </form>
+                                <div class="table-responsive table--no-card m-b-40">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+
+                                            <!--   Dat lenh foreach o day, -->
+                                            <tr>
+                                                <th>Folder name</th>
+                                                <th>Tutee name</th>
+                                                <th>Number of files</th>
+                                                <th>Created date</th>
+                                                <th>Access</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            foreach($data as $item){
+
+                                            ?>
+                                            <tr>
+                                                <td><?=$item['name']?></td>
+                                                <td><?=$item['tutee_name']?></td>
+                                                <td><?=$item['number_of_files']?></td>
+                                                <td><?=$item['create_date']?></td>
+                                                <td>
+                                                    <a href="">
+                                                      <button type="button" class="btn btn-info" value="">Access</button>
+                                                     </a>
+                                                </td>
+                                            </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </div>    
+
+
+
+<!--   END -->
+<!--   END -->
+<!--   END -->
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
         </div>
-    </div>
 
+    </div>

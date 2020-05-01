@@ -6,6 +6,35 @@ class Tutor{
     public function __construct(){
 
     }
+
+    public function view_all_folder($tutor_email){
+        $tutor_info = self::getTutorInfo($tutor_email);
+        $std_tutor_code = $tutor_info['code'];
+        $db = Database::getInstance()->connect;
+        $query = "Select A.*, count(B.id) as number_of_files from folder as A join file_detail as B on A.id = B.folder_id where std_tutor_id in (select * from student_tutor where tutor_code =  ?) group by A.id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $std_tutor_code);
+        $stmt->execute();
+    }
+
+    public function create_folder($tutor_email, $std_tutor_id, $folder_name){
+        $root = $_SERVER["DOCUMENT_ROOT"];
+        $time = time();
+        if (!file_exists($root.'/upload/'.substr($tutor_email,0,strlen($tutor_email)-10).'/'.$folder_name)) {
+            mkdir($root.'/upload/'.substr($tutor_email,0,strlen($tutor_email)-10).'/'.$folder_name, 0755, true);
+          
+            $db = Database::getInstance()->connect;
+            $query = "Insert into folder (std_tutor_id, name, create_time, update_time) VALUES (?, ?, ?, ?)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(1,$std_tutor_id);
+            $stmt->bindParam(2,$folder_name);
+            $stmt->bindParam(3,$time);
+            $stmt->bindParam(4,$time);
+            $stmt->execute();
+            return "Create folder ".$folder_name." success";
+        }
+    }
+
     public function getAllStudent(){
         $model_student = new Student();
         return $model_student->getAllStudent();
@@ -147,19 +176,21 @@ class Tutor{
             }
         }
     */
-    public function uploadFile($tutor_email, $file, $folder_id){
-        move_uploaded_file($file['tmp_name'],'../upload/'.substr($tutor_email,0,strlen($tutor_email)-9).'/'.$folder_id.'/'.$file['name']);
+    public function uploadFile($tutor_email, $file_name, $folder_id){
         try{
+            $time = time();
+            $comment = "no comment";
+            $type = 1;
             $db = Database::getInstance()->connect;
             $query = "Insert into file_detail (uploader, file_name, folder_id, comment, create_time, update_time, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $db->prepare($query);
             $stmt->bindParam(1, $tutor_email);
-            $stmt->bindParam(2, $file['name']);
+            $stmt->bindParam(2, $file_name);
             $stmt->bindParam(3, $folder_id);
-            $stmt->bindParam(4, '');
-            $stmt->bindParam(5, 'getdate()');
-            $stmt->bindParam(6, 'getdate()');
-            $stmt->bindParam(7, 1);
+            $stmt->bindParam(4, $comment);
+            $stmt->bindParam(5, $time);
+            $stmt->bindParam(6, $time);
+            $stmt->bindParam(7, $type);
             $stmt->execute();
             return "Upload file success";
         }

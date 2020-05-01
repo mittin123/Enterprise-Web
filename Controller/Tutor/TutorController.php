@@ -6,19 +6,28 @@ class TutorController extends LayoutController{
         $model_tutor = new Tutor();
         return $model_tutor->getTutorInfo($email);
     }
-    public function uploadFile($tutor, $file, $folder_id){
+    public function uploadFile($tutor_email, $file_name, $folder_id){
         $model_tutor = new Tutor();
-        $result = $model_tutor->uploadFile($tutor_email, $file, $folder_id);
+        $result = $model_tutor->uploadFile($tutor_email, $file_name, $folder_id);
         return $result;
     }
+    public function view_all_folder($email){
+        $model_tutor = new Tutor();
+        $data = $model_tutor->view_all_folder($email);
+        $this->loadView("folder_list",$data);
+    }
 
-    public function create_folder(){
+    public function view_folder(){
+        $this->loadView("folder_detail");
+    }
+    
+    public function view_create_folder(){
         $this->loadView("create_folder");
     }
     
-    public function createFolder($tutor, $folder_name){
+    public function create_folder($email, $folder_name, $std_tutor_id){
         $model_tutor = new Tutor();
-        $result = $model_tutor->createFolder($tutor, $folder_name);
+        $result = $model_tutor->create_folder($email, $std_tutor_id, $folder_name);
         return $result;
     }
     

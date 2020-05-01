@@ -12,20 +12,26 @@ $func = new Func();
 if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
-switch($_SESSION['type']){
-    case 1:
-        $student_info = $student_page->getStudentInfo($_SESSION['email']);
-        $student_page->view_folder($student_info['std_tutor_id']);
-    break;
-    case 2:
-        $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
-        $tutor_page->view_folder($tutor_info['std_tutor_id']);
-    break;
-    default:
-        $func->alert("Only student and tutor can access this function");
-        $func->redir("index.php");
-};
-if(isset($_GET)){
+if(!isset($_GET['id'])){
+    $tutor_page->view_all_folder($_SESSION['email']);
+}
+else if(!isset($_GET['action'])){
+    switch($_SESSION['type']){
+        case 1:
+            $student_info = $student_page->getStudentInfo($_SESSION['email']);
+            $student_page->view_folder($student_info['std_tutor_id']);
+        break;
+        case 2:
+            $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
+            $_SESSION['std_tutor_id'] = $tutor_info['std_tutor_id'];
+            $tutor_page->view_folder($tutor_info['std_tutor_id']);
+        break;
+        default:
+            $func->alert("Only student and tutor can access this function");
+            $func->redir("index.php");
+    };
+}
+else if(isset($_GET['action'])){
     switch($_GET['action']){
         case 'upload':
             /*
@@ -43,7 +49,10 @@ if(isset($_GET)){
                     }
                 }
             */
-            $file = $_FILES['upload'];
+            if(isset($_POST['upload'])){
+                print_r($_POST);
+            }
+            
             if($file['error'] == 0){
                 $folder_id = $_POST['folder_id'];
                 $uploader = $_SESSION['email'];
@@ -51,7 +60,7 @@ if(isset($_GET)){
                     $student_page->upload($uploader, $file, $folder_id);
                 }
                 else if($_SESSION['type'] == 2){
-                    $tutor_page->upload($uploader, $file, $folder_id);
+                    $tutor_page->uploadFile($uploader, $file, $folder_id);
                 }
             }
             else{
@@ -62,6 +71,7 @@ if(isset($_GET)){
             if($_SESSION['type'] == 1){
                 $student_page->view_create_folder();
                 if(isset($_POST['submit'])){
+                    
                     $name = $_POST['folder_name'];
                     $student_info = $student_page->getStudentInfo($_SESSION['email']);
                     $std_tutor_id = $student_info['std_tutor_id'];
@@ -71,15 +81,18 @@ if(isset($_GET)){
                 }
             }
             else if($_SESSION['type'] == 2){
-                $tutor_page->view_create_folder();
                 if(isset($_POST['submit'])){
                     $name = $_POST['folder_name'];
+                    $email = $_SESSION['email'];
                     $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
                     $std_tutor_id = $tutor_info['std_tutor_id'];
-                    $tutor_page->create_folder($name,$std_tutor_id);
+                    $tutor_page->create_folder($email,$name,$std_tutor_id);
                     $func->alert("Create folder ".$name." success");
                     $func->redir("view_folder.php");
                 }
+                $tutor_page->view_create_folder();
+
+                
             }
             
         break;
