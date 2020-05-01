@@ -257,7 +257,7 @@
                                                      </a>
                                                 </td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="Chat/index.php?id=<?=$item['id']?>">
                                                       <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Chat</button>
                                                      </a>
                                                 </td>
