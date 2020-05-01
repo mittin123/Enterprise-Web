@@ -14,37 +14,27 @@ if(!isset($_SESSION)){
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
+                            <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                            <a href="index.php">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
                         </li>
                         <li>
-                            <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
+                            <a href="arrange_meeting.php?check=0">
+                                <i class="fas fa-address-card"></i>Arrange List</a>
                         </li>
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
+                            <a href="">
+                                <i class="fas fa-address-card"></i>Folder</a>
                         </li>
                         <li>
-                            <a href="form.html">
+                            <a href="view_blog.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="as fa-archive"></i>Option</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="">
+                                <i class="fas fa-rss-square"></i>Chat</a>
                         </li>
                     </ul>
                 </nav>

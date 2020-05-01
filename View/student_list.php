@@ -22,13 +22,10 @@ if(!isset($_SESSION)){
                                 <i class="fas fa-address-card"></i>Unallocate Student List</a>
                         </li>
                        <li>
-                            <a href="chart.html">
+                            <a href="view_tutor.php">
                                 <i class="fas fa-address-card"></i>Tutor List</a>
                         </li>
-                       <li>
-                            <a href="form.html">
-                                <i class="fas fa-rss-square"></i>Blog</a>
-                        </li>
+                
                     </ul>
                 </nav>
             </div>

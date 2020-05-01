@@ -17,7 +17,7 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
@@ -29,10 +29,7 @@
                             <a href="view_tutor.php">
                                 <i class="fas fa-address-card"></i>Tutor List</a>
                         </li>
-                       <li>
-                            <a href="View/Personal-Blog-Student.php">
-                                <i class="fas fa-rss-square"></i>Blog</a>
-                        </li>
+                
                     </ul>
                 </nav>
             </div>
