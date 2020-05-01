@@ -50,6 +50,22 @@ class Staff{
             return $ex->getMessage();
         } 
     }
+    public function deleteStudent($student_id){
+        $db = Database::getInstance()->connect;
+        $model_student = new Student();
+        $student = $model_student->findStudent($student_id);
+        $student_code = $student['code'];
+        try{
+            $query = "Delete from student_tutor where student_code = (?)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(1,$student_code);
+            $stmt->execute();
+            return "Success";
+        }
+        catch (Exception $ex){
+            return $ex->getMessage();
+        } 
+    }
     public function get_message_number_tutor(){
         $today = time();
         $lastWeek = time() - (7 * 24 * 60 * 60);

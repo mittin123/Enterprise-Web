@@ -14,6 +14,10 @@ else if ($_SESSION['type'] == 3){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $page->getTutorDetail($id);
+    }else if (isset($_GET['action'])) {
+        $action=$_GET['action'];
+        $id=$_GET['id'];
+        $page->deleteStudent($id);
     }
     else{
         $page->getTutorList();

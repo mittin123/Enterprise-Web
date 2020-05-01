@@ -32,5 +32,10 @@ class StaffController extends LayoutController{
         $data = $model_staff->allocateStudent($tutor_id, $student_id);
         return $data;
     }
+    public function deleteStudent($student_id){
+        $model_staff = new Staff();
+        $data = $model_staff->deleteStudent($student_id);
+        return $data;
+    }
 }
 ?>
