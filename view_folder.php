@@ -12,7 +12,7 @@ $func = new Func();
 if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
-if(!isset($_GET['id'])){
+if(!isset($_GET['id']) && !isset($_GET['action'])){
     $tutor_page->view_all_folder($_SESSION['email']);
 }
 else if(!isset($_GET['action'])){
