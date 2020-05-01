@@ -13,7 +13,12 @@ if(!isset($_SESSION['email'])){
 else if ($_SESSION['type'] == 3){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $page->getTutorDetail($id);
+        $id2 = $_GET['id2'];
+        $page->getTutorDetail($id,$id2);
+    }else if (isset($_GET['action'])) {
+        $action=$_GET['action'];
+        $id=$_GET['id'];
+        $page->deleteStudent($id);
     }
     else{
         $page->getTutorList();
