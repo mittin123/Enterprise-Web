@@ -7,7 +7,7 @@ include_once("Mail/SMTP.php");
  
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-/*
+
 // ajax để allocate student
 include_once('Controller/Staff/StaffController.php');
 $staff = new StaffController();
@@ -15,8 +15,8 @@ $tutor_id = $_POST['tutor_id'];
 $student_id = $_POST['student_id'];
 $response = $staff->allocateStudent($tutor_id,$student_id);
 echo $response;
-*/
-//mail spam
+
+/*//mail spam
 date_default_timezone_set('Etc/UTC');
     $nFrom = "eLearning";    
     $mFrom = 'brinybria24429@gmail.com';  
@@ -50,6 +50,6 @@ date_default_timezone_set('Etc/UTC');
     } else {
          
         echo 'mail của bạn đã được gửi đi hãy kiếm tra hộp thư đến để xem kết quả. ';
-    }
+    }*/
 
 ?>

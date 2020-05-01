@@ -43,6 +43,12 @@ class StudentController extends LayoutController{
         $this->loadView("Student_Arrange",$data);
     }
 
+    public function loadAddArrange(){
+        $viewD = new Student();
+        $data['student_code'] = $stu_id;
+        $this->loadView("Arranging-With-Student",$data);
+    }
+
     public function checkAllocate(){
         $viewD = new Student();
         $check = $viewD->check_allocate();
