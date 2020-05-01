@@ -255,7 +255,7 @@ if(!isset($_SESSION)){
                                         <td><?=$item['name']?></td>
                                         <td><?=$item['email']?></td>
                                         <td>
-                                            <a href="view_tutor.php?action=delete&id=<?=$item->id?>">
+                                            <a href="view_tutor.php?action=delete&id=<?=$item['id']?>&id2=<?php echo $_GET['id'];?>">
                                                 <button type="button" class="btn btn-info"
                                                     value="<?=$c['packageID']?>">Delete</button>
                                             </a>
