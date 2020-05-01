@@ -4,6 +4,16 @@ require_once("Student.php");
 require_once("Tutor.php");
 class Staff{
 
+    public function getAllStaff(){
+        $staff_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "Select * from account where type = 3";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $staff_list[] = $item;
+        }
+        return $staff_list;
+    }
+
     public function getAllStudent(){
         $model_student = new Student();
         return $model_student->getAllStudent();
