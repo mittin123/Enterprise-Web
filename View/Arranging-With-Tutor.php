@@ -22,12 +22,20 @@ $id = $data['student_code'];
                     </a>
                 </li>
                 <li>
-                    <a href="arrange_meeting.php">
-                        <i class="fas fa-address-card"></i>Arrange Meeting</a>
+                    <a href="arrange_meeting.php?check=0">
+                        <i class="fas fa-address-card"></i>Arrange List</a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-address-card"></i>Folder</a>
                 </li>
                 <li>
                     <a href="view_blog.php">
                         <i class="fas fa-rss-square"></i>Blog</a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fas fa-rss-square"></i>Chat</a>
                 </li>
             </ul>
         </nav>

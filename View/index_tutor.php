@@ -29,6 +29,10 @@
                             <a href="arrange_meeting.php">
                                 <i class="fas fa-address-card"></i>Meeting List</a>
                         </li>
+                        <li>
+                            <a href="">
+                                <i class="fas fa-address-card"></i>Folder list</a>
+                        </li>
                        <li>
                             <a href="view_blog.php">
                                 <i class="fas fa-rss-square"></i>Blog</a>
