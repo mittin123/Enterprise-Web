@@ -38,7 +38,13 @@ class Database{
         if($result){
             $result['status'] = 1;
         }
-
+        if($result['type'] < 2){
+            $stmt = $db->prepare("Select * from account where email in (Select email from tutor where code in (select code from student_tutor where student_code in(select code from student where email = ?)))");
+            $stmt->bindParam(1, $email);
+            $stmt->execute();
+            $tutor_info = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result['tutor_id'] = $tutor_info['id'];
+        }
         return $result;
     }
 }

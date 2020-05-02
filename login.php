@@ -24,7 +24,7 @@ else{
             $_SESSION['user_id'] = $result['id'];
             $_SESSION['type'] = $result['type'];
             $_SESSION['id'] = $result['username'];
-           
+            $_SESSION['tutor_id'] = $result['tutor_id'];
             $function->redir("index.php");
         }
         else{
