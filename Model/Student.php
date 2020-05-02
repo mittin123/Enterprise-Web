@@ -22,6 +22,21 @@ class Student{
         return $student_list;
     }
 
+    public function view_all_folder($stu_email){
+        $stu_info = self::getStudentInfo($stu_email);
+        $std_tutor_code = $stu_info['code'];
+        $db = Database::getInstance()->connect;
+        $folder_list = [];
+        $query = "Select A.*, count(B.id) as number_of_files from folder as A join file_detail as B on A.id = B.folder_id where std_tutor_id in (select * from student_tutor where student_code =  ?) group by A.id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $std_tutor_code);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $folder_list[] = $item;
+        }
+        return $folder_list;
+    }
+
     public function getUnallocatedStudent(){
         $student_list = [];
         $db = Database::getInstance()->connect;

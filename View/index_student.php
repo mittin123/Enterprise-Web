@@ -22,7 +22,7 @@ if(!isset($_SESSION)){
                         <i class="fas fa-address-card"></i>Arrange List</a>
                 </li>
                 <li>
-                    <a href="view_folder.php">
+                    <a href="view_folder.php?stu_id=1">
                         <i class="fas fa-address-card"></i>Folder</a>
                 </li>
                 <li>

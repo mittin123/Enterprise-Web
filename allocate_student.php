@@ -12,6 +12,10 @@ if($response['message'] == "Success"){
     $body = "You have been allocated to a tutor. Please visit the website for more details";
     $to = $response['email'];
     $send_mail->send_mail($to, $title, $body);
+
+    $to = $response['email_tutor'];
+    $body = "You have a new student. Please visit the website for more details.";
+    $send_email->send_mail($to, $title, $$body);
 }
 echo $response['message'];
 

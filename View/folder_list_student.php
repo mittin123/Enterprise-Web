@@ -252,17 +252,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                            foreach($data as $item){
+                                            ?>
                                             <tr>
-                                                <td><?=?></td>
-                                                <td><?=?></td>
-                                                <td><?=?></td>
+                                                <td><?=$item['name']?></td>
+                                                <td><?=$item['number_of_files']?></td>
+                                                <td><?=$item['create_time']?></td>
                                                 <td>
                                                     <a href="">
                                                       <button type="button" class="btn btn-info">Access</button>
                                                      </a>
                                                 </td>
                                             </tr>
-                                        
+                                            <?php}?>
                                         </tbody>
                                     </table>
                                 </div>

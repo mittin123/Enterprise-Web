@@ -55,8 +55,8 @@ class Tutor{
     public function create_folder($tutor_email, $std_tutor_id, $folder_name){
         $root = $_SERVER["DOCUMENT_ROOT"];
         $time = time();
-        if (!file_exists($root.'/upload/'.substr($tutor_email,0,strlen($tutor_email)-10).'/'.$folder_name)) {
-            mkdir($root.'/upload/'.substr($tutor_email,0,strlen($tutor_email)-10).'/'.$folder_name, 0755, true);
+        if (!file_exists($root.'/upload/'.$std_tutor_id.'/'.$folder_name)) {
+            mkdir($root.'/upload/'.$std_tutor_id.'/'.$folder_name, 0755, true);
           
             $db = Database::getInstance()->connect;
             $query = "Insert into folder (std_tutor_id, name, create_time, update_time) VALUES (?, ?, ?, ?)";
