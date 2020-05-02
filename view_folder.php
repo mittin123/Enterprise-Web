@@ -15,6 +15,9 @@ if(!isset($_SESSION['email'])){
 if(!isset($_GET['id']) && !isset($_GET['action'])){
     $tutor_page->view_all_folder($_SESSION['email']);
 }
+else if(!isset($_GET['id']) && !isset($_GET['action'])){
+    $student_page->view_all_folder($_SESSION['email']);
+}
 else if(!isset($_GET['action'])){
     switch($_SESSION['type']){
         case 1:

@@ -11,10 +11,15 @@ class Tutor{
         $tutor_info = self::getTutorInfo($tutor_email);
         $std_tutor_code = $tutor_info['code'];
         $db = Database::getInstance()->connect;
+        $folder_list = [];
         $query = "Select A.*, count(B.id) as number_of_files from folder as A join file_detail as B on A.id = B.folder_id where std_tutor_id in (select * from student_tutor where tutor_code =  ?) group by A.id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $std_tutor_code);
         $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $folder_list[] = $item;
+        }
+        return $folder_list;
     }
 
     public function get_file_list($std_tutor_id){

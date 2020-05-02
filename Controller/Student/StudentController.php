@@ -6,6 +6,13 @@ class StudentController extends LayoutController{
         $model_student = new Student();
         return $model_student->getStudentInfo($email);
     }
+
+    public function view_all_folder($email){
+        $model_student = new Student();
+        $data = $model_student->view_all_folder($email);
+        $this->loadView("folder_list_student",$data);
+    }
+
     public function view_folder(){
         $this->loadView("folder_detail");
     }
