@@ -1,7 +1,5 @@
 <?php
 include_once("./#config.php");
-include_once("Student.php");
-include_once("Tutor.php");
 include_once("Staff.php");
 
 class AuthStaff{
@@ -9,8 +7,15 @@ class AuthStaff{
         
     }
     public function getAllStudent(){
-        $model_student = new Student();
-        return $model_student->getAllStudent();
+        $stu_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "select *, account.last_login FROM `student` 
+        inner join account 
+        on student.email = account.email";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $tutor_list[] = $item;
+        }
+        return $tutor_list;
     }
     public function getAllTutor(){
         $tutor_list = [];
