@@ -5,6 +5,7 @@ if(!isset($_SESSION)){
 }
 
 ?>
+<<<<<<< HEAD
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -45,6 +46,17 @@ if(!isset($_SESSION)){
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
+=======
+<?php
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if($_SESSION['type'] == 1){
+            include('student_sidebar.php');
+        }
+        else include('tutor_sidebar.php');
+        ?>
+>>>>>>> bdb12872c55c505989cebbdcb17903b3cc3efdb8
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">

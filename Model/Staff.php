@@ -64,10 +64,13 @@ class Staff{
             $stmt->bindParam(1,$tutor_code);
             $stmt->bindParam(2,$student_code);
             $stmt->execute();
-            return "Success";
+            $result['message'] = "Success";
+            $result['email'] = $student_code['email'];
+            return $result;
         }
         catch (Exception $ex){
-            return $ex->getMessage();
+            $result['message'] = $ex->getMessage();
+            return $result;
         } 
     }
     public function deleteStudent($student_id){
@@ -80,10 +83,13 @@ class Staff{
             $stmt = $db->prepare($query);
             $stmt->bindParam(1,$student_code);
             $stmt->execute();
-            return "Success";
+            $result['message'] = "Success";
+            $result['email'] = $student_code['email'];
+            return $result;
         }
         catch (Exception $ex){
-            return $ex->getMessage();
+            $result['message'] = $ex->getMessage();
+            return $result;
         } 
     }
     public function get_message_number_tutor(){
