@@ -15,8 +15,9 @@ else{
 	$id = 0;
 }
 $db = Database::getInstance()->connect;
-$stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ?) tmp order by time asc");
+$stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ? and sender_id = ?) tmp order by time asc");
 $stmt->bindParam(1, $id);
+$stmt->bindParam(2, $_SESSION['user_id']);
 $stmt->execute();
 $result = $stmt->fetchAll();
 
@@ -25,7 +26,7 @@ $result = $stmt->fetchAll();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Chat App by Hyvor Developer?</title>
+	<title>eLearning messenger</title>
 
 <style type="text/css">
 	* {
