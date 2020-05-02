@@ -35,11 +35,7 @@ if(!isset($_SESSION)){
                 </li>
                 <li>
 
-<<<<<<< HEAD
-                    <a href="Chat/index.php?id=<?=$_SESSION['email']?>">
-=======
                     <a href="Chat/index.php?id=<?=$_SESSION['user_id']?>">
->>>>>>> bdb12872c55c505989cebbdcb17903b3cc3efdb8
                         <i class="fas fa-rss-square"></i>Chat</a>
                 </li>
             </ul>

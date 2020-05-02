@@ -14,6 +14,7 @@ if(isset($_GET['id'])){
 else{
 	$id = 0;
 }
+$sender_id = $_SESSION['user_id'];
 $db = Database::getInstance()->connect;
 $stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ? and sender_id = ?) tmp order by time asc");
 $stmt->bindParam(1, $id);
@@ -73,7 +74,7 @@ $result = $stmt->fetchAll();
 </div>
 <script type="text/javascript">
 	var receiver_id = <?php echo $_GET['id'];?>;
-	var sender_id = <?php echo $sender_id;?>;
+	var sender_id = <?php echo $sender_id ;?>;
 </script>
 <script type="text/javascript" src="index.js"></script>
 </body>
