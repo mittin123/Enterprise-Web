@@ -186,17 +186,21 @@
                     <div class="container-fluid">
                         <h3 class="title-5 m-b-35">Blogs</h3>
                         <div class="row">
+                            <?php
+                                foreach($data as $item){
+                                    $date = date("m/d/y", $item['create_time'])
+                            ?>
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 1</strong>
+                                        <strong class="card-title mb-3"><?=$item['title']?></strong>
                                     </div>
                                     <div class="card-body">
                                         <div class="mx-auto d-block">
-                                             <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people..... 
+                                             <p class="card-text"><?=$item['abstraction']?>
                                             </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
+                                            <h6><i>by <?=$item['user']?></i></h6>
+                                            <h6><i>Last update: <?=$date?></i></h6>
                                         </div>
                                         <hr>
                                         <div class="card-text text-sm-center">
@@ -205,114 +209,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 2</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                            <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people..... 
-                                            </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
-                                        </div>
-                                        <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 3</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                             <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people.... 
-                                            </p>
-                                            </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
-                                        </div>
-                                        <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 4</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                             <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people.... 
-                                            </p>
-                                            </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
-                                        </div>
-                                        <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 5</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                             <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people.... 
-                                            </p>
-                                            </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
-                                        </div>
-                                        <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3">Blog 6</strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                             <p class="card-text">The unique stripes of zebras make them one of the animals most familiar to people..... 
-                                            </p>
-                                            </p>
-                                            <h6><i>by (Name of author)</i></h6>
-                                            <h6><i>Last update: dd/mm/yyyy</i></h6>
-                                        </div>
-                                        <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <?php}?>
                         </div>
                     </div>
                 </div>

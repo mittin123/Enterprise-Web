@@ -4,6 +4,7 @@ include_once("./Model/Staff.php");
 include_once("./Model/Student.php");
 include_once("./Model/Tutor.php");
 include_once("./Model/AuthStaff.php");
+include_once("./Model/Home.php");
 
 class IndexController extends LayoutController{
     public function index($type){
@@ -39,8 +40,9 @@ class IndexController extends LayoutController{
                 $this->loadView("index_authstaff", $data);
             break;
             default:
-                
-                $this->loadView("index_default");
+                $blog = new Home();
+                $data = $blog->getAllBlog();
+                $this->loadView("index_default", $data);
             break;
         }
     }
