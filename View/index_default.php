@@ -203,13 +203,13 @@
                                             <h6><i>Last update: <?=$date?></i></h6>
                                         </div>
                                         <hr>
-                                        <div class="card-text text-sm-center">
-                                            <a href="#"><input class="btn btn-info" type="button" value="Details"></a> <!-- Chỉ hiện lên khi đã đăng nhập -->
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
-                                <?php}?>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -220,8 +220,3 @@
         </div>
 
     </div>
-
-</body>
-
-</html>
-<!-- end document-->

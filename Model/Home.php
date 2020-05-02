@@ -1,15 +1,20 @@
 <?php
 require_once("./#config.php");
 
-class Index{
+class Home{
+  function __construct(){
+
+  }
     public function getAllBlog(){
     $db = Database::getInstance()->connect;
-    $query = "select * from blog WHERE";
+    $blog_list = [];
+    $query = "select * from blog";
     foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
       $blog_list[] = $item;
     }
     return $blog_list;
     }
+
     public function view_blog_detail($id){
     //DB -> Database
     $db = Database::getInstance()->connect;
