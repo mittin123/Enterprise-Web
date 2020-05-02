@@ -59,7 +59,7 @@ class Student{
     
     public function getStudentInfo($email){
         $db = Database::getInstance()->connect;
-        $query = "Select A.email,B.code,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";
+        $query = "Select A.code,B.email,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$email);
         $stmt->execute();
@@ -154,6 +154,16 @@ class Student{
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getAllFile(){
+        $db = Database::getInstance()->connect;
+        $file_list = [];
+        $query="select * from file_detail where type = 1";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $file_list[] = $item;
+        }
+        return $file_list;
     }
 
     public function get_message_number($id){

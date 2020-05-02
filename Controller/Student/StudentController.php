@@ -40,6 +40,7 @@ class StudentController extends LayoutController{
     public function viewArrangeDetail($id){
         $viewD = new Student();
         $data['detail'] = $viewD->view_arrange_detail($id);
+        $data['file'] = $viewD->getAllFile();
         $this->loadView("Student_Arrange_Detail",$data);
     }
 

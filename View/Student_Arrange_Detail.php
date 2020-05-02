@@ -253,10 +253,10 @@ $create_date = date("m/d/y h:i:s a", $data['detail']['create_date']);
                                                         <tbody>
                                                             <?php
                                                                 foreach($data['file'] as $item){
-                                                                    $file_ct = date("m/d/y h:i:s a", $data['file']['create_time']);
+                                                                    $file_ct = date("m/d/y h:i:s a", $item['create_time']);
                                                             ?>
                                                             <tr>
-                                                                <td><?=$data['file']['file_name']?></td>
+                                                                <td><?=$item['file_name']?></td>
                                                                 <td><?=$file_ct?></td>
                                                                 <td>
                                                                     <a href="">
