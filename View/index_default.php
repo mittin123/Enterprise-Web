@@ -170,9 +170,15 @@
                                     </div>
                                 </div>
                                 <!-- Redirect đến trang login hộ t phát-->
+                                <?php
+                                    if(!isset($_SESSION['email'])){
+                                    ?>
                                 <div align="right" style="margin-top: -5px;">
                                       <a href="login.php"><button type="button" class="btn btn-primary">Log In</button></a>
                                 </div>
+                                    <?php
+                                    }
+                                    ?>
                             </div>
                         </div>
                     </div>
@@ -188,7 +194,7 @@
                         <div class="row">
                             <?php
                                 foreach($data as $item){
-                                    $date = date("m/d/y", $item['create_time'])
+                                    $date = date("m/d/y", $item['create_time']);
                             ?>
                             <div class="col-md-4">
                                 <div class="card">
@@ -203,7 +209,15 @@
                                             <h6><i>Last update: <?=$date?></i></h6>
                                         </div>
                                         <hr>
-                                    
+                                        <?php
+                                        if(isset($_SESSION['email'])){
+                                        ?>
+                                        <div class="card-text text-sm-center">
+                                            <a href="view_blog.php?id=<?=$item['id']?>"><input class="btn btn-info" type="button" value="Details"></a>
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +231,3 @@
         </div>
             <!-- END MAIN CONTENT-->
             <!-- END PAGE CONTAINER-->
-        </div>
-
-    </div>

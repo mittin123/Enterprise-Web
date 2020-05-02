@@ -33,7 +33,7 @@ if(!isset($_SESSION)){
                                 <i class="fas fa-rss-square"></i>Your Blog</a>
                         </li>
                         <li>
-                            <a href="view_blog.php">
+                            <a href="view_blog.php?all_blog=1">
                                 <i class="fas fa-rss-square"></i>All Blog</a>
                         </li>
                         <li>

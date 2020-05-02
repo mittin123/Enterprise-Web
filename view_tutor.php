@@ -19,7 +19,7 @@ else if ($_SESSION['type'] == 3){
     }
     else if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $page->getTutorDetail($id);
+        $page->getTutorInfo($id);
     }
     else{
         $page->getTutorList();

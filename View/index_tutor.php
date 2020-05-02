@@ -38,7 +38,7 @@
                                 <i class="fas fa-rss-square"></i>Your Blog</a>
                         </li>
                         <li>
-                            <a href="view_blog.php">
+                            <a href="view_blog.php?all_blog=0">
                                 <i class="fas fa-rss-square"></i>All Blog</a>
                         </li>
                     </ul>

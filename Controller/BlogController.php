@@ -1,5 +1,6 @@
 <?php
 include_once("./Model/Blog.php");
+include_once("./Model/Home.php");
 include_once("Layout.php");
 
 
@@ -49,6 +50,12 @@ class BlogController extends LayoutController{
         $result = $delBlog->delete_blog($id);
         $data = $delBlog->view_all_blog($_SESSION['id']);
         $this->loadView("Personal-Blog-Student", $data);
+    }
+
+    public function getAllBlog(){
+        $blog = new Home();
+        $data = $blog->getAllBlog();
+        $this->loadView("index_default",$data);
     }
 }
 

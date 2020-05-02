@@ -47,6 +47,9 @@ else if ($_SESSION['type']){
         $blog = new BlogController();
         $result = $blog->deleteBlog($id);
     }
+    else if(isset($_GET['all_blog'])){
+        $page->getAllBlog();
+    }
     else{
         $page->viewAllBlog();
     } 

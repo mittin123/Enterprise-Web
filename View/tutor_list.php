@@ -241,13 +241,13 @@ if(!isset($_SESSION)){
                                     </thead>
                                     <tbody>
                                         <?php foreach($data as $item){
-
+                                                $last_active = date("m/d/y", $item['last_login'])
                                             ?>
                                         <tr>
                                             <td><?=$item['name']?></td>
                                             <td><?=$item['email']?></td>
-                                            <td><?=$item['name']?></td>
-                                            <td><?=$item['name']?></td>
+                                            <td><?=$item['cnt']?>/10</td>
+                                            <td><?=$last_active?></td>
                                             <td>
                                                 <a href="view_tutor.php?id=<?=$item['id']?>">
                                                     <button type="button" class="btn btn-info" value="View Detail">View

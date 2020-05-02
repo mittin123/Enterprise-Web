@@ -20,8 +20,18 @@ class Staff{
     }
 
     public function getAllTutor(){
-        $model_tutor = new Tutor();
-        return $model_tutor->getAllTutor();
+        $tutor_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "select *, count(student_tutor.id) as cnt FROM `tutor` 
+        inner join student_tutor 
+        on tutor.code = student_tutor.tutor_code 
+        inner join account 
+        on tutor.email = account.email 
+        group by student_tutor.tutor_code";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $tutor_list[] = $item;
+        }
+        return $tutor_list;
     }
 
     public function getTutor($id){
