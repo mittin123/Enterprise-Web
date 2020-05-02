@@ -19,14 +19,6 @@ $stmt = $db->prepare("SELECT * from (Select name, message, time from message ord
 $stmt->bindParam(1, $id);
 $stmt->execute();
 $result = $stmt->fetchAll();
-if(!isset($_SESSION)){
-	session_start();
-}
-$sender_id = $_SESSION['user_id'];
-//fake sender id;
-include_once('../#config.php');
-$db = Database::getInstance()->connect;
-$result = $db->query("select * from (Select name, message, time from message order by time desc limit 20) tmp order by time asc");
 
 ?>
 
@@ -74,7 +66,7 @@ $result = $db->query("select * from (Select name, message, time from message ord
 		<?php } ?>	
 	</div>
 	<div id="connecting">Connecting to web sockets server...</div>
-	<input type="text" class="text-box" id="sender" placeholder="Your Name">
+	<input type="hidden" class="text-box" id="sender" value="<?=$_SESSION['email']?>">
 	<input type="text" class="text-box" id="message" placeholder="Your Message" onkeyup="handleKeyUp(event)">
 	<p>Press enter to send message</p>
 </div>
