@@ -25,12 +25,16 @@ if(!isset($_SESSION)){
                                 <i class="fas fa-address-card"></i>Arrange List</a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="view_folder.php">
                                 <i class="fas fa-address-card"></i>Folder</a>
                         </li>
                         <li>
                             <a href="view_blog.php">
-                                <i class="fas fa-rss-square"></i>Blog</a>
+                                <i class="fas fa-rss-square"></i>Your Blog</a>
+                        </li>
+                        <li>
+                            <a href="view_blog.php">
+                                <i class="fas fa-rss-square"></i>All Blog</a>
                         </li>
                         <li>
                             <a href="">
@@ -205,7 +209,7 @@ if(!isset($_SESSION)){
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

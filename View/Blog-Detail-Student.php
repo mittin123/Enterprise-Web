@@ -26,7 +26,7 @@ $time = date("m/d/y h:i:s a", $data['create_time']);
                                 <i class="fas fa-address-card"></i>Arrange List</a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="view_folder.php">
                                 <i class="fas fa-address-card"></i>Folder</a>
                         </li>
                         <li>
@@ -207,7 +207,7 @@ $time = date("m/d/y h:i:s a", $data['create_time']);
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>

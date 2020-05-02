@@ -191,7 +191,7 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout.php">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
