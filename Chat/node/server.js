@@ -44,13 +44,17 @@ global.clients = {};
 //websocketServer.on("request",websocketRequest);
 var connection_id = 0;
 websocketServer.on("request",function(webSocket){
-    var receiver_id  = parseInt(webSocket.resource.substr(1));
+    var params = webSocket.resource.split('&');
+    var receiver_id  = parseInt(params[0].substr(5));
+    var sender_id  = parseInt(params[1].substr(7));
     clients[connection_id] = webSocket;
     var connection = webSocket.accept(null, webSocket.origin);
     clients[connection_id] = connection;
     clients[connection_id].receiver_id = receiver_id;
     clients[connection_id].sender_id = sender_id;
     console.log("connected "+receiver_id+ " in "+Object.getOwnPropertyNames(clients));
+    console.log(receiver_id);
+    console.log(sender_id);
     connection_id++;
 })
 /*
@@ -66,15 +70,10 @@ function websocketRequest(request){
     
 }*/
 
-function messageClients(message,receiver_id,sender_id){
+function messageClients(message,get_id,sender_id){
     for(var i in clients){
-        if(clients[i].receiver_id == receiver_id || clients[i].sender_id == sender_id){
-            console.log("--start--");
-            console.log(i + "-- element i");
-            console.log(receiver_id + "-- receive client id");
-            console.log(sender_id + "-- sender id");
-            console.log("--end--");
-            clients[i].sendUTF(message);
-        }
+        clients[i].sendUTF(message);
     }
+        
 }
+

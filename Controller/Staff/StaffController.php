@@ -9,6 +9,8 @@ class StaffController extends LayoutController{
         $this->loadView("student_list",$data);
     }
 
+    
+
     public function getTutorList(){
         $model_staff = new Staff();
         $data = $model_staff->getAllTutor();

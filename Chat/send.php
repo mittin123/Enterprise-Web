@@ -19,7 +19,7 @@ try{
     $stmt->bindParam(1, $name);
     $stmt->bindParam(2, $message);
     $stmt->bindParam(3, $time);
-    
+    $stmt->execute();
 }
 catch(Exception $ex){
     die($ex->getMessage());

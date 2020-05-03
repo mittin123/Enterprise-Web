@@ -22,7 +22,7 @@ class Staff{
     public function getAllTutor(){
         $tutor_list = [];
         $db = Database::getInstance()->connect;
-        $query = "select *, count(student_tutor.id) as cnt FROM `tutor` 
+        $query = "select tutor.*, account.last_login, count(student_tutor.id) as cnt FROM `tutor` 
         inner join student_tutor 
         on tutor.code = student_tutor.tutor_code 
         inner join account 
@@ -156,7 +156,7 @@ class Staff{
         $check_time_7days = $today - (7 * 24 * 60 * 60);
         $check_time_28days = $today - (28 * 24 * 60 * 60);
         $db = Database::getInstance()->connect;
-        $query = "Select * from student join account on student.email = account.email where last_login >= ?";
+        $query = "Select * from student join account on student.email = account.email where last_login <= ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$check_time_7days);
         $stmt->execute();
@@ -165,7 +165,7 @@ class Staff{
             $result['7_days_type'] [] = $item;
         }
 
-        $query = "Select * from student join account on student.email = account.email where last_login >= ?";
+        $query = "Select * from student join account on student.email = account.email where last_login <= ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$check_time_28days);
         $stmt->execute();
@@ -180,7 +180,7 @@ class Staff{
         $today = time();
         $check_time_7days = $today - (7 * 24 * 60 * 60);
         $db = Database::getInstance()->connect;
-        $query = "Select * from tutor join account on tutor.email = account.email where last_login >= ?";
+        $query = "Select * from tutor join account on tutor.email = account.email where last_login <= ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$check_time_7days);
         $stmt->execute();

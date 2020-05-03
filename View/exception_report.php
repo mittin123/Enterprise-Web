@@ -335,10 +335,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach($data['tutor_without_interaction'] as $item){
+
+                                        ?>
                                             <tr>
-                                                <td><b>AAA</b></td>
+                                                <td><b><?=$item['name']?></b></td>
                                                 <td><button class="au-btn au-btn-icon au-btn--green au-btn--small">Access</button></td>
                                             </tr>
+                                            <?php
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

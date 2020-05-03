@@ -30,11 +30,12 @@ function sendMessage() {
 
   window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-  var connection = new WebSocket('ws://localhost:8888/'+receiver_id);
+  var connection = new WebSocket('ws://localhost:8888?id='+receiver_id+'&sender='+sender_id);
   var connectionSpan = document.getElementById("connecting");
   connection.onopen = function(){
       //connectionSpan.style.display = "none";
       connectionSpan.innerHTML = "Connect success";
+      connection.send("123");
   };
 
   connection.onerror = function(error){
@@ -56,4 +57,7 @@ function sendMessage() {
       div.appendChild(message);
 
       document.getElementById("message-box").appendChild(div);
+  }
+  connection.onclose = function(){
+      connection.close();
   }

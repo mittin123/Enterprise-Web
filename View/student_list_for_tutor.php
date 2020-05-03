@@ -223,17 +223,17 @@
                                                 <td>20/04/2020</td>
                                                 <td>
                                                     <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Arrangement</button>
+                                                      <button type="button" class="btn btn-info" value="">New Arrangement</button>
                                                      </a>
                                                 </td>
                                                 <td>
                                                     <a href="">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">New Folder</button>
+                                                      <button type="button" class="btn btn-info" value="">New Folder</button>
                                                      </a>
                                                 </td>
                                                 <td>
-                                                    <a href="Chat/index.php?id=<?=$item['id']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Chat</button>
+                                                    <a href="Chat/index.php?id=<?=$item['account_id']?>">
+                                                      <button type="button" class="btn btn-info" value="">Chat</button>
                                                      </a>
                                                 </td>
                                                 </tr>

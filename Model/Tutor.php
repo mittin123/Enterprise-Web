@@ -131,7 +131,7 @@ class Tutor{
         $student_list = [];
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
-        $query = "Select * from student_tutor as A join student as B on A.student_code = B.code where tutor_code = ?";
+        $query = "Select *,C.id as account_id from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();
