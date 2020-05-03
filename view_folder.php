@@ -13,7 +13,7 @@ if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
 else if (isset($_SESSION['email'])){
-    if($_GET['stu_id']){
+    if(isset($_GET['stu_id'])){
         $student_page->view_all_folder($_SESSION['email']);
     }
     else if(!isset($_GET['id']) && !isset($_GET['action'])){
