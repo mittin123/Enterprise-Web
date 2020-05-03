@@ -46,5 +46,12 @@ class AuthStaffController extends LayoutController{
         $data['document_num'] = $tuD->get_document_number($email);
         $this->loadView("index_tutor_for_authstaff", $data);
     }
+    public function getExceptionReport(){
+        $staff = new Staff();
+        $data['student_without_tutor'] = $staff->loadUnallocatedStudent();
+        $data['student_without_interaction'] = $staff->getInactiveStudent();
+        $data['tutor_without_interaction'] = $staff->getInactiveTutor();
+        $this->loadView("exception_report",$data);
+    }
 }
 ?>

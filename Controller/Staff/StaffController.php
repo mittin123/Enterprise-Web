@@ -45,5 +45,17 @@ class StaffController extends LayoutController{
         }
         header("location:view_tutor.php?id=$tutor_id");
     }
+
+    public function getInactiveStudent(){
+        $model_staff = new Staff();
+        $data = $model_staff->getInactiveStudent();
+        return $data;
+    }
+
+    public function getInactiveTutor(){
+        $model_staff = new Staff();
+        $data = $model_staff->getInactiveTutor();
+        return $data;
+    }
 }
 ?>

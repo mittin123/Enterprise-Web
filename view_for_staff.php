@@ -31,6 +31,9 @@ else if ($_SESSION['type'] == 4){
     else if(isset($_GET['sta_email'])){
         $page->loadStaffDash();
     }
+    else if(isset($_GET['exception_report'])){
+        $page->loadExceptionReportPage();
+    }
 }
 else{
     die("You have no access - your level: ".$_SESSION['type']);

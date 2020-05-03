@@ -150,5 +150,45 @@ class Staff{
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                       
     }
+
+    public function getInactiveStudent(){
+        $today = time();
+        $check_time_7days = $today - (7 * 24 * 60 * 60);
+        $check_time_28days = $today - (28 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "Select * from student join account on student.email = account.email where last_login >= ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$check_time_7days);
+        $stmt->execute();
+        $result['7_days_type'] = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $result['7_days_type'] [] = $item;
+        }
+
+        $query = "Select * from student join account on student.email = account.email where last_login >= ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$check_time_28days);
+        $stmt->execute();
+        $result['28_days_type'] = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $result['28_days_type'] [] = $item;
+        }
+        return $result;
+    }
+
+    public function getInactiveTutor(){
+        $today = time();
+        $check_time_7days = $today - (7 * 24 * 60 * 60);
+        $db = Database::getInstance()->connect;
+        $query = "Select * from tutor join account on tutor.email = account.email where last_login >= ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$check_time_7days);
+        $stmt->execute();
+        $result = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $result [] = $item;
+        }
+        return $result;
+    }
 }
 ?>
