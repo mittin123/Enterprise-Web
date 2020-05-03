@@ -156,11 +156,15 @@ class Student{
         return $result;
     }
 
-    public function getAllFile(){
+    public function getAllFile($id){
         $db = Database::getInstance()->connect;
         $file_list = [];
-        $query="select * from file_detail where type = 1";
-        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+        $query="select * from file_detail where type = 1 and uploader = ? and folder_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $_SESSION['email']);
+        $stmt->bindParam(2, $id);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $file_list[] = $item;
         }
         return $file_list;

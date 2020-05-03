@@ -22,6 +22,37 @@ class Tutor{
         return $folder_list;
     }
 
+    public function view_file_list($id){
+        $file_list = [];
+        $db = Database::getInstance()->connect;
+        $query="select * from file_detail 
+        where type = 1 and uploader in (
+            Select B.email as stu_email from student_tutor as A 
+            join student as B 
+            on A.student_code = B.code 
+            join account as C 
+            on C.email = B.email 
+            where tutor_code = (
+                Select A.code from tutor as A 
+                join account as B 
+                on A.email = B.email 
+                join student_tutor as C 
+                on C.tutor_code = A.code 
+                where A.email = ? 
+                group by A.code
+            )
+        ) 
+        and folder_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $_SESSION['email']);
+        $stmt->bindParam(2, $id);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $file_list[] = $item;
+        }
+        return $file_list;
+    }
+
     public function get_file_list($std_tutor_id){
         $file_list = [];
         $db = Database::getInstance()->connect;
@@ -131,7 +162,7 @@ class Tutor{
         $student_list = [];
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
-        $query = "Select *,C.id as account_id from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
+        $query = "Select *,C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();

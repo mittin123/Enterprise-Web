@@ -12,15 +12,12 @@ $func = new Func();
 if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
-
-if($_GET['stu_id']){
+else if($_GET['stu_id']){
     $student_page->view_all_folder($_SESSION['email']);
 }
-
-if(!isset($_GET['id']) && !isset($_GET['action'])){
+else if(!isset($_GET['id']) && !isset($_GET['action'])){
     $tutor_page->view_all_folder($_SESSION['email']);
 }
-
 else if(!isset($_GET['action'])){
     switch($_SESSION['type']){
         case 1:
@@ -47,9 +44,11 @@ else if(isset($_GET['action'])){
                 $folder_id = $_POST['folder_id'];
                 $uploader = $_SESSION['email'];
                 if($_SESSION['type'] == 1){
+                    $file = $_POST['fileUpload'];
                     $student_page->upload($uploader, $file, $folder_id);
                 }
                 else if($_SESSION['type'] == 2){
+                    $file = $_POST['fileUpload'];
                     $tutor_page->uploadFile($uploader, $file, $folder_id);
                 }
             }

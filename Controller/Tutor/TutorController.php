@@ -67,7 +67,7 @@ class TutorController extends LayoutController{
     public function viewArrangeDetail($id){
         $viewD = new Tutor();
         $data['detail'] = $viewD->view_arrange_detail($id);
-        //$data['file'] = $viewD->view_file_list($id);
+        $data['file'] = $viewD->view_file_list($id);
         $this->loadView("Tutor_Arrange_Detail",$data);
     }
 

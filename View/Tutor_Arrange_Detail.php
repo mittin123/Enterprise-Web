@@ -208,8 +208,9 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                         <strong>Arrangement Detail</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="view_folder.php" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
+                                            <input type="hidden" name="folder_id" id="folder_id" value="<?=$data['detail']['id']?>">
                                                 <div class="col col-md-3">
                                                     <label for="text-input" class=" form-control-label">Name Arrangement</label>
                                                 </div>
@@ -260,16 +261,22 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <?php
+                                                            foreach($data['file'] as $item){
+                                                                $create_time = date("m/d/y", $item['create_time']);
+                                                        ?>
                                                             <tr>
-                                                                <td><?=$coach->intro?></td>
-                                                                <td><?=$coach->intro?></td>
+                                                                <td><?=$item['file_name']?></td>
+                                                                <td><?=$create_time?></td>
                                                                 <td>
                                                                     <a href="">
-                                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access</button>
+                                                                      <button type="button" class="btn btn-info" >Access</button>
                                                                      </a>
                                                                 </td>
                                                             </tr>
-                                                        
+                                                            <?php
+                                                            }
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -280,17 +287,14 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                                     <label for="text-input" class=" form-control-label">Upload new file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="file" name="fileUpload" value="">                                              
-                                                    <input class="btn btn-success" type="submit" name="upload" value="upload">
+                                                    <input type="file" name="fileUpload" id="fileUpload" value=""> 
+                                                    <a href="view_folder.php?action=upload">                                             
+                                                    <button class="btn btn-success" type="submit" name="upload" id="upload" value="upload">Upload</button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         
                                         </form>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary btn-sm" id="upfile" name="upfile">
-                                            <i class="fa fa-dot-circle-o"></i> Upload
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -298,10 +302,3 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                     </div>
                 </div>
             </div>
-                            
-
-
-
-<!--   END -->
-<!--   END -->
-<!--   END -->

@@ -267,7 +267,6 @@ $create_date = date("m/d/y h:i:s a", $data['detail']['create_date']);
                                                             <?php
                                                                 }
                                                             ?>
-                                                        
                                                         </tbody>
                                                     </table>
                                                 </div>
