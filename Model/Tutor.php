@@ -34,15 +34,30 @@ class Tutor{
         }
         return $file_list;
     }
+    
     public function get_file_detail($file_id){
         $db = Database::getInstance()->connect;
         $query = "Select * from file_detail where id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $file_id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result['file_detail'] = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result['comment'] = self::get_file_comment($file_id);
+        return $result;
     }
-    
+
+    public function get_file_comment($file_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from comment where file_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $file_id);
+        $stmt->execute();
+        $comment_list = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $comment_list[] = $item;
+        }
+        return $comment_list;
+    }
     public function get_folder_info($std_tutor_id){
         $db = Database::getInstance()->connect;
         $query = "Select * from folder where std_tutor_id = ?";

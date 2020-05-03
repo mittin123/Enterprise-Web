@@ -207,7 +207,7 @@
                                                     <label for="text-input" class=" form-control-label">Name file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <p><?=$data['file_name']?></p>
+                                                    <p><?=$data['file_detail']['file_name']?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -215,7 +215,7 @@
                                                     <label for="text-input" class=" form-control-label">Created Time</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                   <p><?=date('d/m/yy',$data['create_time'])?></p>
+                                                   <p><?=date('d/m/yy',$data['file_detail']['create_time'])?></p>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -226,7 +226,7 @@
 
                                                 <!-- Download file here-->
 
-                                                   <a href="upload/<?=$data['folder_id']?>/<?=$data['file_name']?>"><?=$data['file_name']?></a>
+                                                   <a href="upload/<?=$data['file_detail']['folder_id']?>/<?=$data['file_detail']['file_name']?>"><?=$data['file_detail']['file_name']?></a>
 
                                                 </div>
                                             </div>
@@ -244,7 +244,7 @@
                                             
                                         </form>
                                     </div>
-                                     <div class="col-12 col-md-9" style="margin-top: -30px;margin-bottom: 10px;"><button type="submit" class="btn btn-primary btn-sm" id="upCmtTutor" name="upCmtTutor">
+                                     <div class="col-12 col-md-9" style="margin-top: -30px;margin-bottom: 10px;"><button type="button" class="btn btn-primary btn-sm" id="send_comment" name="send_comment">
                                             <i class="fa fa-dot-circle-o"></i> Comment
                                              </button></div>
                                     <div class="card-footer">
@@ -253,26 +253,21 @@
                                                     <label for="text-input" class=" form-control-label">ALL Comments</label>
                                                 </div>
                                                 <div id="comments-wrapper">
-                                                    <div class="comment clearfix">
-                                                            <img src="profile.png" alt="" class="profile_pic">
+                                                    <div class="comment clearfix" name="comment_field">
+                                                        <?php 
+                                                            foreach($data['comment'] as $item){
+
+                                                            ?>
                                                             <div class="comment-details">
-                                                                <span class="comment-name">Melvine</span>
-                                                                <span class="comment-date">Apr 24, 2018</span>
-                                                                <p>ke me em</p>
+                                                                <span class="comment-name"><?=$item['email']?></span>
+                                                                <span class="comment-date"><?=date('d/m/yy',$item['create_time'])?></span>
+                                                                <p><?=$item['comment']?></p>
                                                                     <hr>
                                                             </div>
-                                                            <div>
-                                                                <!-- reply -->
-                                                                <div class="comment reply clearfix">
-                                                                    <img src="profile.png" alt="" class="profile_pic">
-                                                                    <div class="comment-details">
-                                                                        <span class="comment-name">Awa</span>
-                                                                        <span class="comment-date">Apr 24, 2018</span>
-                                                                        <p>alo alo</p>
-                                                                        <hr>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            <?php
+                                                                }
+                                                            ?>
+                                                            
                                                         </div>
                                             </div>
                                                 
@@ -286,5 +281,24 @@
             </div>
         </div>
     </div>
-
+<script>
+    $("#send_comment").onclick(function(){
+        var comment = $("#comment").val();
+        var from = <?php echo $_SESSION['email']?>;
+        var file_id = <?php echo $_GET['file_id']?>;
+        $.ajax({
+                    url: 'send_comment.php',
+                    type: 'post',
+                    data:{
+                        from: from,
+                        comment: comment,
+                        file_id: file_id,
+                    },
+                    success: function(response){
+                        $("#comment_field").append($response);
+                    }
+                })
+    })
+    
+</script>
     

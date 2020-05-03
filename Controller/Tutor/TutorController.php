@@ -30,6 +30,7 @@ class TutorController extends LayoutController{
         $file_detail = $model_tutor->get_file_detail($file_id);
         $this->loadView("file_detail",$file_detail);
     }
+    
     public function view_create_folder(){
         $this->loadView("create_folder");
     }
