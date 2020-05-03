@@ -247,7 +247,7 @@
                                                 <td><?=$item['name']?></td>
                                                 <td><?=$last_active?></td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="view_for_staff.php?stu_email=<?=$item['email']?>">
                                                       <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access Dashboard</button>
                                                      </a>
                                                 </td>

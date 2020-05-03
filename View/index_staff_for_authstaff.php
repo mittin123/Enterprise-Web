@@ -1,4 +1,8 @@
-<aside class="menu-sidebar2">
+<?php
+
+?>
+
+        <aside class="menu-sidebar2">
             <div class="logo">
                 <a href="#">
                     <img src="View/images/icon/logo-white.png" alt="Cool Admin" />
@@ -154,7 +158,7 @@
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
                             <li class="active has-sub">
-                                <a class="js-arrow" href="index.php">
+                                <a class="js-arrow" href="#">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                 </a>
                             </li>
@@ -208,91 +212,100 @@
                     </nav>
                 </div>
             </aside>
-
-            <!-- MAIN CONTENT-->
+            <!-- END HEADER DESKTOP-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
-                    <div class="container-fluid">                     
-                       
-<!--   Coppy doan nay, -->
-
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-<!--   Coppy doan nay, -->
-
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                    <h1>Staff List</h1>
-                                    </div>
-                                    <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
-                                    </div>
-                                </div>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>Staff Name</th>
-                                                <th>Access Dashboard</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                                foreach($data as $item){
-                                            ?>
-                                            <tr>
-                                                <td><?=$item['username']?></td>
-                                                <td>
-                                                    <a href="view_for_staff.php?sta_email=1">
-                                                      <button type="button" class="btn btn-info">Access Dashboard</button>
-                                                     </a>
-                                                </td>
-                                            </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                        </tbody>
-                                    </table>
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Staff Dashboard</h2>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar"></i>
+                                            </div>
+                                             <div class="text">
+                                                <h2><?=$data['tutor_num']['avai_tutor']?></h2>
+                                                <span>Available Tutors</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-archive"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?=$data['stu_num']['unall_stu']?></h2>
+                                                <span>Unallocated Tutees</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?=$data['stu_message_num']['std_mess_num']?></h2>
+                                                <span>Tutees message amount (7 Days)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                              <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?=$data['tu_message_num']['tu_mess_num']?></h2>
+                                                <span>Tutors message amount (7 Days)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- END MAIN CONTENT-->
+            <!-- BREADCRUMB-->
+       
+            <!-- END BREADCRUMB-->
+
+            <!-- STATISTIC-->
+      <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+             <!-- Include("view/$view.php")-->
+          </div>
+        </div>
+      </div>
+    </div>
             <!-- END PAGE CONTAINER-->
         </div>
+
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
-    </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
 
-    <!-- Main JS-->
-    <script src="js/main.js"></script>
 
-</body>
 
-</html>
-<!-- end document-->

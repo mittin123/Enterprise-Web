@@ -282,7 +282,3 @@ if(!isset($_SESSION)){
                 </div>
             </div>
 
-</body>
-
-</html>
-<!-- end document-->

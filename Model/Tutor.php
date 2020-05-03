@@ -269,7 +269,7 @@ class Tutor{
     public function get_document_number($id){
         $db = Database::getInstance()->connect;
         $query = "select count(*) as count_document FROM `file_detail` 
-        WHERE uploader = (
+        WHERE uploader in (
         select email from student
             where code in (
             select student_code from student_tutor
@@ -277,24 +277,13 @@ class Tutor{
                 select id from student_tutor
                 where tutor_code = (
                 select code from tutor
-                    where email = 'tutor@gmail.com'
+                    where email = ?
                 )
-                )
-            )
-        )
-        and folder_id in (
-        select id from folder
-            where std_tutor_id in (
-            select id from student_tutor
-                where tutor_code = (
-                select code from tutor
-                    where email = 'tutor@gmail.com'
                 )
             )
         )";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
-        $stmt->bindParam(2,$id);
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                       

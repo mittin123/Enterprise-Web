@@ -40,25 +40,9 @@ else if(!isset($_GET['action'])){
 else if(isset($_GET['action'])){
     switch($_GET['action']){
         case 'upload':
-            /*
-                code for upload file @ view
-                $func = new Func();
-                if(isset($_POST['submit]) && isset($_FILES['uploadFile'])){
-                    if($_FILES['uploadFile']['error'] == 0){
-                        
-                        $tutor_controller = new TutorController();
-                        $result = $tutor_controller->uploadFile($_SESSION['email'],$_FILES['uploadFile'],$upload_folder);
-                        $func->alert($result);
-                    }
-                    else{
-                        $func->alert("Error. Error code: ".$_FILES['uploadFile']['error']);
-                    }
-                }
-            */
             if(isset($_POST['upload'])){
                 print_r($_POST);
             }
-            
             if($file['error'] == 0){
                 $folder_id = $_POST['folder_id'];
                 $uploader = $_SESSION['email'];

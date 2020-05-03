@@ -249,7 +249,7 @@
                                                 <td><?=$item['cnt']?>/10</td>
                                                 <td><?=$last_active?></td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="view_for_staff.php?tu_email=<?=$item['email']?>">
                                                       <button type="button" class="btn btn-info">Access</button>
                                                      </a>
                                                 </td>
