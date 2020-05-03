@@ -19,7 +19,7 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
@@ -40,7 +40,7 @@
                                     <i class="fas fa-chart-bar"></i>Statistic reports</a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?exception_report=1">
                                     <i class="fas fa-book"></i>Exception Reports</a>
                             </li>
                     </ul>

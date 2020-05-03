@@ -3,15 +3,34 @@ if(!isset($_SESSION)){
     session_start();
 }
 ?>
-<?php
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if($_SESSION['type'] == 1){
-            include('student_sidebar.php');
-        }
-        else include('tutor_sidebar.php');
-        ?>
+<aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="View/images/icon/logo.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+            <nav class="navbar-sidebar2">
+                    <ul class="list-unstyled navbar__list">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
+                        </li>
+                         <li>
+                            <a href="view_student.php">
+                                <i class="fas fa-address-card"></i>Unallocate Student List</a>
+                        </li>
+                       <li>
+                            <a href="view_tutor.php">
+                                <i class="fas fa-address-card"></i>Tutor List</a>
+                        </li>
+                
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
@@ -222,7 +241,7 @@ if(!isset($_SESSION)){
                                                 <td><?=$item['name']?></td>
                                                 <td><?=$item['email']?></td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="view_tutor.php">
                                                       <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Allocate</button>
                                                      </a>
                                                 </td>
