@@ -12,7 +12,15 @@ class Tutor{
         $std_tutor_code = $tutor_info['code'];
         $db = Database::getInstance()->connect;
         $folder_list = [];
-        $query = "Select A.*, count(B.id) as number_of_files from folder as A join file_detail as B on A.id = B.folder_id where std_tutor_id in (select * from student_tutor where tutor_code =  ?) group by A.id";
+        $query = "Select A.*, C.name as stu_name, count(B.id) as number_of_files from folder as A 
+        join file_detail as B 
+        on A.id = B.folder_id 
+        join student as C
+        on C.email = B.uploader
+        where std_tutor_id in (
+            select student_tutor.id from student_tutor 
+            where tutor_code = ?) 
+            group by A.id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $std_tutor_code);
         $stmt->execute();
@@ -68,7 +76,7 @@ class Tutor{
     
     public function get_file_detail($file_id){
         $db = Database::getInstance()->connect;
-        $query = "Select * from file_detail where id = ?";
+        $query = "Select A.*, B.name, B.std_tutor_id from file_detail as A join folder as B on A.folder_id = B.id where A.id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $file_id);
         $stmt->execute();
@@ -162,7 +170,7 @@ class Tutor{
         $student_list = [];
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
-        $query = "Select *,C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
+        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();
@@ -301,8 +309,7 @@ class Tutor{
                     LEFT join tutor
                     on student_tutor.tutor_code = tutor.code
                     where tutor.email = ?
-                )
-        and time between ? and ?";
+                )";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
         $stmt->bindParam(2,$id);

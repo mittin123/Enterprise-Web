@@ -216,6 +216,7 @@
                                                 <?php
                                                     foreach($data as $item){
                                                         
+                                                        
                                                     
                                                 ?>
                                                 <tr>
@@ -232,7 +233,7 @@
                                                      </a>
                                                 </td>
                                                 <td>
-                                                    <a href="Chat/index.php?id=<?=$item['account_id']?>">
+                                                    <a href="Chat/index.php?room_id=<?=$item['stu_tu_id']?>">
                                                       <button type="button" class="btn btn-info" value="">Chat</button>
                                                      </a>
                                                 </td>

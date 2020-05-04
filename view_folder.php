@@ -88,7 +88,7 @@ else if (isset($_SESSION['email'])){
             break;
             case 'view_file':
                 $file_id = $_GET['file_id'];
-                //die($file_id);
+
                 $tutor_page->view_file_detail($file_id);
             break;
         }

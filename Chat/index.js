@@ -48,7 +48,7 @@ function sendMessage() {
       var div = document.createElement("div");
       var author = document.createElement("span");
       author.className = "author";
-      author.innerHTML = data.name;
+      author.innerHTML = data.name+":";
       var message = document.createElement("span");
       message.className = "message";
       message.innerHTML = data.message;

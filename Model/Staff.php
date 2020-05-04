@@ -31,6 +31,10 @@ class Staff{
         foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
             $tutor_list[] = $item;
         }
+        $query = "Select tutor.*, account.last_login, '0' as cnt from tutor join account on tutor.email = account.email where tutor.code not in (Select tutor_code from student_tutor)";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $tutor_list[] = $item;
+        }
         return $tutor_list;
     }
 
@@ -77,7 +81,7 @@ class Staff{
     public function deleteStudent($student_id){
         $db = Database::getInstance()->connect;
         $model_student = new Student();
-        $student = $model_student->findStudent($student_id);
+        $student = $model_student->findStudentToDelete($student_id);
         $student_code = $student['code'];
         try{
             $query = "Delete from student_tutor where student_code = (?)";

@@ -194,12 +194,14 @@
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                     <h1>File Detail</h1>
+                                    
                                     </div>
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <strong>File Detail</strong> 
                                     </div>
+                                    
                                     <div class="card-body card-block">
                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
@@ -225,8 +227,8 @@
                                                 <div class="col-12 col-md-9">
 
                                                 <!-- Download file here-->
-
-                                                   <a href="upload/<?=$data['file_detail']['folder_id']?>/<?=$data['file_detail']['file_name']?>"><?=$data['file_detail']['file_name']?></a>
+                                                    
+                                                   <a href="../upload/<?=$data['file_detail']['folder_id']?>/<?=$data['file_detail']['name']?>/<?=$data['file_detail']['file_name']?>"><?=$data['file_detail']['file_name']?></a>
 
                                                 </div>
                                             </div>

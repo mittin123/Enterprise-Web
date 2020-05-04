@@ -222,15 +222,15 @@
                                         <tbody>
                                             <?php
                                             foreach($data as $item){
-
+                                                $create_time = date("m/d/y", $item['create_time'])
                                             ?>
                                             <tr>
                                                 <td><?=$item['name']?></td>
-                                                <td><?=$item['tutee_name']?></td>
+                                                <td><?=$item['stu_name']?></td>
                                                 <td><?=$item['number_of_files']?></td>
-                                                <td><?=$item['create_date']?></td>
+                                                <td><?=$create_time?></td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="?id=<?=$item['id']?>">
                                                       <button type="button" class="btn btn-info" value="">Access</button>
                                                      </a>
                                                 </td>
