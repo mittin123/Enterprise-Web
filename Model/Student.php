@@ -56,7 +56,15 @@ class Student{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-    
+    public function findStudentToDelete($student_id){
+        $db = Database::getInstance()->connect;
+        $query = "select code from student inner join account on student.email = account.email where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$student_id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getStudentInfo($email){
         $db = Database::getInstance()->connect;
         $query = "Select A.code,B.email,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";

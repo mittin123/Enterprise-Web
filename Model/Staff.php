@@ -77,7 +77,7 @@ class Staff{
     public function deleteStudent($student_id){
         $db = Database::getInstance()->connect;
         $model_student = new Student();
-        $student = $model_student->findStudent($student_id);
+        $student = $model_student->findStudentToDelete($student_id);
         $student_code = $student['code'];
         try{
             $query = "Delete from student_tutor where student_code = (?)";
