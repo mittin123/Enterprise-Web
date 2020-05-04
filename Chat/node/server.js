@@ -3,7 +3,6 @@ var http = require('http');
 var url = require('url');
 
 var WebsocketServer = require('websocket').server;
-var sender_id = 0;
 var server = http.createServer(function(request,response){
     function getPostParam(request, callback){
         var qs = require('querystring');
@@ -26,8 +25,9 @@ var server = http.createServer(function(request,response){
     if(request.method === "POST"){
         getPostParam(request,function(POST){
             var data = JSON.parse(POST.data);
-            sender_id = data.sender_id;
-            messageClients(POST.data, data.receiver_id, data.sender_id);
+            var room_id = data.room_id;
+            console.log("Send roomid "+JSON.stringify(data));
+            messageClients(POST.data, room_id);
             
             response.writeHead(200);
             response.end();
@@ -41,39 +41,30 @@ var websocketServer = new WebsocketServer({
     httpServer: server
 });
 global.clients = {};
-//websocketServer.on("request",websocketRequest);
+global.connection_list = {};
 var connection_id = 0;
+var room_id = 0;
+global.connection_list[connection_id] = [];
+//websocketServer.on("request",websocketRequest);
 websocketServer.on("request",function(webSocket){
-    var params = webSocket.resource.split('&');
-    var receiver_id  = parseInt(params[0].substr(5));
-    var sender_id  = parseInt(params[1].substr(7));
-    clients[connection_id] = webSocket;
+    console.log(webSocket.resource);
+    room_id  = parseInt(webSocket.resource.substr(1));
     var connection = webSocket.accept(null, webSocket.origin);
     clients[connection_id] = connection;
-    clients[connection_id].receiver_id = receiver_id;
-    clients[connection_id].sender_id = sender_id;
-    console.log("connected "+receiver_id+ " in "+Object.getOwnPropertyNames(clients));
-    console.log(receiver_id);
-    console.log(sender_id);
+    connection_list[connection_id] = room_id;
+    console.log("Room ID "+connection_list[connection_id]+ " has been created. Current client_num:"+Object.getOwnPropertyNames(clients));
+    console.log(connection_list[connection_id]);
     connection_id++;
 })
-/*
-var connection_id = 0;
-function websocketRequest(request){
-    var random_client_id = Math.floor(Math.random() * 1000) + 1;
-    var connection = request.accept(null, request.origin);
-    connection_id++;
-    clients[connection_id] = connection;
-    clients[connection_id].client_id = random_client_id;
-    console.log("connected " + request.origin);
-    console.log(clients[1].client_id);
-    
-}*/
 
-function messageClients(message,get_id,sender_id){
+function messageClients(message,room_id){
     for(var i in clients){
-        clients[i].sendUTF(message);
+        if(connection_list[i] == room_id){
+            console.log("123123123");
+            clients[i].sendUTF(message);
+        }
+        console.log("-- RoomID "+room_id);
+        console.log("-- connection_list roomid "+connection_list[i]);
     }
-        
 }
 

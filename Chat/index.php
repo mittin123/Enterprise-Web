@@ -1,27 +1,15 @@
 <?php
-include_once('../function.php');
-include_once('../#config.php');
-$func = new Func();
-if(!isset($_SESSION)){
-	session_start();
+if(isset($_GET['room_id'])){
+	$id = $_GET['room_id'];
 }
-if(!isset($_SESSION['email'])){
-	$func->redir("login.php");
-}
-if(isset($_GET['id'])){
-	$id = $_GET['id'];
-}
-else{
-	$id = 0;
-}
-$sender_id = $_SESSION['user_id'];
+$room_id = $id;
+/*
 $db = Database::getInstance()->connect;
-$stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ? and sender_id = ?) tmp order by time asc");
+$stmt = $db->prepare("SELECT * from (Select name, message, time from message order by time desc limit 20 where stu_tu_id = ?) tmp order by time asc");
 $stmt->bindParam(1, $id);
-$stmt->bindParam(2, $_SESSION['user_id']);
 $stmt->execute();
 $result = $stmt->fetchAll();
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -68,13 +56,12 @@ $result = $stmt->fetchAll();
 		<?php } ?>	
 	</div>
 	<div id="connecting">Connecting to web sockets server...</div>
-	<input type="hidden" class="text-box" id="sender" value="<?=$_SESSION['email']?>">
+	<input type="hidden" class="text-box" id="sender" value="<?=rand(1,100)?>">
 	<input type="text" class="text-box" id="message" placeholder="Your Message" onkeyup="handleKeyUp(event)">
 	<p>Press enter to send message</p>
 </div>
 <script type="text/javascript">
-	var receiver_id = <?php echo $_GET['id'];?>;
-	var sender_id = <?php echo $sender_id ;?>;
+	var room_id = <?php echo $room_id;?>;
 </script>
 <script type="text/javascript" src="index.js"></script>
 </body>

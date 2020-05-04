@@ -10,7 +10,7 @@ function handleKeyUp(e){
 function sendMessage() {
     var name = sender.value.trim(),
         message = send_message.value.trim();
-        
+        console.log("ROOM ID SEND "+room_id);
     
         if(!name){
             return alert("Please fill in the name");
@@ -23,19 +23,19 @@ function sendMessage() {
         var ajax = new XMLHttpRequest();
         ajax.open("POST","send.php",true);
         ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        ajax.send("name="+name+"&message="+message+"&sender_id="+sender_id+"&receiver_id="+receiver_id);
+        ajax.send("name="+name+"&message="+message+"&room_id="+room_id);
 
         send_message.value = "";
 }
 
   window.WebSocket = window.WebSocket || window.MozWebSocket;
 
-  var connection = new WebSocket('ws://localhost:8888?id='+receiver_id+'&sender='+sender_id);
+  var connection = new WebSocket('ws://localhost:8888/'+room_id);
   var connectionSpan = document.getElementById("connecting");
   connection.onopen = function(){
       //connectionSpan.style.display = "none";
       connectionSpan.innerHTML = "Connect success";
-      connection.send("123");
+      
   };
 
   connection.onerror = function(error){
@@ -59,5 +59,5 @@ function sendMessage() {
       document.getElementById("message-box").appendChild(div);
   }
   connection.onclose = function(){
-      connection.close();
+      connection = null;
   }
