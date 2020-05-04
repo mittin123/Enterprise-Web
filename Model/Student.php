@@ -58,7 +58,7 @@ class Student{
     }
     public function findStudentToDelete($student_id){
         $db = Database::getInstance()->connect;
-        $query = "select code from student inner join account on student.email = account.email where id = ?";
+        $query = "select code from student inner join account on student.email = account.email where account.id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$student_id);
         $stmt->execute();
@@ -182,31 +182,10 @@ class Student{
         $today = time();
         $lastWeek = time() - (7 * 24 * 60 * 60);
         $db = Database::getInstance()->connect;
-        $query = "select COUNT(*) as count_message from message
-        where name = (
-        select username from account
-            where email = (
-            select email from tutor
-                where code = (
-                select student_tutor.tutor_code from student_tutor
-                    LEFT join student
-                    on student_tutor.student_code = student.code
-                    where student.email = ?
-                )
-            )
-        )
-        and stu_tu_id = (
-                select student_tutor.id from student_tutor
-                    LEFT join student
-                    on student_tutor.student_code = student.code
-                    where student.email = ?
-                )
-        and time between ? and ?";
+        $query = "select COUNT(*) as count_message from message where name = ? and time > ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
-        $stmt->bindParam(2,$id);
-        $stmt->bindParam(3,$lastWeek);
-        $stmt->bindParam(4,$today);
+        $stmt->bindParam(2,$lastWeek);
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                     

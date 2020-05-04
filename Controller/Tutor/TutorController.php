@@ -6,9 +6,9 @@ class TutorController extends LayoutController{
         $model_tutor = new Tutor();
         return $model_tutor->getTutorInfo($email);
     }
-    public function uploadFile($tutor_email, $file_name, $folder_id){
+    public function uploadFile($tutor_email, $file_name, $folder_id, $type){
         $model_tutor = new Tutor();
-        $result = $model_tutor->uploadFile($tutor_email, $file_name, $folder_id);
+        $result = $model_tutor->uploadFile($tutor_email, $file_name, $folder_id, $type);
         return $result;
     }
     public function view_all_folder($email){

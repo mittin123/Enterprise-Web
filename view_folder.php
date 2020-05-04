@@ -42,10 +42,10 @@ else if (isset($_SESSION['email'])){
                     print_r($_POST);
                 }
                 if($file['error'] == 0){
-                    $folder_id = $_POST['folder_id'];
+                    $folder_id = $_GET['folder_id'];
                     $uploader = $_SESSION['email'];
                     if($_SESSION['type'] == 1){
-                        $file = $_POST['fileUpload'];
+                        $file = $_GET['fileUpload'];
                         $student_page->upload($uploader, $file, $folder_id);
                     }
                     else if($_SESSION['type'] == 2){

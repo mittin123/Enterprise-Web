@@ -1,9 +1,29 @@
 <?php
+include_once("./Controller/Tutor/TutorController.php");
+include_once("./function.php");
+
 if(!isset($_SESSION)){
     session_start();   
 }
 $create_date = date("m/d/y h:i:s a", $data['detail']['create_date']);
 $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
+
+if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
+    $func = new Func();
+    $tutor_controller = new TutorController();
+    $file = $_FILES['file_upload'];
+    $folder_id = $_SESSION['std_tutor_id'];
+    $uploader = $_SESSION['email'];
+    $folder_name = $data['folder_info']['name'];
+    $root = $_SERVER["DOCUMENT_ROOT"];
+    $type = 2;
+    $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,$type);
+    if (!file_exists($root.'/upload/'.$folder_id.'/'.$folder_name)) {
+        mkdir($root.'/upload/'.$folder_id.'/'.$folder_name, 0755, true);
+    }
+    move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$folder_name.'/'.$file['name']);
+    $func->alert("Upload file ".$file['name']." to folder ".$folder_name." successfully");
+}
 ?>
 <?php
         if(!isset($_SESSION)){
@@ -208,7 +228,7 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                         <strong>Arrangement Detail</strong> 
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="view_folder.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                             <div class="row form-group">
                                             <input type="hidden" name="folder_id" id="folder_id" value="<?=$data['detail']['id']?>">
                                                 <div class="col col-md-3">
@@ -287,8 +307,8 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
                                                     <label for="text-input" class=" form-control-label">Upload new file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="file" name="fileUpload" id="fileUpload" value=""> 
-                                                    <a href="view_folder.php?action=upload">                                             
+                                                    <input type="file" name="file_upload" id="file_upload" value=""> 
+                                                    <a href="">                                             
                                                     <button class="btn btn-success" type="submit" name="upload" id="upload" value="upload">Upload</button>
                                                     </a>
                                                 </div>

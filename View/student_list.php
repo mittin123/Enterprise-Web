@@ -235,6 +235,7 @@ if(!isset($_SESSION)){
                                         </thead>
                                         <tbody>
                                             <?php
+                                            
                                             foreach($data as $item){
                                                 ?>
                                             <tr>
@@ -242,7 +243,7 @@ if(!isset($_SESSION)){
                                                 <td><?=$item['email']?></td>
                                                 <td>
                                                     <a href="view_tutor.php">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Allocate</button>
+                                                      <button type="button" class="btn btn-info" value="">Allocate</button>
                                                      </a>
                                                 </td>
                                             </tr>

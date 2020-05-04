@@ -1,9 +1,27 @@
 <?php
+include_once("./Controller/Tutor/TutorController.php");
+include_once("./function.php");
 if(!isset($_SESSION)){
     session_start();   
 }
 $create_date = date("m/d/y h:i:s a", $data['detail']['create_date']);
-    $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
+$arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
+
+if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
+    $func = new Func();
+    $tutor_controller = new TutorController();
+    $file = $_FILES['file_upload'];
+    $folder_id = $_SESSION['std_tutor_id'];
+    $uploader = $_SESSION['email'];
+    $folder_name = $data['folder_info']['name'];
+    $root = $_SERVER["DOCUMENT_ROOT"];
+    $tutor_controller->uploadFile($uploader, $file['name'], $folder_id);
+    if (!file_exists($root.'/upload/'.$folder_id.'/'.$folder_name)) {
+        mkdir($root.'/upload/'.$folder_id.'/'.$folder_name, 0755, true);
+    }
+    move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$folder_name.'/'.$file['name']);
+    $func->alert("Upload file ".$file['name']." to folder ".$folder_name." successfully");
+}
 ?>
 <?php
         if(!isset($_SESSION)){

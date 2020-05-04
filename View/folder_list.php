@@ -213,7 +213,6 @@
                                             <!--   Dat lenh foreach o day, -->
                                             <tr>
                                                 <th>Folder name</th>
-                                                <th>Tutee name</th>
                                                 <th>Number of files</th>
                                                 <th>Created date</th>
                                                 <th>Access</th>
@@ -226,7 +225,6 @@
                                             ?>
                                             <tr>
                                                 <td><?=$item['name']?></td>
-                                                <td><?=$item['stu_name']?></td>
                                                 <td><?=$item['number_of_files']?></td>
                                                 <td><?=$create_time?></td>
                                                 <td>

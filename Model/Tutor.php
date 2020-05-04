@@ -9,51 +9,34 @@ class Tutor{
 
     public function view_all_folder($tutor_email){
         $tutor_info = self::getTutorInfo($tutor_email);
-        $std_tutor_code = $tutor_info['code'];
+        $tutor_code = $tutor_info['code'];
         $db = Database::getInstance()->connect;
         $folder_list = [];
-        $query = "Select A.*, C.name as stu_name, count(B.id) as number_of_files from folder as A 
-        join file_detail as B 
-        on A.id = B.folder_id 
-        join student as C
-        on C.email = B.uploader
-        where std_tutor_id in (
-            select student_tutor.id from student_tutor 
-            where tutor_code = ?) 
-            group by A.id";
+        $query = "select *, count(file_detail.id) as number_of_files FROM `folder` 
+        join file_detail
+        on folder.id = file_detail.folder_id
+        WHERE std_tutor_id in ( select id from student_tutor where tutor_code = ? )
+        group by folder.id";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(1, $std_tutor_code);
+        $stmt->bindParam(1, $tutor_code);
         $stmt->execute();
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
+        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $folder_list[] = $item;
+        }
+
         return $folder_list;
     }
 
     public function view_file_list($id){
         $file_list = [];
         $db = Database::getInstance()->connect;
-        $query="select * from file_detail 
-        where type = 1 and uploader in (
-            Select B.email as stu_email from student_tutor as A 
-            join student as B 
-            on A.student_code = B.code 
-            join account as C 
-            on C.email = B.email 
-            where tutor_code = (
-                Select A.code from tutor as A 
-                join account as B 
-                on A.email = B.email 
-                join student_tutor as C 
-                on C.tutor_code = A.code 
-                where A.email = ? 
-                group by A.code
-            )
-        ) 
-        and folder_id = ?";
+        $query="select * from file_detail where type = 2 and folder_id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(1, $_SESSION['email']);
-        $stmt->bindParam(2, $id);
+        $stmt->bindParam(1, $id);
         $stmt->execute();
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $file_list[] = $item;
@@ -265,11 +248,10 @@ class Tutor{
             }
         }
     */
-    public function uploadFile($tutor_email, $file_name, $folder_id){
+    public function uploadFile($tutor_email, $file_name, $folder_id, $type){
         try{
             $time = time();
             $comment = "no comment";
-            $type = 1;
             $db = Database::getInstance()->connect;
             $query = "Insert into file_detail (uploader, file_name, folder_id, comment, create_time, update_time, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $db->prepare($query);
@@ -288,33 +270,12 @@ class Tutor{
         }
     }
     public function get_message_number($id){
-        $today = time();
         $lastWeek = time() - (7 * 24 * 60 * 60);
         $db = Database::getInstance()->connect;
-        $query = "select COUNT(*) as count_message from message
-        where name in (
-        select username from account
-            where email in (
-            select email from student
-                where code in (
-                select student_tutor.student_code from student_tutor
-                    LEFT join tutor
-                    on student_tutor.tutor_code = tutor.code
-                    where tutor.email = ?
-                )
-            )
-        )
-        and stu_tu_id in (
-                select student_tutor.id from student_tutor
-                    LEFT join tutor
-                    on student_tutor.tutor_code = tutor.code
-                    where tutor.email = ?
-                )";
+        $query = "select COUNT(*) as count_message from message where name = ? and time > ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
-        $stmt->bindParam(2,$id);
-        $stmt->bindParam(3,$lastWeek);
-        $stmt->bindParam(4,$today);
+        $stmt->bindParam(2,$lastWeek);
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                     
