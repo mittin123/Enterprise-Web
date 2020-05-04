@@ -11,8 +11,10 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     $uploader = $_SESSION['email'];
     
     $tutor_controller->uploadFile($uploader, $file['name'], $folder_id);
-
-    move_uploaded_file($file['tmp_name'],'../upload/'.substr($uploader,0,strlen($uploader)-10).'/'.$folder_id.'/'.$file['name']);
+    if (!file_exists($root.'/upload/'.$folder_id.'/'.$folder_name)) {
+        mkdir($root.'/upload/'.$folder_id.'/'.$folder_name, 0755, true);
+    }
+    move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$file['name']);
         
     echo "Folder ID - ".$folder_id;
 }
