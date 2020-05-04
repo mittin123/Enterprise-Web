@@ -1,49 +1,21 @@
-<aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <a href="#">
-                    <img src="View/images/icon/logo.png" alt="Cool Admin" />
-                </a>
-            </div>
-            <div class="menu-sidebar__content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-address-card"></i>Your class</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-align-justify"></i>All class</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="fas fa-rss-square"></i>Blog</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="as fa-archive"></i>Option</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-<body class="animsition">
-            <!-- PAGE CONTAINER-->
+<?php
+if(!isset($_SESSION)){
+    session_start();
+}
+$time = date("m/d/y h:i:s a", $data['create_time']);
+?>
+
+
+<?php
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if($_SESSION['type'] == 1){
+            include('student_sidebar.php');
+        }
+        else include('tutor_sidebar.php');
+        ?>
+        <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
@@ -67,7 +39,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="View/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -77,7 +49,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="View/images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -86,7 +58,7 @@
                                                 </div>
                                             </div>
                                             <div class="mess__footer">
-                                                <a href="inbox.html">View all messages</a>
+                                                <a href="#">View all messages</a>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +71,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="View/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -108,7 +80,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="View/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -117,7 +89,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="View/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -170,15 +142,49 @@
                                     </div>
                                 </div>
                                 <!-- Redirect đến trang login hộ t phát-->
-                                <?php
-                                    if(!isset($_SESSION['email'])){
-                                    ?>
-                                <div align="right" style="margin-top: -5px;">
-                                      <a href="login.php"><button type="button" class="btn btn-primary">Log In</button></a>
-                                </div>
-                                    <?php
-                                    }
-                                    ?>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">john doe</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">john doe</a>
+                                                    </h5>
+                                                    <span class="email">johndoe@example.com</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-account"></i>Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                        <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="logout.php">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -187,47 +193,31 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-             <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <h3 class="title-5 m-b-35">Blogs</h3>
-                        <div class="row">
-                            <?php
-                                foreach($data as $item){
-                                    $date = date("m/d/y", $item['create_time']);
-                            ?>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <strong class="card-title mb-3"><?=$item['title']?></strong>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mx-auto d-block">
-                                             <p class="card-text"><?=$item['abstraction']?>
-                                            </p>
-                                            <h6><i>by <?=$item['user']?></i></h6>
-                                            <h6><i>Last update: <?=$date?></i></h6>
-                                        </div>
-                                        <hr>
-                                        <?php
-                                        if(isset($_SESSION['email'])){
-                                        ?>
-                                        <div class="card-text text-sm-center">
-                                            <a href="view_blog.php?all_id=<?=$item['id']?>"><input class="btn btn-info" type="button" value="Details"></a>
-                                        </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                                <?php
-                            }
-                            ?>
-                        </div>
+              <div class="main-content">
+        <div class="section__content section__content--p30">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <strong class="card-title"><?=$data['title']?></strong>
+
+                  </div>
+                  <div class="card-body">
+                    <div class="typo-headers">
+                      <h3 class="pb-2 display-5"><?=$data['abstraction']?></h3>
+                      <h6 class="pb-2 display-5">Last Update:<?=$time?></h6>
                     </div>
+                    <div class="typo-articles">
+                      <?=$data['content']?>
+                    </div>
+                    <!--<div align="right"><small><i>By (name of author)</i></small></div>--> <!-- Fix later-->
+                  </div>
                 </div>
+
+
+              </div>
             </div>
-        </div>
-            <!-- END MAIN CONTENT-->
-            <!-- END PAGE CONTAINER-->
+          </div>
+
+

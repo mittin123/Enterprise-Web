@@ -18,6 +18,12 @@ class BlogController extends LayoutController{
         $this->loadView("Blog-Detail-Student", $data);
     }
 
+    public function viewBlogDetailAll($id){
+        $vieB = new Blog();
+        $data = $vieB->view_blog_detail($id);
+        $this->loadView("Blog-Detail-Student-All", $data);
+    }
+
     public function loadBlogDetail($id){
         $vieB = new Blog();
         $data = $vieB->view_blog_detail($id);

@@ -14,6 +14,9 @@ else if ($_SESSION['type']){
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $page->viewBlogDetail($id);
+    }else if(isset($_GET['all_id'])){
+        $id = $_GET['all_id'];
+        $page->viewBlogDetailAll($id);
     }
     else if(isset($_GET['update_id'])){
         $id = $_GET['update_id'];
