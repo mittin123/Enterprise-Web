@@ -22,18 +22,44 @@ class Student{
         return $student_list;
     }
 
+    public function getStudentInfoForReal($email){
+        $db = Database::getInstance()->connect;
+        $query = "Select A.code as std_id from student as A 
+        join account as B 
+        on A.email = B.email 
+        where A.email = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function view_all_folder($stu_email){
-        $stu_info = self::getStudentInfo($stu_email);
-        $std_tutor_code = $stu_info['code'];
+        $stu_info = self::getStudentInfoForReal($stu_email);
+        $std_tutor_code = $stu_info['std_id'];
         $db = Database::getInstance()->connect;
         $folder_list = [];
-        $query = "Select A.*, count(B.id) as number_of_files from folder as A join file_detail as B on A.id = B.folder_id where std_tutor_id in (select * from student_tutor where student_code =  ?) group by A.id";
+        $query = "select *, count(file_detail.id) as number_of_files FROM `folder` 
+        join file_detail
+        on folder.id = file_detail.folder_id
+        WHERE std_tutor_id in ( select id from student_tutor where student_code = ? )
+        group by folder.id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $std_tutor_code);
         $stmt->execute();
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
+        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
+        and and std_tutor_id = (select id from student_tutor where student_code = ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $std_tutor_code);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $folder_list[] = $item;
+        }
+
         return $folder_list;
     }
 
@@ -67,7 +93,10 @@ class Student{
     }
     public function getStudentInfo($email){
         $db = Database::getInstance()->connect;
-        $query = "Select A.code,B.email,C.id as std_tutor_id from student as A join account as B on A.email = B.email join student_tutor as C on C.id = B.id";
+        $query = "Select A.code,B.email,C.id as std_tutor_id from student as A 
+        join account as B 
+        on A.email = B.email join student_tutor as C 
+        on C.id = B.id";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$email);
         $stmt->execute();
@@ -75,8 +104,26 @@ class Student{
         return $result;
     }
 
-    public function upload($student, $file){
-
+    public function uploadFile($student_email, $file_name, $folder_id, $type){
+        try{
+            $time = time();
+            $comment = "no comment";
+            $db = Database::getInstance()->connect;
+            $query = "Insert into file_detail (uploader, file_name, folder_id, comment, create_time, update_time, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(1, $student_email);
+            $stmt->bindParam(2, $file_name);
+            $stmt->bindParam(3, $folder_id);
+            $stmt->bindParam(4, $comment);
+            $stmt->bindParam(5, $time);
+            $stmt->bindParam(6, $time);
+            $stmt->bindParam(7, $type);
+            $stmt->execute();
+            return "Upload file success";
+        }
+        catch (Exception $ex){
+            return $ex->getMessage();
+        }
     }
 
     public function check_allocate(){

@@ -23,8 +23,12 @@ class Tutor{
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
-        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)";
-        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
+        and and std_tutor_id = (select id from student_tutor where tutor_code = ?)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $tutor_code);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
 

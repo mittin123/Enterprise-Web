@@ -1,5 +1,5 @@
 <?php
-include_once("./Controller/Tutor/TutorController.php");
+include_once("./Controller/Student/StudentController.php");
 include_once("./function.php");
 if(!isset($_SESSION)){
     session_start();   
@@ -9,7 +9,7 @@ $arrange_date = date("m/d/y h:i:s a", $data['detail']['arrange_date']);
 
 if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     $func = new Func();
-    $tutor_controller = new TutorController();
+    $tutor_controller = new StudentController();
     $file = $_FILES['file_upload'];
     $folder_id = $_SESSION['std_tutor_id'];
     $uploader = $_SESSION['email'];
@@ -295,18 +295,14 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                     <label for="text-input" class=" form-control-label">Upload new file</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="file" name="fileUpload" value="">                                              
+                                                    <input type="file" name="file_upload" id="file_upload" value="">                                              
                                                     <input class="btn btn-success" type="submit" name="upload" value="upload">
                                                 </div>
                                             </div>
                                         
                                         </form>
                                     </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary btn-sm" id="upfile" name="upfile">
-                                            <i class="fa fa-dot-circle-o"></i> Upload
-                                        </button>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>    

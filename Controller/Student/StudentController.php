@@ -26,9 +26,9 @@ class StudentController extends LayoutController{
         return true;
     }
 
-    public function uploadFile($student_email, $file, $folder_id){
+    public function uploadFile($student_email, $file, $folder_id, $type){
         $model_student = new Student();
-        return $model_student->uploadFile($student_email, $file, $folder_id);
+        return $model_student->uploadFile($student_email, $file, $folder_id, $type);
     }
 
     public function viewArrangeList(){

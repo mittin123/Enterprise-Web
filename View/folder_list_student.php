@@ -254,12 +254,12 @@
                                         <tbody>
                                             <?php
                                                 foreach($data as $item){
-
+                                                    $ct = date("m/d/y", $item['create_time'])
                                             ?>
                                             <tr>
                                                 <td><?=$item['name']?></td>
                                                 <td><?=$item['number_of_files']?></td>
-                                                <td><?=$item['create_time']?></td>
+                                                <td><?=$ct?></td>
                                                 <td>
                                                     <a href="">
                                                       <button type="button" class="btn btn-info">Access</button>
