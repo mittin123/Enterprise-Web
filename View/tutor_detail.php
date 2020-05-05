@@ -249,7 +249,7 @@ if(!isset($_SESSION)){
                                 </thead>
                                 <tbody id="std_list">
                                     <?php
-                                    print_r($data['student_list']);
+                                    
                                             foreach($data['student_list'] as $item){
                                             ?>
                                     <tr>

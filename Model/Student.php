@@ -217,6 +217,17 @@ class Student{
         $stmt->execute();
     }
 
+    public function get_file_detail($file_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select A.*, B.name, B.std_tutor_id from file_detail as A join folder as B on A.folder_id = B.id where A.id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $file_id);
+        $stmt->execute();
+        $result['file_detail'] = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result['comment'] = self::get_file_comment($file_id);
+        return $result;
+    }
+
     public function view_arrange_list(){
         $db = Database::getInstance()->connect;
         $arrange_list = [];

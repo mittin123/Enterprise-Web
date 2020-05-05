@@ -28,7 +28,7 @@ class TutorController extends LayoutController{
     
     public function view_file_detail($file_id){
         $model_tutor = new Tutor();
-        $file_detail = $model_tutor->get_file_detail($file_id);
+        $file_detail = $model_tutor->view_file_detail_arrange($file_id);
         $this->loadView("file_detail",$file_detail);
     }
     
@@ -93,5 +93,6 @@ class TutorController extends LayoutController{
         $data = $viewD->view_arrange_list();
         $this->loadView("Tutor_Arrange",$data);
     }
+
 }
 ?>

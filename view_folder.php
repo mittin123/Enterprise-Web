@@ -88,8 +88,15 @@ else if (isset($_SESSION['email'])){
                 
             break;
             case 'view_file':
-                $file_id = $_GET['file_id'];
+                if($_SESSION['type'] == 2){
+                    $file_id = $_GET['file_id'];
                 $tutor_page->view_file_detail($file_id);
+                }
+                else if($_SESSION['type'] == 1) {
+                    $file_id = $_GET['file_id'];
+                $student_page->view_file_detail($file_id);
+                }
+                
             break;
         }
     }
