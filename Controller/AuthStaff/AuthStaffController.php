@@ -53,5 +53,24 @@ class AuthStaffController extends LayoutController{
         $data['tutor_without_interaction'] = $staff->getInactiveTutor();
         $this->loadView("exception_report",$data);
     }
+    public function loadStatisticReportPage(){
+        $auth_staff = new AuthStaff();
+        $data = $auth_staff->getStatisticReport();
+        $new_data = [];
+        $i = 0;
+        while($i<count($data['message_stat'])){
+            $new_data['message'][$i]['tutor_name'] = $data['message_stat'][$i]['name'];
+            $new_data['message'][$i]['average_message'] = $data['message_stat'][$i]['Total_message']/$data['student_stat'][$i]['Total_student'];
+            $new_data['message'][$i]['7_days_message'] = $data['message_stat'][$i]['7_days_message'];
+            $i++;
+        }
+        $i =0;
+        while($i<count($data['arrange_stat'])){
+            $new_data['arrange'][$i]['tutor_name'] = $data['arrange_stat'][$i]['email'];
+            $new_data['arrange'][$i]['7_days_arrangement'] = $data['arrange_stat'][$i]['Total_arrangement'];
+            $i++;
+        }
+        $this->loadView("statistic_report",$new_data);
+    }
 }
 ?>

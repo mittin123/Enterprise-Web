@@ -77,5 +77,52 @@ class AuthStaff{
         return $result;
     }
 
+    public function getStatisticReport(){
+        $db = Database::getInstance()->connect;
+        $time = time() - (7*24*60*60);
+        $query = "select count(message.message) as Total_message, 
+        (Select count(message) from message where time >= ?) as 7_days_message, message.name from message 
+                join tutor on message.name = tutor.email 
+                group by message.`name`";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $time);
+        $stmt->execute();
+        $message_statistic = [];
+        $student_count_statistic = [];
+        $arrange_statistic = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $message_statistic [] = $item;
+        }
+        $query = "select '0' as Total_message, '0' as 7_days_message, tutor.email as name from tutor where tutor.email not in (Select name from message)";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $message_statistic [] = $item;
+        }
+        $query = "Select count(student_tutor.student_code) as Total_student, tutor_code, email from student_tutor join tutor on tutor.code = student_tutor.tutor_code group by tutor_code";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $student_count_statistic [] = $item;
+        }
+        $query = "Select '0' as Total_student, tutor.email from tutor where code not in (Select tutor_code from student_tutor)";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $student_count_statistic [] = $item;
+        }
+        $data['message_stat'] = $message_statistic;
+        $data['student_stat'] = $student_count_statistic;
+
+        $query = "Select count(*) as Total_arrangement, email from student_arrange join student_tutor on student_tutor.id = std_tutor_id join tutor on tutor.`code` = tutor_code where arrange_date >= ? group by code";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $time);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $arrange_statistic [] = $item;
+        }
+        
+        $query = "Select '0' as Total_arrangement, email from tutor where code not in(Select tutor_code from student_tutor where id in(Select std_tutor_id from student_arrange))";
+        foreach($db->query($query,PDO::FETCH_ASSOC) as $item){
+            $arrange_statistic [] = $item;
+        }
+        $data['arrange_stat'] = $arrange_statistic;
+        return $data;
+    }
+
 }
 ?>
