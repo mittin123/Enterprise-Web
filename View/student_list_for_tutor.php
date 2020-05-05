@@ -194,7 +194,8 @@
                                     <h1>Tutor's Student List</h1>
                                     </div>
                                     <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
+                                        <a href="view_student.php?action=delete">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button></a>
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
                                     </div>
                                 </div>

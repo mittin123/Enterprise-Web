@@ -15,6 +15,10 @@ if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
 else if ($_SESSION['type'] == 2){
+	if (isset($_GET['action'])) {
+        $action=$_GET['action'];
+        $tutor_page->getStudentListA_Z($_SESSION['email']);
+    }
     $tutor_page->getStudentList($_SESSION['email']);
 }
 else if ($_SESSION['type'] == 3){

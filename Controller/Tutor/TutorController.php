@@ -57,7 +57,11 @@ class TutorController extends LayoutController{
         $result = $model_tutor->getStudentList($tutor_email);
         $this->loadView("student_list_for_tutor",$result);
     }
-
+ public function getStudentListA_Z($tutor_email){
+        $model_tutor = new Tutor();
+        $result = $model_tutor->getStudentListA_Z($tutor_email);
+        $this->loadView("student_list_for_tutor",$result);
+    }
     public function viewArrangeList(){
         $view = new Tutor();
         $data = $view->view_arrange_list();
