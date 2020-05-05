@@ -36,7 +36,7 @@
                                     <i class="fas fa-address-book"></i>Staff list</a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?statistic_report=1">
                                     <i class="fas fa-chart-bar"></i>Statistic reports</a>
                             </li>
                             <li>

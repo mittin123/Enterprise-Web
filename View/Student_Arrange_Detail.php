@@ -278,7 +278,7 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                                 <td><?=$item['file_name']?></td>
                                                                 <td><?=$file_ct?></td>
                                                                 <td>
-                                                                    <a href="<?php echo "view_folder.php?action=view_file&file_id=".$item['id']?>">
+                                                                    <a href="<?php echo "view_folder.php?action=view_file_arange&file_id=".$item['id']?>">
                                                                       <button type="button" class="btn btn-info">Access</button>
                                                                      </a>
                                                                 </td>

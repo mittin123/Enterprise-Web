@@ -228,6 +228,17 @@ class Student{
         return $result;
     }
 
+    public function view_file_detail_arrange($file_id){
+        $db = Database::getInstance()->connect;
+        $query = "select * from file_detail where id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $file_id);
+        $stmt->execute();
+        $result['file_detail'] = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result['comment'] = self::get_file_comment($file_id);
+        return $result;
+    }
+
     public function view_arrange_list(){
         $db = Database::getInstance()->connect;
         $arrange_list = [];

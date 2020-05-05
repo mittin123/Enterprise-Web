@@ -2,7 +2,7 @@
         if(!isset($_SESSION)){
             session_start();
         }
-        if($_SESSION['type'] == 1){
+        if(isset($_SESSION['type']) && $_SESSION['type'] == 1){
             include('student_sidebar.php');
         }
         else include('tutor_sidebar.php');

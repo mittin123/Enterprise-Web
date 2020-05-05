@@ -81,5 +81,11 @@ class StudentController extends LayoutController{
         $file_detail = $model_student->get_file_detail($file_id);
         $this->loadView("file_detail",$file_detail);
     }
+
+    public function view_file_detail_arrange($file_id){
+        $model_student = new Student();
+        $file_detail = $model_student->view_file_detail_arrange($file_id);
+        $this->loadView("file_detail",$file_detail);
+    }
 }
 ?>
