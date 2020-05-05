@@ -1,13 +1,7 @@
-<aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-        <a href="#">
-            <img src="View/images/icon/logo.png" alt="Cool Admin" />
-        </a>
-    </div>
-    <div class="menu-sidebar__content js-scrollbar1">
-        <nav class="navbar-sidebar2">
-            <ul class="list-unstyled navbar__list">
-                <li>
+<nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li>
                     <a href="index.php">
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                     </a>
@@ -32,8 +26,6 @@
                     <a href="Chat/index.php?room_id=<?=$_SESSION['stu_tu_id']?>">
                         <i class="fas fa-rss-square"></i>Chat</a >
                 </li>
-            </ul>
-        </nav>
-    </div>
-</aside>
-<!-- END MENU SIDEBAR-->
+                    </ul>
+                </div>
+            </nav>

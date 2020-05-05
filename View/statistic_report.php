@@ -19,28 +19,28 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="#">
+                            <a href="index.php">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
                          <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?auth_id=2">
                                     <i class="fas fa-chart-bar"></i>Tutor list</a>
                             </li>
                              <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?auth_id=1">
                                     <i class="far fa-address-book"></i>Student list</a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?auth_id=3">
                                     <i class="fas fa-address-book"></i>Staff list</a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?statistic_report=1">
                                     <i class="fas fa-chart-bar"></i>Statistic reports</a>
                             </li>
                             <li>
-                                <a href="inbox.html">
+                                <a href="view_for_staff.php?exception_report=1">
                                     <i class="fas fa-book"></i>Exception Reports</a>
                             </li>
                     </ul>
