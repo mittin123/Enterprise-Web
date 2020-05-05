@@ -14,7 +14,7 @@ if(!isset($_SESSION['email'])){
 }
 else if (isset($_SESSION['email'])){
     if(isset($_GET['stu_id'])){
-        $student_page->view_all_folder($_SESSION['email']);
+        $student_page->view_all_folder($_SESSION['email']); 
     }
     else if(!isset($_GET['id']) && !isset($_GET['action'])){
         $tutor_page->view_all_folder($_SESSION['email']);
@@ -23,6 +23,7 @@ else if (isset($_SESSION['email'])){
         switch($_SESSION['type']){
             case 1:
                 $student_info = $student_page->getStudentInfo($_SESSION['email']);
+                $_SESSION['std_tutor_id'] = $student_info['std_tutor_id'];
                 $student_page->view_folder($student_info['std_tutor_id']);
             break;
             case 2:
@@ -88,7 +89,6 @@ else if (isset($_SESSION['email'])){
             break;
             case 'view_file':
                 $file_id = $_GET['file_id'];
-
                 $tutor_page->view_file_detail($file_id);
             break;
         }

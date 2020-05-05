@@ -91,12 +91,13 @@ class Student{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getStudentInfo($email){
         $db = Database::getInstance()->connect;
         $query = "Select A.code,B.email,C.id as std_tutor_id from student as A 
         join account as B 
         on A.email = B.email join student_tutor as C 
-        on C.id = B.id";
+        on C.student_code = A.code where A.email = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$email);
         $stmt->execute();
@@ -124,6 +125,40 @@ class Student{
         catch (Exception $ex){
             return $ex->getMessage();
         }
+    }
+    public function get_folder_info($std_tutor_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from folder where std_tutor_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function get_file_list($std_tutor_id){
+        $file_list = [];
+        $db = Database::getInstance()->connect;
+        $query = "Select A.* from file_detail as A join folder as B on A.folder_id = B.id where B.id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $file_list[] = $item;
+        }
+        return $file_list;
+    }
+
+    public function get_file_comment($file_id){
+        $db = Database::getInstance()->connect;
+        $query = "Select * from comment where file_id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $file_id);
+        $stmt->execute();
+        $comment_list = [];
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $comment_list[] = $item;
+        }
+        return $comment_list;
     }
 
     public function check_allocate(){

@@ -25,6 +25,7 @@ class TutorController extends LayoutController{
         $data['folder_info'] = $folder_info;
         $this->loadView("folder_detail",$data);
     }
+    
     public function view_file_detail($file_id){
         $model_tutor = new Tutor();
         $file_detail = $model_tutor->get_file_detail($file_id);

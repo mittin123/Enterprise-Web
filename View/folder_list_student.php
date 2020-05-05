@@ -261,7 +261,7 @@
                                                 <td><?=$item['number_of_files']?></td>
                                                 <td><?=$ct?></td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="?id=<?=$item['folder_id']?>">
                                                       <button type="button" class="btn btn-info">Access</button>
                                                      </a>
                                                 </td>

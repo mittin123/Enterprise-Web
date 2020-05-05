@@ -12,7 +12,7 @@ class Tutor{
         $tutor_code = $tutor_info['code'];
         $db = Database::getInstance()->connect;
         $folder_list = [];
-        $query = "select *, count(file_detail.id) as number_of_files FROM `folder` 
+        $query = "select *, folder.id as folder_id, count(file_detail.id) as number_of_files FROM `folder` 
         join file_detail
         on folder.id = file_detail.folder_id
         WHERE std_tutor_id in ( select id from student_tutor where tutor_code = ? )
@@ -23,8 +23,7 @@ class Tutor{
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
-        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
-        and and std_tutor_id = (select id from student_tutor where tutor_code = ?)";
+        $query = "select *, folder.id as folder_id, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail) and std_tutor_id in (select id from student_tutor where tutor_code = ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $tutor_code);
         $stmt->execute();

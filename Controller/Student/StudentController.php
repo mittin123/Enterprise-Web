@@ -13,8 +13,13 @@ class StudentController extends LayoutController{
         $this->loadView("folder_list_student",$data);
     }
 
-    public function view_folder(){
-        $this->loadView("folder_detail");
+    public function view_folder($std_tutor_id){
+        $model_student = new Student();
+        $file_list = $model_student->get_file_list($std_tutor_id);
+        $folder_info = $model_student->get_folder_info($std_tutor_id);
+        $data['file_list'] = $file_list;
+        $data['folder_info'] = $folder_info;
+        $this->loadView("folder_detail",$data);
     }
 
     public function view_create_folder(){
