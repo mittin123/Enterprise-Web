@@ -46,6 +46,7 @@ class Database{
                 $tutor_info = $stmt->fetch(PDO::FETCH_ASSOC);
                 $_SESSION['stu_tu_id'] = $tutor_info['id'];
             }
+
             return $result;
         }
     }

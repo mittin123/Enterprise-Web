@@ -15,7 +15,23 @@ if(!isset($_SESSION['email'])){
     $func->redir("login.php");
 }
 else if ($_SESSION['type'] == 2){
-    $tutor_page->getStudentList($_SESSION['email']);
+	if (isset($_GET['action'])) {
+
+        $action=$_GET['action'];
+        switch ($action) {
+        	case 'A-Z':
+        		$tutor_page->getStudentListA_Z($_SESSION['email']);
+        		break;
+        	
+        	case 'lastInteraction':
+        		$tutor_page->getStudentListLastInteraction($_SESSION['email']);
+        		break;
+        }
+        
+    }else{
+    	    $tutor_page->getStudentList($_SESSION['email']);
+
+    }
 }
 else if ($_SESSION['type'] == 3){
     $page->getStudentList();

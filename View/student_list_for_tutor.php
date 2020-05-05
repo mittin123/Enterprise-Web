@@ -194,8 +194,11 @@
                                     <h1>Tutor's Student List</h1>
                                     </div>
                                     <div class="table-data__tool-right">
-                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button>
+                                        <a href="view_student.php?action=A-Z">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button></a>
+                                        <a href="view_student.php?action=lastInteraction">
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40">
@@ -217,12 +220,12 @@
                                                 
                                                     foreach($data as $item){
                                                         
-                                                        
+                                                        $date = date("m/d/y", $item['last_login']);
                                                     
                                                 ?>
                                                 <tr>
                                                 <td><?=$item['name']?></td>
-                                                <td>20/04/2020</td>
+                                                <td><?=$date?></td>
                                                 <td>
                                                     <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
                                                       <button type="button" class="btn btn-info" value="">New Arrangement</button>
