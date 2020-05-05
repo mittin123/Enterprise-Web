@@ -235,8 +235,9 @@
                                     <h1>Student folder list</h1>
                                     </div>
                                     <div class="table-data__tool-right">
+                                    <a href="view_folder.php?action=create_folder">
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">NEW FOLDER</button>
-                        
+                                    </a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40">

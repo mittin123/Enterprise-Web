@@ -29,8 +29,8 @@
                         <i class="fas fa-rss-square"></i>All Blog</a>
                 </li>
                 <li>
-                    <a href="Chat/index.php?id=<?=$_SESSION['tutor_id']?>">
-                        <i class="fas fa-rss-square"></i>Chat</a>
+                    <a href="Chat/index.php?room_id=<?=$_SESSION['stu_tu_id']?>">
+                        <i class="fas fa-rss-square"></i>Chat</a >
                 </li>
             </ul>
         </nav>

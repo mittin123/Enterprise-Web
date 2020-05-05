@@ -218,7 +218,7 @@ if(!isset($_SESSION)){
                                                 <td><?=$item['note']?></td>
                                                 <td>
                                                     <a href="arrange_meeting.php?id=<?=$item['id']?>">
-                                                      <button type="button" class="btn btn-info" value="<?=$c['packageID']?>">Access</button>
+                                                      <button type="button" class="btn btn-info" value="">Access</button>
                                                     </a>
                                                 </td>
                                             </tr>

@@ -255,7 +255,7 @@
                                                     <label for="text-input" class=" form-control-label">ALL Comments</label>
                                                 </div>
                                                 <div id="comments-wrapper">
-                                                    <div class="comment clearfix" name="comment_field">
+                                                    <div class="comment clearfix" name="comment_field" id="comment_field">
                                                         <?php 
                                                             foreach($data['comment'] as $item){
 
@@ -283,10 +283,12 @@
             </div>
         </div>
     </div>
+    <script src="View/vendor/jquery-3.2.1.min.js"></script> 
 <script>
-    $("#send_comment").onclick(function(){
+
+    $("#send_comment").click(function(){
         var comment = $("#comment").val();
-        var from = <?php echo $_SESSION['email']?>;
+        var from = '<?php echo $_SESSION['email']?>';
         var file_id = <?php echo $_GET['file_id']?>;
         $.ajax({
                     url: 'send_comment.php',
@@ -297,7 +299,7 @@
                         file_id: file_id,
                     },
                     success: function(response){
-                        $("#comment_field").append($response);
+                        $("#comment_field").append(response);
                     }
                 })
     })

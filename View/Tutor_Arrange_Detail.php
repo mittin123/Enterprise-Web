@@ -12,9 +12,9 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     $func = new Func();
     $tutor_controller = new TutorController();
     $file = $_FILES['file_upload'];
-    $folder_id = $_SESSION['std_tutor_id'];
+    $folder_id = $data['detail']['id'];
     $uploader = $_SESSION['email'];
-    $folder_name = $data['folder_info']['name'];
+    $folder_name = $data['detail']['title'];
     $root = $_SERVER["DOCUMENT_ROOT"];
     $type = 2;
     $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,$type);
@@ -289,7 +289,7 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                                 <td><?=$item['file_name']?></td>
                                                                 <td><?=$create_time?></td>
                                                                 <td>
-                                                                    <a href="">
+                                                                    <a href="<?php echo "view_folder.php?action=view_file&file_id=".$item['id']?>">
                                                                       <button type="button" class="btn btn-info" >Access</button>
                                                                      </a>
                                                                 </td>
@@ -308,7 +308,7 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="file" name="file_upload" id="file_upload" value=""> 
-                                                    <a href="">                                             
+                                                                                             
                                                     <button class="btn btn-success" type="submit" name="upload" id="upload" value="upload">Upload</button>
                                                     </a>
                                                 </div>

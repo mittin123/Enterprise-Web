@@ -232,7 +232,7 @@
                                                      </a>
                                                 </td>
                                                 <td>
-                                                    <a href="">
+                                                    <a href="view_folder.php?action=create_folder">
                                                       <button type="button" class="btn btn-info" value="">New Folder</button>
                                                      </a>
                                                 </td>
