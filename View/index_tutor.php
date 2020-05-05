@@ -1,12 +1,50 @@
 <?php
-        if(!isset($_SESSION)){
-            session_start();
-        }
-        if($_SESSION['type'] == 1){
-            include('student_sidebar.php');
-        }
-        else include('tutor_sidebar.php');
-        ?>
+?>
+<aside class="menu-sidebar2">
+            <div class="logo">
+                <a href="#">
+                    <img src="View/images/icon/logo-white.png" alt="Cool Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar2__content js-scrollbar1">
+                <div class="account2">
+                    <div class="image img-cir img-120">
+                        <img src="View/images/icon/avatar-big-01.jpg" alt="John Doe" />
+                    </div>
+                    <h4 class="name"><?=$_SESSION['email']?></h4>
+                    <a href="logout.php">Sign out</a>
+                </div>
+                <nav class="navbar-sidebar2">
+                    <ul class="list-unstyled navbar__list">
+                        <li>
+                            <a href="index.php">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                            </a>
+                        </li>
+                         <li>
+                            <a href="view_student.php">
+                                <i class="fas fa-address-card"></i>Student List</a>
+                        </li>
+                       <li>
+                            <a href="arrange_meeting.php">
+                                <i class="fas fa-address-card"></i>Meeting List</a>
+                        </li>
+                        <li>
+                            <a href="view_folder.php">
+                                <i class="fas fa-address-card"></i>Folder list</a>
+                        </li>
+                       <li>
+                            <a href="view_blog.php">
+                                <i class="fas fa-rss-square"></i>Your Blog</a>
+                        </li>
+                        <li>
+                            <a href="view_blog.php?all_blog=0">
+                                <i class="fas fa-rss-square"></i>All Blog</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
 <div class="page-container2">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop2">
