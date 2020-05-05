@@ -10,7 +10,7 @@ if($response['message'] == "Success"){
     $send_mail = new SendMail();
     $title = "eLearning System";
     $body = "You have been allocated to a tutor. Please visit the website for more details";
-    $to = $response['email'];
+    $to = $response['email_student'];
     $send_mail->send_mail($to, $title, $body);
 
     $to = $response['email_tutor'];
