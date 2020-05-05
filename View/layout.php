@@ -55,35 +55,13 @@
                     </div>
                 </div>
             </div>
-            <nav class="navbar-mobile">
-                <div class="container-fluid">
-                    <ul class="navbar-mobile__list list-unstyled">
-                        <li>
-                            <li>
-                            <a href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                            <a href="view_blog.php">
-                                <i class="fas fa-rss-square"></i>Blog</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="as fa-archive"></i>Option</a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li>
-                                    <a href="login.php">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <?php
+        if(isset($_SESSION['type']) && $_SESSION['type'] == 1){
+            include('student_sidebar2.php');
+        }
+        
+        else include('tutor_sidebar2.php');
+        ?>
         </header>
         <!-- END HEADER MOBILE-->
 
