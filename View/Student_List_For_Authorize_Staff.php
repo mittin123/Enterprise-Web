@@ -241,7 +241,7 @@
                                         <tbody>
                                             <?php
                                                 foreach($data as $item){
-                                                    $last_active = date("m/d/y ", $item['last_login'])
+                                                    $last_active = date("m/d/y h:i:s a", $item['last_login']);
                                             ?>
                                             <tr>
                                                 <td><?=$item['name']?></td>

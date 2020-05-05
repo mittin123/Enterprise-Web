@@ -37,14 +37,17 @@ class Database{
         
         if($result){
             $result['status'] = 1;
+            $time = time();
+            $db->query("Update account set last_login = $time where email = '$email'");
+            if($result['type'] < 2){
+                $stmt = $db->prepare("Select * from student_tutor where student_code in (Select code from student where email = ?)");
+                $stmt->bindParam(1, $email);
+                $stmt->execute();
+                $tutor_info = $stmt->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['stu_tu_id'] = $tutor_info['id'];
+            }
         }
-        if($result['type'] < 2){
-            $stmt = $db->prepare("Select * from student_tutor where student_code in (Select code from student where email = ?)");
-            $stmt->bindParam(1, $email);
-            $stmt->execute();
-            $tutor_info = $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['stu_tu_id'] = $tutor_info['id'];
-        }
+        
         return $result;
     }
 }

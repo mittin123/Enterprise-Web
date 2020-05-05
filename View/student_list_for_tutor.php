@@ -220,12 +220,12 @@
                                                 
                                                     foreach($data as $item){
                                                         
-                                                        
+                                                        $date = date("m/d/y", $item['last_login']);
                                                     
                                                 ?>
                                                 <tr>
                                                 <td><?=$item['name']?></td>
-                                                <td>20/04/2020</td>
+                                                <td><?=$date?></td>
                                                 <td>
                                                     <a href="arrange_meeting.php?add_id=<?=$item['code']?>">
                                                       <button type="button" class="btn btn-info" value="">New Arrangement</button>

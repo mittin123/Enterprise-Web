@@ -195,7 +195,7 @@ class Tutor{
         $student_list = [];
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
-        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ? order by C.last_login ASC";
+        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ? order by C.last_login DESC";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();
