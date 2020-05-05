@@ -6,6 +6,7 @@ $staff = new StaffController();
 $tutor_id = $_POST['tutor_id'];
 $student_id = $_POST['student_id'];
 $response = $staff->allocateStudent($tutor_id,$student_id);
+
 if($response['message'] == "Success"){
     $send_mail = new SendMail();
     $title = "eLearning System";
@@ -15,7 +16,7 @@ if($response['message'] == "Success"){
 
     $to = $response['email_tutor'];
     $body = "You have a new student. Please visit the website for more details.";
-    $send_email->send_mail($to, $title, $$body);
+    $send_mail->send_mail($to, $title, $body);
 }
 echo $response['message'];
 

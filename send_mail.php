@@ -15,13 +15,13 @@ class SendMail{
             $mFrom = 'brinybria24429@gmail.com';  
             $mPass = 'SQmgnumse46509';      
             $nTo = 'Student';        
-            //$mTo = 'dominhhoang1999@gmail.com';   
+            $mTo = $to;   
             $mail             = new PHPMailer();
-            //$body             = 'You have been allocated to a tutor. Please check for details on the website.';  
-            //$title = 'You have been allocated to a tutor';   
+            $body             = $body;
+            $title =   $title; 
             $mail->IsSMTP();             
             $mail->CharSet  = "utf-8";
-            $mail->SMTPDebug  = 2;   
+            $mail->SMTPDebug  = 0;   
             $mail->SMTPAuth   = true;    
             $mail->SMTPSecure = 'ssl';
             $mail->Host       = 'smtp.gmail.com';   

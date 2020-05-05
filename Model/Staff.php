@@ -69,8 +69,8 @@ class Staff{
             $stmt->bindParam(2,$student_code);
             $stmt->execute();
             $result['message'] = "Success";
-            $result['email_student'] = $student_code['email'];
-            $result['email_tutor'] = $tutor_code['email'];
+            $result['email_student'] = $student['email'];
+            $result['email_tutor'] = $tutor['email'];
             return $result;
         }
         catch (Exception $ex){
