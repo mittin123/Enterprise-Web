@@ -194,9 +194,11 @@
                                     <h1>Tutor's Student List</h1>
                                     </div>
                                     <div class="table-data__tool-right">
-                                        <a href="view_student.php?action=delete">
+                                        <a href="view_student.php?action=A-Z">
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">A-Z</button></a>
+                                        <a href="view_student.php?action=lastInteraction">
                                         <button class="au-btn au-btn-icon au-btn--green au-btn--small">Last Interaction</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="table-responsive table--no-card m-b-40">

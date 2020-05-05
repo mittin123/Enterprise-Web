@@ -16,10 +16,22 @@ if(!isset($_SESSION['email'])){
 }
 else if ($_SESSION['type'] == 2){
 	if (isset($_GET['action'])) {
+
         $action=$_GET['action'];
-        $tutor_page->getStudentListA_Z($_SESSION['email']);
+        switch ($action) {
+        	case 'A-Z':
+        		$tutor_page->getStudentListA_Z($_SESSION['email']);
+        		break;
+        	
+        	case 'lastInteraction':
+        		$tutor_page->getStudentListLastInteraction($_SESSION['email']);
+        		break;
+        }
+        
+    }else{
+    	    $tutor_page->getStudentList($_SESSION['email']);
+
     }
-    $tutor_page->getStudentList($_SESSION['email']);
 }
 else if ($_SESSION['type'] == 3){
     $page->getStudentList();

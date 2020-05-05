@@ -136,6 +136,11 @@ class Tutor{
         $student_list = self::getListOfStudentA_Z($tutor_info['id']);
         return $student_list;
     }
+    public function getStudentListLastInteraction($email){
+        $tutor_info = self::getTutorInfo($email);
+        $student_list = self::getListOfStudentLastInteraction($tutor_info['id']);
+        return $student_list;
+    }
 
     public function getTutorInfo($email){
         $db = Database::getInstance()->connect;
@@ -177,6 +182,20 @@ class Tutor{
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
         $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ? order by B.name ASC";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1,$tutor_code);
+        $stmt->execute();
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
+            $student_list[] = $item;
+        }
+        return $student_list;
+    }
+    public function getListOfStudentLastInteraction($tutor_id){
+        $db = Database::getInstance()->connect;
+        $student_list = [];
+        $tutor = self::getTutor($tutor_id);
+        $tutor_code = $tutor['code'];
+        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ? order by C.last_login ASC";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();
