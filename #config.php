@@ -29,7 +29,7 @@ class Database{
     public function login($email, $password){
         $db = $this->connect;
         $stmt = $db->prepare("Select * from account where Email = ? and Password = ?");
-    
+        $password = strtolower(md5($password));
         $stmt->bindParam(1,$email);
         $stmt->bindParam(2,$password);
         $stmt->execute();
