@@ -84,7 +84,7 @@ class Student{
     }
     public function findStudentToDelete($student_id){
         $db = Database::getInstance()->connect;
-        $query = "select code from student inner join account on student.email = account.email where account.id = ?";
+        $query = "select code, account.email as student_mail from student inner join account on student.email = account.email where account.id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$student_id);
         $stmt->execute();

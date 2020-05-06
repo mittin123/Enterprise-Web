@@ -44,6 +44,7 @@ class StaffController extends LayoutController{
             $title = "eLearning System";
             $body = "You have been unallocated from current tutor. Please visit the website for more details";
             $send_mail->send_mail($to,$title,$body);
+            
         }
         header("location:view_tutor.php?id=$tutor_id");
     }
