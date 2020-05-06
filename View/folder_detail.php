@@ -9,12 +9,15 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     $file = $_FILES['file_upload'];
     $folder_id = $_SESSION['std_tutor_id'];
     $uploader = $_SESSION['email'];
-    
-    $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,1);
-
-    move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$file['name']);
-        
-    echo "Folder ID - ".$folder_id;
+    $allow = array('pdf','docx','ppt','pptx','doc');
+    $file_extension = pathinfo($file['name'],PATHINFO_EXTENSION);
+    if(!in_array($file_extension,$allow)){
+        alert("Invalid file!");
+    }
+    else{
+        $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,1);
+        move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$file['name']);
+    }
 }
 ?>
 
