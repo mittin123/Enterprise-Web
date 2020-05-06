@@ -222,7 +222,7 @@ $id = $data['student_code'];
                                                     <label for="text-input" class="form-control-label">Meeting Name<span style="color: red">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="meetName" name="meetName" placeholder="Enter Meeting Name" class="form-control">
+                                                    <input type="text" id="mtName" name="mtName" placeholder="Enter Meeting Name" class="form-control">
                                                     <small class="form-text text-muted">Meeting Names</small>
                                                 </div>
                                                 <div class="col col-md-3">

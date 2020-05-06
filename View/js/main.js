@@ -1719,7 +1719,7 @@ $("#upCmtTutor").click(function(){
 
   $("#arrangingTutor").click(function(){
     
-    var meetName = document.getElementById('meetName').value;
+    var meetName = document.getElementById('mtName').value;
     var dateArrange = document.getElementById('dateArrange').value;
     var tNote = document.getElementById('tNote').value;
     
