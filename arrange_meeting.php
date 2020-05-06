@@ -23,7 +23,7 @@ else if ($_SESSION['type'] == 1){
     else if(isset($_GET['add_id'])){
         $page->loadAddArrange();
     }
-    else if(isset($_POST['arrangingStundent'])){
+    else if(isset($_POST['arrangingStundent']) && $_POST['mtName'] != '' && $_POST['dateArrange'] != '' && $_POST['sNote'] != '') {
         $name = $_POST['mtName'];
         $arrange_date = strtotime($_POST['dateArrange']);
         $create_time = time();

@@ -52,7 +52,7 @@ class Student{
             $folder_list[] = $item;
         }
         $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
-        and and std_tutor_id = (select id from student_tutor where student_code = ?)";
+        and std_tutor_id = (select id from student_tutor where student_code = ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $std_tutor_code);
         $stmt->execute();
@@ -126,21 +126,21 @@ class Student{
             return $ex->getMessage();
         }
     }
-    public function get_folder_info($std_tutor_id){
+    public function get_folder_info($folder_id){
         $db = Database::getInstance()->connect;
-        $query = "Select * from folder where std_tutor_id = ?";
+        $query = "Select * from folder where id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->bindParam(1,$folder_id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function get_file_list($std_tutor_id){
+    public function get_file_list($folder_id){
         $file_list = [];
         $db = Database::getInstance()->connect;
-        $query = "Select A.* from file_detail as A join folder as B on A.folder_id = B.id where B.id = ?";
+        $query = "Select A.* from file_detail as A join folder as B on A.folder_id = B.id where A.folder_id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(1,$std_tutor_id);
+        $stmt->bindParam(1,$folder_id);
         $stmt->execute();
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $file_list[] = $item;
@@ -347,5 +347,23 @@ class Student{
         $stmt->execute();
         $count = $stmt->fetch(PDO::FETCH_ASSOC);
         return $count;                                                                                       
+    }
+
+    public function create_folder($folder_name,$std_tutor_id){
+        $root = $_SERVER["DOCUMENT_ROOT"];
+        $time = time();
+        if (!file_exists($root.'/upload/'.$std_tutor_id.'/'.$folder_name)) {
+            mkdir($root.'/upload/'.$std_tutor_id.'/'.$folder_name, 0755, true);
+          
+            $db = Database::getInstance()->connect;
+            $query = "Insert into folder (std_tutor_id, name, create_time, update_time) VALUES (?, ?, ?, ?)";
+            $stmt = $db->prepare($query);
+            $stmt->bindParam(1,$std_tutor_id);
+            $stmt->bindParam(2,$folder_name);
+            $stmt->bindParam(3,$time);
+            $stmt->bindParam(4,$time);
+            $stmt->execute();
+            return "Create folder ".$folder_name." success";
+        }
     }
 }

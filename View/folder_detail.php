@@ -1,6 +1,6 @@
 <?php
 include_once("./Controller/Tutor/TutorController.php");
-include_once("../function.php");
+include_once("./function.php");
 if(!isset($_SESSION)){
     session_start();
 }
@@ -9,8 +9,10 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     $tutor_controller = new TutorController();
     $func = new Func();
     $file = $_FILES['file_upload'];
-    $folder_id = $_SESSION['std_tutor_id'];
+    $std_tutor_id = $_SESSION['std_tutor_id'];
+    $folder_id = $_GET['id'];
     $uploader = $_SESSION['email'];
+    $folder_name = $data['folder_info']['name'];
     $allow = array('pdf','docx','ppt','pptx','doc');
     $file_extension = pathinfo($file['name'],PATHINFO_EXTENSION);
     if(!in_array($file_extension,$allow)){
@@ -18,7 +20,8 @@ if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     }
     else{
         $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,1);
-        move_uploaded_file($file['tmp_name'],'../upload/'.$folder_id.'/'.$file['name']);
+        move_uploaded_file($file['tmp_name'],'../upload/'.$std_tutor_id.'/'.$folder_name.'/'.$file['name']);
+        $func->redir($_SERVER['REQUEST_URI']);
     }
 }
 ?>

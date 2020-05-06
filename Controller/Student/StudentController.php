@@ -13,10 +13,10 @@ class StudentController extends LayoutController{
         $this->loadView("folder_list_student",$data);
     }
 
-    public function view_folder($std_tutor_id){
+    public function view_folder($folder_id){
         $model_student = new Student();
-        $file_list = $model_student->get_file_list($std_tutor_id);
-        $folder_info = $model_student->get_folder_info($std_tutor_id);
+        $file_list = $model_student->get_file_list($folder_id);
+        $folder_info = $model_student->get_folder_info($folder_id);
         $data['file_list'] = $file_list;
         $data['folder_info'] = $folder_info;
         $this->loadView("folder_detail",$data);
@@ -26,9 +26,10 @@ class StudentController extends LayoutController{
         $this->loadView("create_folder");
     }
     
-    public function create_folder($name,$std_tutor_id){
-        mkdir('../'.$std_tutor_id.'/'.$name, 0755, true);
-        return true;
+    public function create_folder($name, $std_tutor_id){
+        $model_student = new Student();
+        $result = $model_student->create_folder($name, $std_tutor_id);
+        return $result;
     }
 
     public function uploadFile($student_email, $file, $folder_id, $type){
