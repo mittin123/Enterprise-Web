@@ -1,18 +1,20 @@
 <?php
 include_once("./Controller/Tutor/TutorController.php");
+include_once("../function.php");
 if(!isset($_SESSION)){
     session_start();
 }
 if(isset($_POST['upload']) && isset($_FILES['file_upload'])){
     
     $tutor_controller = new TutorController();
+    $func = new Func();
     $file = $_FILES['file_upload'];
     $folder_id = $_SESSION['std_tutor_id'];
     $uploader = $_SESSION['email'];
     $allow = array('pdf','docx','ppt','pptx','doc');
     $file_extension = pathinfo($file['name'],PATHINFO_EXTENSION);
     if(!in_array($file_extension,$allow)){
-        alert("Invalid file!");
+        $func->alert("Invalid file!");
     }
     else{
         $tutor_controller->uploadFile($uploader, $file['name'], $folder_id,1);
