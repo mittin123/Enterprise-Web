@@ -44,7 +44,7 @@ else if ($_SESSION['type'] == 2){
     else if(isset($_GET['add_id'])){
         $tutor->loadAddArrange($_GET['add_id']);
     }
-    else if(isset($_POST['arrangingTutor'])){
+    else if(isset($_POST['arrangingTutor']) && $_POST['mtName'] != ''){
         $std_code = $_POST['id'];
         $title = $_POST['mtName'];
         $arrange_date = strtotime($_POST['dateArrange']);

@@ -28,9 +28,10 @@ else if (isset($_SESSION['email'])){
                 $student_page->view_folder($folder_id);
             break;
             case 2:
+                $folder_id = $_GET['id'];
                 $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
                 $_SESSION['std_tutor_id'] = $tutor_info['std_tutor_id'];
-                $tutor_page->view_folder($tutor_info['std_tutor_id']);
+                $tutor_page->view_folder($folder_id);
             break;
             default:
                 $func->alert("Only student and tutor can access this function");
@@ -76,7 +77,13 @@ else if (isset($_SESSION['email'])){
                         $name = $_POST['folder_name'];
                         $email = $_SESSION['email'];
                         $tutor_info = $tutor_page->getTutorInfo($_SESSION['email']);
-                        $std_tutor_id = $tutor_info['std_tutor_id'];
+                        if(isset($_POST['std_tutor_id'])){
+                            $std_tutor_id = $_POST['std_tutor_id'];
+                        }
+                        else{
+                            $std_tutor_id = $tutor_info['std_tutor_id'];
+                        }
+                        
                         $tutor_page->create_folder($email,$name,$std_tutor_id);
                         $func->alert("Create folder ".$name." success");
                         $func->redir("view_folder.php");

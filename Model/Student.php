@@ -51,7 +51,7 @@ class Student{
         foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $item){
             $folder_list[] = $item;
         }
-        $query = "select *, '0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
+        $query = "select *,folder.id as folder_id ,'0' as number_of_files FROM `folder` WHERE id not in (select folder_id from file_detail)
         and std_tutor_id = (select id from student_tutor where student_code = ?)";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1, $std_tutor_code);

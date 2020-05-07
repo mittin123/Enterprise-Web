@@ -212,6 +212,7 @@
                                                     <input type="text" id="folder_name" name="folder_name" placeholder="Enter Name" class="form-control">
                                                     <small class="form-text text-muted">Folder name</small>
                                                 </div>
+                                                <input type="hidden" id="std_tutor_id" name="std_tutor_id" value="<?=isset($_GET['std_tutor_id']) ? $_GET['std_tutor_id'] : '0' ?>">
                                             </div>
                                         
                                         

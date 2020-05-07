@@ -222,7 +222,7 @@
                                     <div class="table-data__tool-left">
                                     <h1>Statstic report</h1>
                                     <p style="font-size: 35px" >Number of messages in the last 7 days: </p>
-                                    <p style="font-size: 35px">99+</p>
+                                    <p style="font-size: 35px">34</p>
                                     <p style="font-size: 30px">Average Number of Messages for Each Personal Tutor</p>
                                     </div>
                                 </div>

@@ -261,7 +261,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Student name</th>
-                                                <th>Access dashboard</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -270,7 +270,7 @@
                                             ?>
                                             <tr>
                                                 <td><b><?=$item['name']?></b></td>
-                                                <td><button class="au-btn au-btn-icon au-btn--green au-btn--small">Access</button></td>
+                                                
                                             </tr>
                                             <?php
                                                 }
@@ -296,7 +296,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Student name</th>
-                                                <th>Access dashboard</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -305,7 +305,7 @@
                                             ?>
                                             <tr>
                                                 <td><b><?=$item['name']?></b></td>
-                                                <td><button class="au-btn au-btn-icon au-btn--green au-btn--small">Access</button></td>
+                                                
                                             </tr>
                                             <?php
                                                 }
@@ -331,7 +331,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Tutor name</th>
-                                                <th>Access dashboard</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -340,7 +340,7 @@
                                         ?>
                                             <tr>
                                                 <td><b><?=$item['name']?></b></td>
-                                                <td><button class="au-btn au-btn-icon au-btn--green au-btn--small">Access</button></td>
+                                                
                                             </tr>
                                             <?php
                                                 }

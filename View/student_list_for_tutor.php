@@ -232,7 +232,7 @@
                                                      </a>
                                                 </td>
                                                 <td>
-                                                    <a href="view_folder.php?action=create_folder">
+                                                    <a href="view_folder.php?action=create_folder&std_tutor_id=<?=$item['stu_tu_id']?>">
                                                       <button type="button" class="btn btn-info" value="">New Folder</button>
                                                      </a>
                                                 </td>

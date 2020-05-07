@@ -96,7 +96,7 @@ class Tutor{
     }
     public function get_folder_info($std_tutor_id){
         $db = Database::getInstance()->connect;
-        $query = "Select * from folder where std_tutor_id = ?";
+        $query = "Select * from folder where id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$std_tutor_id);
         $stmt->execute();
@@ -164,7 +164,8 @@ class Tutor{
 
     public function getTutor($id){
         $db = Database::getInstance()->connect;
-        $query = "Select A.*, COUNT(B.student_code) as student_count from tutor as A join student_tutor as B on A.code = B.tutor_code where A.id = ?";
+        $query = "Select A.*, COUNT(B.student_code) as student_count from tutor as A 
+        join student_tutor as B on A.code = B.tutor_code where A.id = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$id);
         $stmt->execute();
@@ -177,7 +178,8 @@ class Tutor{
         $student_list = [];
         $tutor = self::getTutor($tutor_id);
         $tutor_code = $tutor['code'];
-        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
+        $query = "Select *,A.id as stu_tu_id, C.id as account_id, B.email as stu_email from student_tutor as A 
+        join student as B on A.student_code = B.code join account as C on C.email = B.email where tutor_code = ?";
         $stmt = $db->prepare($query);
         $stmt->bindParam(1,$tutor_code);
         $stmt->execute();
